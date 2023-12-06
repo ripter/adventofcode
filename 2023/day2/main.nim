@@ -1,66 +1,81 @@
-import sequtils, macros
-import re
+import std/os
+import std/strbasics
 import strutils
-import std/json
+import sequtils
+import re
 
-# Pipe Operator, calls map(input, func)
-macro `|>`(seqExpr, funcExpr: untyped): untyped =
-  # Construct a call to the map function
-  result = newCall(bindSym"map", seqExpr, funcExpr)
+import fileutils
 
+const inputPath = "./input.txt"
+echo "Advent Of Code 2023 - Day 2"
 
-# Regex to replace number string with number value
-proc convertNumberNames(inputStr: string): string =
-  let replacements = [
-    (re"one", "1"), (re"two", "2"), (re"three", "3"),
-    (re"four", "4"), (re"five", "5"), (re"six", "6"),
-    (re"seven", "7"), (re"eight", "8"), (re"nine", "9"),
-  ]
-  return multiReplace(inputStr, replacements)
-
-# Regex to pull out number digits.
-proc extractNumbers(inputStr: string): seq[int] =
-  let pattern = re"\d"
-  let matches = findAll(inputStr, pattern)
-  var numbers = newSeq[int](len(matches))
-  for i, match in matches:
-    numbers[i] = parseInt(match)
-
-  return numbers
-
-# Creates the calibration value from a seq of numbers
-proc findCalibrationValue(numbers: seq[int]): int =
-  let firstValue = numbers[0]
-  let lastValue = numbers[len(numbers)-1]
-  let calibrationValue = $firstValue & $lastValue
-  return parseInt(calibrationValue)
+if not fileExists(inputPath):
+  # Output an error message and exit the program
+  stderr.writeLine("Error: input.txt file not found at: ", inputPath)
+  quit()
 
 
-# let data = @[
-#   "two1nine",
-#   "eightwothree",
-#   "abcone2threexyz",
-#   "xtwone3four",
-#   "4nineeightseven2",
-#   "zoneight234",
-#   "7pqrstsixteen",
-# ]
-let data = parseFile("./input.json")
+type
+  Hand = object
+    red: int
+    green: int
+    blue: int
+  Game = object
+    id: int
+    rounds: seq[Hand]
+    redRange: (int, int)
+    greenRange: (int, int)
+    blueRange: (int, int)
 
-# echo map(data.toSeq(), (a: int): int -> a * 2)
-echo data.map((a: int): int => a * 2)
-# var total = 0;
-# let result = data |> 
-#   convertNumberNames |>
-#   extractNumbers |>
-#   findCalibrationValue 
 
-# echo "Total:", foldl(result, a + b)
 
-# let numbers = @[1, 2, 3, 4]
-# let addOne = proc(x: int): int = x + 1
-# let square = proc(x: int): int = x * x
-# let result = numbers |> addOne |> square
-# # let result = map(numbers, addOne)
-# echo result
-# # result is @[4, 9, 16, 25]
+
+proc lineToGame(line: string): Game =
+  # Get the Game ID and all the rounds
+  let reg = re"Game (\d+):(.*)"
+  var matchOutput: array[2, string]
+  discard match(line, reg, matchOutput)
+  # Get the ID 
+  let id = parseInt(matchOutput[0])
+
+  # Convert the string of rounds seprated by ; into Hands
+  var hands: seq[Hand] = @[]
+  let rawRounds = split(matchOutput[1], re";")
+  for round in rawRounds:
+    # red green, blue in each round is seprated by ,
+    let rawHands = split(round, re",")
+    var hand = Hand()
+    for rawHand in rawHands:
+      # extract the number and label in the hand.
+      var matchHand: array[2, string]
+      discard match(rawHand.strip(), re"(\d+).*(red|green|blue)", matchHand)
+      let value = parseInt(matchHand[0])
+      if "red" == matchHand[1]:
+        hand.red = value 
+      if "green" == matchHand[1]:
+        hand.green = value
+      if "blue" == matchHand[1]:
+        hand.blue = value
+
+    hands.add(hand)
+
+  # Create the Game
+  let game = Game(
+    id: id, 
+    rounds: hands,
+    redRange: minmax(hands.mapIt(it.red)),
+    greenRange: minmax(hands.mapIt(it.green)),
+    blueRange: minmax(hands.mapIt(it.blue)) 
+    )
+  return game
+
+
+
+#
+# Main
+# 
+let rawTextLines: seq[string] = readFileLines(inputPath)
+let data = rawTextLines[0..1]
+let games = data.map(lineToGame)
+
+echo games
