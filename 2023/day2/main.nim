@@ -1,19 +1,19 @@
 import std/sugar
 import std/os
-import std/strbasics
+# import std/strbasics
 import strutils
 import sequtils
 import re
 
 import fileutils
 
-const inputPath = "./input.txt"
-const testPath = "./test.txt"
+const DEBUG = false
+const filePath = if DEBUG: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 2"
 
-if not fileExists(inputPath):
+if not fileExists(filePath):
   # Output an error message and exit the program
-  stderr.writeLine("Error: input.txt file not found at: ", inputPath)
+  stderr.writeLine("Error: input.txt file not found at: ", filePath)
   quit()
 
 
@@ -31,7 +31,7 @@ type
 
 
 
-
+# Convert a game string into a Game object.
 proc lineToGame(line: string): Game =
   # Get the Game ID and all the rounds
   let reg = re"Game (\d+):(.*)"
@@ -65,36 +65,38 @@ proc lineToGame(line: string): Game =
   let game = Game(
     id: id, 
     rounds: hands,
-    redRange: minmax(hands.mapIt(it.red)),
-    greenRange: minmax(hands.mapIt(it.green)),
-    blueRange: minmax(hands.mapIt(it.blue)) 
+    redRange: minmax(hands.filterIt(it.red > 0).mapIt(it.red)),
+    greenRange: minmax(hands.filterIt(it.green > 0).mapIt(it.green)),
+    blueRange: minmax(hands.filterIt(it.blue > 0).mapIt(it.blue)) 
     )
   return game
 
 
-# Function to check if a number is in the range
-proc isInRange(number: int, range: tuple[min: int, max: int]): bool =
-  let result =  number >= range.min and number <= range.max
-  echo "Checking ", number, " range ", range.min, "-", range.max, " is ", result
-  return result
-
-
+# Returns true if the hand is possible in the current game.
 proc isPossible(hand: Hand, game: Game): bool =
   return game.redRange[1] <= hand.red and
     game.greenRange[1] <= hand.green and
     game.blueRange[1] <= hand.blue
-  # return isInRange(hand.red, game.redRange) and 
-  #   isInRange(hand.green, game.greenRange) and
-  #   isInRange(hand.blue, game.blueRange)
+
+
+proc minHand(game: Game): Hand =
+  return Hand(
+    red: game.redRange[1],
+    green: game.greenRange[1],
+    blue: game.blueRange[1],
+  )
+
+proc power(hand: Hand): int =
+  hand.red * hand.green * hand.blue
 
 #
 # Main
 # 
-# let rawTextLines: seq[string] = readFileLines(testPath)
-let rawTextLines: seq[string] = readFileLines(inputPath)
+let rawTextLines: seq[string] = readFileLines(filePath)
 let data = rawTextLines
 let games = data.map(lineToGame)
 
+echo "\n--- Part One ---\n"
 let possibleHand = Hand(red: 12, green: 13, blue: 14)
 echo "Hand of ", possibleHand
 
@@ -105,3 +107,12 @@ let possibleGames = collect:
 
 echo "Possible Games: ", possibleGames.mapIt(it.id)
 echo "Total ", possibleGames.mapIt(it.id).foldl(a + b)
+
+echo "\n--- Part Two ---\n"
+var sumOfPower: int = 0
+for game in games:
+  let hand = game.minHand
+  sumOfPower += hand.power
+  # echo "Min Hand ", hand
+  # echo "Power ", hand.power
+echo "Sum of Power ", sumOfPower
