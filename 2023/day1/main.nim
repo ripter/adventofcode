@@ -1,7 +1,10 @@
-import std/os
+import macros
+import re 
+import sequtils 
 import std/json
-import re, strutils
+import std/os
 import strformat
+import strutils
 
 
 const inputPath = "./input.json"
@@ -14,17 +17,26 @@ if not fileExists(inputPath):
   quit()
 
 
-# Finds and returns all the numbers in a given string as a sequence of integers.
-# The function searches for all occurrences of numeric digits in the input string
-# and converts each found number into an integer.
-#
-# Args:
-#   inputStr: A string potentially containing numeric values.
-#
-# Returns:
-#   A sequence of integers representing all the numbers found in the input string.
-#   If no numbers are found, returns an empty sequence.
-proc findNumbers(inputStr: string): seq[int] =
+# Pipe Operator, calls map(input, func)
+macro `|>`(seqExpr, funcExpr: untyped): untyped =
+  # Construct a call to the map function
+  result = newCall(bindSym"map", seqExpr, funcExpr)
+
+
+# Regex to replace number string with number value
+proc convertNumberNames(inputStr: string): string =
+  let replacements = [
+    (re"oneight", "18"), (re"threeight", "38"), (re"fiveight", "58"), (re"nineight", "98"), 
+    (re"twone", "21"), (re"sevenine", "79"), 
+    (re"eightwo", "82"), (re"eighthree", "83"), 
+    (re"one", "1"), (re"two", "2"), (re"three", "3"),
+    (re"four", "4"), (re"five", "5"), (re"six", "6"),
+    (re"seven", "7"), (re"eight", "8"), (re"nine", "9"),
+  ]
+  return multiReplace(inputStr, replacements)
+
+# Regex to pull out number digits.
+proc extractNumbers(inputStr: string): seq[int] =
   let pattern = re"\d"
   let matches = findAll(inputStr, pattern)
   var numbers = newSeq[int](len(matches))
@@ -33,7 +45,19 @@ proc findNumbers(inputStr: string): seq[int] =
 
   return numbers
 
+# proc extractAlphaNumericNumbers(inputStr: string): seq[int] =
+#   let alphaNumPatterns = [
+#     (re"one", "1"), (re"two", "2"), (re"three", "3"),
+#     (re"four", "4"), (re"five", "5"), (re"six", "6"),
+#     (re"seven", "7"), (re"eight", "8"), (re"nine", "9"),
+#   ]
+#   let digitNumPattern = re"\d"
+#   let result: seq[int] = @[]
 
+#   return result
+
+
+# Creates the calibration value from a seq of numbers
 proc findCalibrationValue(numbers: seq[int]): int =
   let firstValue = numbers[0]
   let lastValue = numbers[len(numbers)-1]
@@ -41,22 +65,41 @@ proc findCalibrationValue(numbers: seq[int]): int =
   return parseInt(calibrationValue)
 
 
-let test_list = @[
-  "1abc2",
-  "pqr3stu8vwx",
-  "a1b2c3d4e5f",
-  "treb7uchet",
-]
+# let data = @[
+  # "1abc2",
+  # "pqr3stu8vwx",
+  # "a1b2c3d4e5f",
+  # "treb7uchet",
+  # "two1nine",
+  # "eightwothree",
+  # "abcone2threexyz",
+  # "xtwone3four",
+  # "4nineeightseven2",
+  # "zoneight234",
+  # "7pqrstsixteen",
+  # "nineeight4seight",
+  # "abc2x3oneight",
+  # "sevenine",
+# ]
+
 
 let jsonData = parseFile("./input.json")
-# echo jsonData
+var data: seq[string] = @[]
+for str in jsonData:
+  data.add(str.getStr())
 
 var total = 0;
-for str in jsonData:
-  let numbers = findNumbers($str)
-  let calibrationValue = findCalibrationValue(numbers)
+for str in data:
+  let strWithNamesConverted = convertNumberNames(str)
+  let extractedNumbers = extractNumbers(strWithNamesConverted) 
+  let calibrationValue = findCalibrationValue(extractedNumbers)
+
   total += calibrationValue
-  echo calibrationValue 
+  echo str, " ",  strWithNamesConverted, " ", calibrationValue
 
 echo "Total Value: ", total
 
+if total <= 54412:
+  echo "Total is too low"
+else:
+  echo "Winner Winnder Chicken Dinner!"
