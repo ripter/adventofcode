@@ -3,7 +3,6 @@ import re
 import sequtils 
 import std/json
 import std/os
-import strformat
 import strutils
 
 
@@ -44,18 +43,6 @@ proc extractNumbers(inputStr: string): seq[int] =
     numbers[i] = parseInt(match)
 
   return numbers
-
-# proc extractAlphaNumericNumbers(inputStr: string): seq[int] =
-#   let alphaNumPatterns = [
-#     (re"one", "1"), (re"two", "2"), (re"three", "3"),
-#     (re"four", "4"), (re"five", "5"), (re"six", "6"),
-#     (re"seven", "7"), (re"eight", "8"), (re"nine", "9"),
-#   ]
-#   let digitNumPattern = re"\d"
-#   let result: seq[int] = @[]
-
-#   return result
-
 
 # Creates the calibration value from a seq of numbers
 proc findCalibrationValue(numbers: seq[int]): int =
