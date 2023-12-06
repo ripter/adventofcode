@@ -1,3 +1,4 @@
+import std/sugar
 import std/os
 import std/strbasics
 import strutils
@@ -7,6 +8,7 @@ import re
 import fileutils
 
 const inputPath = "./input.txt"
+const testPath = "./test.txt"
 echo "Advent Of Code 2023 - Day 2"
 
 if not fileExists(inputPath):
@@ -70,12 +72,36 @@ proc lineToGame(line: string): Game =
   return game
 
 
+# Function to check if a number is in the range
+proc isInRange(number: int, range: tuple[min: int, max: int]): bool =
+  let result =  number >= range.min and number <= range.max
+  echo "Checking ", number, " range ", range.min, "-", range.max, " is ", result
+  return result
+
+
+proc isPossible(hand: Hand, game: Game): bool =
+  return game.redRange[1] <= hand.red and
+    game.greenRange[1] <= hand.green and
+    game.blueRange[1] <= hand.blue
+  # return isInRange(hand.red, game.redRange) and 
+  #   isInRange(hand.green, game.greenRange) and
+  #   isInRange(hand.blue, game.blueRange)
 
 #
 # Main
 # 
+# let rawTextLines: seq[string] = readFileLines(testPath)
 let rawTextLines: seq[string] = readFileLines(inputPath)
-let data = rawTextLines[0..1]
+let data = rawTextLines
 let games = data.map(lineToGame)
 
-echo games
+let possibleHand = Hand(red: 12, green: 13, blue: 14)
+echo "Hand of ", possibleHand
+
+let possibleGames = collect:
+  for game in games:
+    if isPossible(possibleHand, game):
+      game
+
+echo "Possible Games: ", possibleGames.mapIt(it.id)
+echo "Total ", possibleGames.mapIt(it.id).foldl(a + b)
