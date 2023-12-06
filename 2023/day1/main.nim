@@ -15,13 +15,6 @@ if not fileExists(inputPath):
   stderr.writeLine("Error: JSON file not found at: ", inputPath)
   quit()
 
-
-# Pipe Operator, calls map(input, func)
-macro `|>`(seqExpr, funcExpr: untyped): untyped =
-  # Construct a call to the map function
-  result = newCall(bindSym"map", seqExpr, funcExpr)
-
-
 # Regex to replace number string with number value
 proc convertNumberNames(inputStr: string): string =
   let replacements = [
@@ -82,7 +75,7 @@ for str in data:
   let calibrationValue = findCalibrationValue(extractedNumbers)
 
   total += calibrationValue
-  echo str, " ",  strWithNamesConverted, " ", calibrationValue
+  # echo str, " ",  strWithNamesConverted, " ", calibrationValue
 
 echo "Total Value: ", total
 
