@@ -18,7 +18,10 @@ if not fileExists(filePath):
 
 
 type
-  Grid = object
+  WalkDirection = enum
+    wdLeft = -1
+    wdRight = 1
+  Grid = ref object
     width: int = 0
     height: int = 0
     cells: seq[string] = @[]
@@ -74,35 +77,45 @@ proc isSymbol(inputStr: string): bool =
   not isEmpty(inputStr) and not isNumber(inputStr)
 
 
+# Extract numers from the grid on the x-axis
+proc extractNumbers(seqNumbers: var seq[string], grid: Grid, startIdx: int, direction: WalkDirection) =
+  var (x, y) = startIdx.indexToPos(grid.width)
+  var currentIndex: int = startIdx
+
+  while true:
+    # Bail when we move off the x-axis
+    if (x < 0 or x > grid.width):
+      break
+
+    let cellValue = grid.cells[currentIndex]
+    # Bail if the cell is not a number
+    if not cellValue.isNumber:
+      break
+
+    if direction == wdLeft:
+      seqNumbers.insert(cellValue, 0)
+      x -= 1
+    else:
+      seqNumbers.add(cellValue)
+      x += 1
+
+    # Get the cell at index
+    currentIndex = posToIndex((x, y), grid.width)
+
+
 # If string at index isNumber, it will move left and right to get the full number and return it.
 proc extractFullNumber(index: int, grid: Grid): int =
   let currentValue: string = grid.cells[index]
-  var numStr: seq[string] = @[currentValue]
-  var cellValue: string
-
-  echo "currentValue ", currentValue, " from ", index, " creating ", numStr
   # If the current value is not a number, bail.
   if not currentValue.isNumber:
-    return 420
+    return 0
 
-  # Walk left, prepending each number
-  var prevIndex: int = index - 1
-  while true:
-    # bail when we hit negatives
-    if prevIndex < 0:
-      break
-    # Bail if the cell is not a number
-    cellValue = grid.cells[prevIndex]
-    if not cellValue.isNumber:
-      break
-    # preprend the cellValue
-    numStr.insert(cellValue, 0)
-    # subtract to move to the previous cell
-    prevIndex -= 1
-
-  echo "numStr ", numStr
-  # return parseInt foldl(numStr, a & b)
-  return numStr.foldl(a & b).parseInt
+  var seqExtractedNumbers: seq[string] = @[]
+  # Walk the x-axis getting any touching numbers.
+  seqExtractedNumbers.extractNumbers(grid, 0, wdLeft) # Walk Left
+  seqExtractedNumbers.extractNumbers(grid, seqExtractedNumbers.len, wdRight) # Walk Right
+  # each cell is a digit in the number.
+  return seqExtractedNumbers.foldl(a & b).parseInt
 
 #
 # Main
@@ -112,11 +125,11 @@ let data = loadData(rawTextLines)
 # let data = rawTextLines
 
 echo "\n--- Part One ---\n"
-echo posToIndex((1, 1), data.width)
-echo data
-echo neighborsIndexes(11, data.width)
 
-echo "extractFullNumber: ", extractFullNumber(1, data), " to be 467"
+for i in 0..2:
+  echo "starting at:", i, " extractFullNumber: ", extractFullNumber(i, data), " to be 467"
+
+echo "starting at: 3, extractFullNumber: ", extractFullNumber(3, data), " to be 0"
 
 # for cell in data.cells:
 #   echo cell, " isEmpty: ", isEmpty(cell), " isNumber: ", isNumber(cell), " isSymbol: ", isSymbol(cell)
