@@ -101,7 +101,8 @@ proc extractFullNumber(index: int, grid: Grid): int =
     prevIndex -= 1
 
   echo "numStr ", numStr
-  return parseInt foldl(numStr, a & b)
+  # return parseInt foldl(numStr, a & b)
+  return numStr.foldl(a & b).parseInt
 
 #
 # Main
