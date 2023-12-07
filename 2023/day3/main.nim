@@ -1,5 +1,6 @@
 import std/sugar
 import std/os
+import std/enumerate
 # import std/strbasics
 import strutils
 import sequtils
@@ -7,7 +8,7 @@ import re
 
 import ../day2/fileutils
 
-const DEBUG = true
+const DEBUG = false
 const filePath = if DEBUG: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 3"
 
@@ -84,10 +85,11 @@ proc extractNumbers(seqNumbers: var seq[string], grid: Grid, startIdx: int, dire
 
   while true:
     # Bail when we move off the x-axis
-    if (x < 0 or x > grid.width):
+    if (x < 0 or x > grid.width-1):
       break
 
     let cellValue = grid.cells[currentIndex]
+    # echo "extract ", cellValue, " from idx ", currentIndex, " pos ", x, ",", y
     # Bail if the cell is not a number
     if not cellValue.isNumber:
       break
@@ -112,10 +114,43 @@ proc extractFullNumber(index: int, grid: Grid): int =
 
   var seqExtractedNumbers: seq[string] = @[]
   # Walk the x-axis getting any touching numbers.
-  seqExtractedNumbers.extractNumbers(grid, 0, wdLeft) # Walk Left
-  seqExtractedNumbers.extractNumbers(grid, seqExtractedNumbers.len, wdRight) # Walk Right
+  seqExtractedNumbers.extractNumbers(grid, index, wdLeft) # Walk Left
+  seqExtractedNumbers.extractNumbers(grid, index+1, wdRight) # Walk Right
   # each cell is a digit in the number.
   return seqExtractedNumbers.foldl(a & b).parseInt
+
+
+proc addTouchingNumbers(nums: var seq[int], symbolIndex: Natural, grid: Grid) =
+  let neighbors = neighborsIndexes(symbolIndex, grid.width)
+
+  # Test the top 3 cells.
+  # If the center cell is a number, then we don't need to check the edges.
+  if grid.cells[neighbors[1]].isNumber:
+    nums.add(extractFullNumber(neighbors[1], grid))
+  else:
+    if grid.cells[neighbors[0]].isNumber:
+      nums.add(extractFullNumber(neighbors[0], grid))
+    if grid.cells[neighbors[2]].isNumber:
+      nums.add(extractFullNumber(neighbors[2], grid))
+
+  # Test Left and Right
+  if grid.cells[neighbors[3]].isNumber:
+    nums.add(extractFullNumber(neighbors[3], grid))
+  if grid.cells[neighbors[4]].isNumber:
+    nums.add(extractFullNumber(neighbors[4], grid))
+  
+  # Test the bottom 3 cells.
+  # If the center cell is a number, then we don't need to check the edges.
+  if grid.cells[neighbors[6]].isNumber:
+    nums.add(extractFullNumber(neighbors[6], grid))
+  else:
+    if grid.cells[neighbors[5]].isNumber:
+      nums.add(extractFullNumber(neighbors[5], grid))
+    if grid.cells[neighbors[7]].isNumber:
+      nums.add(extractFullNumber(neighbors[7], grid))
+  # return nums
+
+
 
 #
 # Main
@@ -126,10 +161,27 @@ let data = loadData(rawTextLines)
 
 echo "\n--- Part One ---\n"
 
-for i in 0..2:
-  echo "starting at:", i, " extractFullNumber: ", extractFullNumber(i, data), " to be 467"
+# echo "Debug"
+# var test: seq[int] = @[]
+# test.addTouchingNumbers(47, data)
+# echo "test ", test
+# echo "\n"
 
-echo "starting at: 3, extractFullNumber: ", extractFullNumber(3, data), " to be 0"
+# echo findTouchingNumbers(43, data)
 
-# for cell in data.cells:
-#   echo cell, " isEmpty: ", isEmpty(cell), " isNumber: ", isNumber(cell), " isSymbol: ", isSymbol(cell)
+var seqNumbers: seq[int] = @[]
+for idx, cell in enumerate(data.cells):
+  if not cell.isSymbol:
+    continue
+
+  seqNumbers.addTouchingNumbers(idx, data)
+
+
+echo "seqNumbers ", seqNumbers
+
+let total = seqNumbers.foldl(a+b)
+echo "sum: ", total
+if total >= 526994:
+  echo "Nope, that is not the right answer"
+else:
+  echo "Check that answer!"
