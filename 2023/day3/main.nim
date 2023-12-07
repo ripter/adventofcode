@@ -73,6 +73,36 @@ proc isNumber(inputStr: string): bool =
 proc isSymbol(inputStr: string): bool =
   not isEmpty(inputStr) and not isNumber(inputStr)
 
+
+# If string at index isNumber, it will move left and right to get the full number and return it.
+proc extractFullNumber(index: int, grid: Grid): int =
+  let currentValue: string = grid.cells[index]
+  var numStr: seq[string] = @[currentValue]
+  var cellValue: string
+
+  echo "currentValue ", currentValue, " from ", index, " creating ", numStr
+  # If the current value is not a number, bail.
+  if not currentValue.isNumber:
+    return 420
+
+  # Walk left, prepending each number
+  var prevIndex: int = index - 1
+  while true:
+    # bail when we hit negatives
+    if prevIndex < 0:
+      break
+    # Bail if the cell is not a number
+    cellValue = grid.cells[prevIndex]
+    if not cellValue.isNumber:
+      break
+    # preprend the cellValue
+    numStr.insert(cellValue, 0)
+    # subtract to move to the previous cell
+    prevIndex -= 1
+
+  echo "numStr ", numStr
+  return parseInt foldl(numStr, a & b)
+
 #
 # Main
 # 
@@ -85,5 +115,7 @@ echo posToIndex((1, 1), data.width)
 echo data
 echo neighborsIndexes(11, data.width)
 
-for cell in data.cells:
-  echo cell, " isEmpty: ", isEmpty(cell), " isNumber: ", isNumber(cell), " isSymbol: ", isSymbol(cell)
+echo "extractFullNumber: ", extractFullNumber(1, data), " to be 467"
+
+# for cell in data.cells:
+#   echo cell, " isEmpty: ", isEmpty(cell), " isNumber: ", isNumber(cell), " isSymbol: ", isSymbol(cell)
