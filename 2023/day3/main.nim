@@ -51,7 +51,6 @@ proc posToIndex(pos: (int, int), width: int): int =
 
 # Returns the index for the neighbor cells
 proc neighborsIndexes(index: int, width: int): array[8, int] =
-  # var result: array[8, int] = [-1, -1, -1, -1, -1, -1, -1, -1]
   var result: array[8, int]
   let pos = indexToPos(index, width)
   let
@@ -67,6 +66,7 @@ proc neighborsIndexes(index: int, width: int): array[8, int] =
 
   return result
 
+
 proc isEmpty(inputStr: string): bool =
   inputStr == "."
 
@@ -76,6 +76,10 @@ proc isNumber(inputStr: string): bool =
 
 proc isSymbol(inputStr: string): bool =
   not isEmpty(inputStr) and not isNumber(inputStr)
+
+proc isGear(inputStr: string): bool =
+  inputStr == "*"
+
 
 
 # Extract numers from the grid on the x-axis
@@ -89,7 +93,6 @@ proc extractNumbers(seqNumbers: var seq[string], grid: Grid, startIdx: int, dire
       break
 
     let cellValue = grid.cells[currentIndex]
-    # echo "extract ", cellValue, " from idx ", currentIndex, " pos ", x, ",", y
     # Bail if the cell is not a number
     if not cellValue.isNumber:
       break
@@ -120,6 +123,7 @@ proc extractFullNumber(index: int, grid: Grid): int =
   return seqExtractedNumbers.foldl(a & b).parseInt
 
 
+# Adds numbers touching the index to the sequence
 proc addTouchingNumbers(nums: var seq[int], symbolIndex: Natural, grid: Grid) =
   let neighbors = neighborsIndexes(symbolIndex, grid.width)
 
@@ -157,18 +161,8 @@ proc addTouchingNumbers(nums: var seq[int], symbolIndex: Natural, grid: Grid) =
 # 
 let rawTextLines: seq[string] = readFileLines(filePath)
 let data = loadData(rawTextLines)
-# let data = rawTextLines
 
 echo "\n--- Part One ---\n"
-
-# echo "Debug"
-# var test: seq[int] = @[]
-# test.addTouchingNumbers(47, data)
-# echo "test ", test
-# echo "\n"
-
-# echo findTouchingNumbers(43, data)
-
 var seqNumbers: seq[int] = @[]
 for idx, cell in enumerate(data.cells):
   if not cell.isSymbol:
@@ -176,12 +170,22 @@ for idx, cell in enumerate(data.cells):
 
   seqNumbers.addTouchingNumbers(idx, data)
 
-
-echo "seqNumbers ", seqNumbers
-
 let total = seqNumbers.foldl(a+b)
 echo "sum: ", total
-if total >= 526994:
-  echo "Nope, that is not the right answer"
-else:
-  echo "Check that answer!"
+
+echo "\n--- Part Two ---\n"
+
+let gearIds: seq[int] = collect:
+  for idx, cell in enumerate(data.cells):
+    if cell.isGear:
+      idx
+
+let gearRatio: seq[int] = collect:
+  for idx in gearIds:
+    var neighborNumbers: seq[int] = @[]
+    neighborNumbers.addTouchingNumbers(idx, data)
+    if len(neighborNumbers) == 2:
+      neighborNumbers[0] * neighborNumbers[1]
+
+# echo "gearRatio ", gearRatio
+echo "sum ", gearRatio.foldl(a + b)
