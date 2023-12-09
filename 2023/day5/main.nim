@@ -10,7 +10,6 @@ import std/strutils
 import ../day2/fileutils
 
 const DEBUG = true
-const RUN_TEST = true
 const filePath = if DEBUG: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 5"
 
@@ -27,24 +26,39 @@ proc getOrKey(table: Table[int, int], key: int): int =
 
 #
 # Adds a range of mapping values to the table.
-proc addRange(table: var Table[int, int], destStart, sourceStart, rangeLength: int)  =
+proc addRange(table: var TableRef[int, int], destStart, sourceStart, rangeLength: int)  =
   let destRange = toSeq(countup(destStart, destStart+rangeLength-1))
   let srcRange = toSeq(countup(sourceStart, sourceStart+rangeLength-1))
   for (src, dest) in zip(srcRange, destRange):
     table[src] = dest
 
+
+
+
+
 #
-# Test addRange with getOrKey
-if RUN_TEST:
-  var addRangeTestValue = initTable[int, int]()
-  addRangeTestValue.addRange(50, 98, 2) 
-  addRangeTestValue.addRange(52, 50, 48)
-  assert addRangeTestValue.getOrKey(79) == 81
-  assert addRangeTestValue.getOrKey(14) == 14
-  assert addRangeTestValue.getOrKey(55) == 57 
-  assert addRangeTestValue.getOrKey(13) == 13 
+# initMaps loads a list of maps
+let patternMapLabel = re"(\S+) map:"
+let patternNumbers = re"(\d+)"
+proc initMaps(lines: seq[string]): seq[TableRef[int, int]] =
+  var output: seq[TableRef[int, int]]
+  var table: TableRef[int, int]
 
+  for line in lines:
+    if "" == line:
+      continue
 
+    # When it's a label, move to the next map
+    if line.match(patternMapLabel):
+      table = newTable[int, int]()
+      add(output, table)
+    
+    # When it's a set of numbers, add the range
+    if line.match(patternNumbers):
+      let args = line.findAll(patternNumbers).mapIt(parseInt(it))
+      table.addRange(args[0], args[1], args[2])
+
+  return output
 
 
 
@@ -53,12 +67,11 @@ if RUN_TEST:
 # Main
 # 
 let rawTextLines: seq[string] = readFileLines(filePath)
+let almanac = initMaps(rawTextLines[1..^1])
+echo "almanac ", almanac.len, "\n", almanac
+
 echo "\n--- Part One ---\n"
 
-var output = initTable[int, int]()
-output.addRange(50, 98, 2) 
-output.addRange(52, 50, 48)
-echo output.getOrDefault(79, 0)
 
 var partOneValue = 0
 echo "Answer ", partOneValue 
