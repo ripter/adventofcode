@@ -9,7 +9,7 @@ import std/strutils
 
 import ../day2/fileutils
 
-const DEBUG = true
+const DEBUG = false
 const filePath = if DEBUG: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 4"
 
@@ -84,4 +84,17 @@ for card in cards:
   let rewardValue = toSeq(countup(card.id+1, card.id + card.totalMatched))
   rewardTable[card.id] = rewardValue
 
-echo "rewardTable ", rewardTable
+
+var queue: seq[int] = cards.mapIt(it.id)
+var partTwoTotal = len(queue)
+
+while len(queue) > 0:
+  let id = pop(queue)
+  let rewards = rewardTable[id]
+  # Add each card to the total.
+  inc(partTwoTotal, len(rewards))
+  # Add the reward cards to the queue for a future loop.
+  add(queue, rewards)
+  # echo "Pop ", id, " rewards ", rewards
+
+echo "partTwoTotal ", partTwoTotal
