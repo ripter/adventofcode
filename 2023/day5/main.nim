@@ -1,15 +1,12 @@
-import std/sugar
 import std/os
 import std/re
 import std/sequtils
-import std/sets
-import std/math
 import std/tables
 import std/strutils
 
 import ../day2/fileutils
 
-const DEBUG = true
+const DEBUG = false
 const filePath = if DEBUG: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 5"
 
@@ -49,6 +46,7 @@ proc addRange(table: var EntryMap, destStart, sourceStart, rangeLength: int)  =
 
 
 
+# Pulls out the seed 
 
 #
 # initMaps loads a list of maps
@@ -77,38 +75,34 @@ proc initMaps(lines: seq[string]): Almanac =
 
 
 const idxToKey = ["seed", "soil", "fertilizer", "water", "light", "temperature", "humidity", "location"]
-proc initEntry(seedId: int, almanac: Almanac): Entry =
+proc initEntry(seedId: int, almanac: Almanac): seq[int] =
   var idList: seq[int] = @[seedId]
   var lastId = seedId
   for i in 0..(len(almanac)-1):
     lastId = almanac[i].getOrKey(lastId)
     idList.add(lastId)
 
-  echo "idList ", zip(idxToKey, idList)
-  let soilId = almanac[0].getOrKey(seedId) 
-  let fertilizerId = almanac[1].getOrKey(soilId)
-  let waterId = almanac[2].getOrKey(fertilizerId)
-  let lightId = almanac[3].getOrKey(waterId)
-
-  return Entry(
-    seed: seedId,
-    soil: soilId,
-    fertilizer: fertilizerId,
-    water: waterId,
-    light: lightId,
-  )
+  echo "idList ", idList, " zipped: ", zip(idxToKey, idList)
+  return idList
 
 
 #
 # Main
 # 
 let rawTextLines: seq[string] = readFileLines(filePath)
+let startingSeedIds = rawTextLines[0].findAll(patternNumbers).map(parseInt)
 let almanac = initMaps(rawTextLines[1..^1])
-# echo "almanac ", almanac.len, "\n", almanac
 
 echo "\n--- Part One ---\n"
+echo "startingSeedIds ", startingSeedIds
+echo "almanac ", almanac.len
 
-echo initEntry(79, almanac)
+let list = startingSeedIds.mapIt(initEntry(it, almanac))
+# let one = initEntry(79, almanac)
+# let two = initEntry(14, almanac)
+# let list = @[one, two]
 
-var partOneValue = 0
+# Map to a list of location positions and then find the smallest one.
+let locationPositions = list.mapIt(it[7])
+let partOneValue = min(locationPositions)
 echo "Answer ", partOneValue 
