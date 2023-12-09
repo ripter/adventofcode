@@ -19,14 +19,29 @@ if not fileExists(filePath):
   quit()
 
 
+type
+  EntryMap = TableRef[int, int]
+  Almanac = seq[EntryMap]
+  Entry = object
+    seed: int
+    soil: int
+    fertilizer: int
+    water: int
+    light: int
+    temperature: int
+    humidity: int
+    location: int
+
+
+
 #
 # returns table value at key, or key if it does not exist in table.
-proc getOrKey(table: Table[int, int], key: int): int =
+proc getOrKey(table: EntryMap, key: int): int =
   table.getOrDefault(key, key)
 
 #
 # Adds a range of mapping values to the table.
-proc addRange(table: var TableRef[int, int], destStart, sourceStart, rangeLength: int)  =
+proc addRange(table: var EntryMap, destStart, sourceStart, rangeLength: int)  =
   let destRange = toSeq(countup(destStart, destStart+rangeLength-1))
   let srcRange = toSeq(countup(sourceStart, sourceStart+rangeLength-1))
   for (src, dest) in zip(srcRange, destRange):
@@ -35,13 +50,12 @@ proc addRange(table: var TableRef[int, int], destStart, sourceStart, rangeLength
 
 
 
-
 #
 # initMaps loads a list of maps
 let patternMapLabel = re"(\S+) map:"
 let patternNumbers = re"(\d+)"
-proc initMaps(lines: seq[string]): seq[TableRef[int, int]] =
-  var output: seq[TableRef[int, int]]
+proc initMaps(lines: seq[string]): Almanac =
+  var output: Almanac
   var table: TableRef[int, int]
 
   for line in lines:
@@ -52,6 +66,7 @@ proc initMaps(lines: seq[string]): seq[TableRef[int, int]] =
     if line.match(patternMapLabel):
       table = newTable[int, int]()
       add(output, table)
+      # echo line
     
     # When it's a set of numbers, add the range
     if line.match(patternNumbers):
@@ -61,6 +76,27 @@ proc initMaps(lines: seq[string]): seq[TableRef[int, int]] =
   return output
 
 
+const idxToKey = ["seed", "soil", "fertilizer", "water", "light", "temperature", "humidity", "location"]
+proc initEntry(seedId: int, almanac: Almanac): Entry =
+  var idList: seq[int] = @[seedId]
+  var lastId = seedId
+  for i in 0..(len(almanac)-1):
+    lastId = almanac[i].getOrKey(lastId)
+    idList.add(lastId)
+
+  echo "idList ", zip(idxToKey, idList)
+  let soilId = almanac[0].getOrKey(seedId) 
+  let fertilizerId = almanac[1].getOrKey(soilId)
+  let waterId = almanac[2].getOrKey(fertilizerId)
+  let lightId = almanac[3].getOrKey(waterId)
+
+  return Entry(
+    seed: seedId,
+    soil: soilId,
+    fertilizer: fertilizerId,
+    water: waterId,
+    light: lightId,
+  )
 
 
 #
@@ -68,10 +104,11 @@ proc initMaps(lines: seq[string]): seq[TableRef[int, int]] =
 # 
 let rawTextLines: seq[string] = readFileLines(filePath)
 let almanac = initMaps(rawTextLines[1..^1])
-echo "almanac ", almanac.len, "\n", almanac
+# echo "almanac ", almanac.len, "\n", almanac
 
 echo "\n--- Part One ---\n"
 
+echo initEntry(79, almanac)
 
 var partOneValue = 0
 echo "Answer ", partOneValue 
