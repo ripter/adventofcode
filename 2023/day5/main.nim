@@ -72,6 +72,8 @@ proc isInRange(num: int, range: AlmanacRange): bool =
     return true
 
 
+#
+# Converts num to a mapped id based on entry
 proc toMappedId(num: int, entry: AlmanacEntry): int =
   var rangeIdx: int = -1
 
@@ -81,9 +83,9 @@ proc toMappedId(num: int, entry: AlmanacEntry): int =
       rangeIdx = idx 
       break
 
-  let isInRange = rangeIdx != -1
+  let isInNumInRange = rangeIdx != -1
 
-  if not isInRange:
+  if not isInNumInRange:
     # Not in any range. num maps to num.
     return num
 
@@ -102,16 +104,16 @@ let almanac = initAlmanac(rawTextLines[1..^1])
 
 echo "\n--- Part One ---\n"
 echo "startingSeedIds ", startingSeedIds
-echo "almanac ", almanac
+# echo "almanac ", almanac
 echo "-"
-echo "79.isInRange ", isInRange(79,almanac[0].ranges[1])
-echo "14.isInRange ", isInRange(14,almanac[0].ranges[1])
-echo "55.isInRange ", isInRange(55,almanac[0].ranges[1])
-echo "-"
-echo "79 corresponds to soil number 81: ", 79.toMappedId(almanac[0])
-echo "14 corresponds to soil number 14: ", 14.toMappedId(almanac[0])
-echo "55 corresponds to soil number 57: ", 55.toMappedId(almanac[0])
-echo "13 corresponds to soil number 13: ", 13.toMappedId(almanac[0])
 
-let partOneValue = 0
+var results: seq[int] = @[]
+for seedId in startingSeedIds:
+  var resultId: int = seedId
+  for entry in almanac:
+    resultId = resultId.toMappedId(entry)
+  results.add(resultId)
+
+echo "results: ", results
+let partOneValue = results.min
 echo "Answer ", partOneValue 
