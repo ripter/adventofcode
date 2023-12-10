@@ -6,7 +6,7 @@ import std/strutils
 
 import ../day2/fileutils
 
-const DEBUG = false
+const DEBUG = true
 const filePath = if DEBUG: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 5"
 
@@ -15,75 +15,62 @@ if not fileExists(filePath):
   stderr.writeLine("Error: input.txt file not found at: ", filePath)
   quit()
 
+# const idxToCatgory = ["seed", "soil", "fertilizer", "water", "light", "temperature", "humidity", "location"]
 
+#
+# Regex Patterns
+let patternMapLabel = re".* map:"
+let patternNumbers = re"(\d+)"
+let patternSpace = re" "
+
+
+#
+# Types!! Strict Types Yo! It's like, a mean dad or something.
 type
-  EntryMap = TableRef[int, int]
-  Almanac = seq[EntryMap]
-  Entry = object
-    seed: int
-    soil: int
-    fertilizer: int
-    water: int
-    light: int
-    temperature: int
-    humidity: int
-    location: int
+  AlmanacRange = tuple[dest: int, src: int, length: int]
+  AlmanacEntry = tuple[label: string,  ranges: seq[AlmanacRange]]
+  Almanac = seq[AlmanacEntry]
 
 
-
-#
-# returns table value at key, or key if it does not exist in table.
-proc getOrKey(table: EntryMap, key: int): int =
-  table.getOrDefault(key, key)
-
-#
-# Adds a range of mapping values to the table.
-proc addRange(table: var EntryMap, destStart, sourceStart, rangeLength: int)  =
-  let destRange = toSeq(countup(destStart, destStart+rangeLength-1))
-  let srcRange = toSeq(countup(sourceStart, sourceStart+rangeLength-1))
-  for (src, dest) in zip(srcRange, destRange):
-    table[src] = dest
-
-
-
-# Pulls out the seed 
 
 #
 # initMaps loads a list of maps
-let patternMapLabel = re"(\S+) map:"
-let patternNumbers = re"(\d+)"
-proc initMaps(lines: seq[string]): Almanac =
+proc initAlmanac(lines: seq[string]): Almanac =
   var output: Almanac
-  var table: TableRef[int, int]
+  var entry: AlmanacEntry = (label: "", ranges: @[])
 
   for line in lines:
-    if "" == line:
+    if line == "":
       continue
 
-    # When it's a label, move to the next map
+    # When it's a label, finalize the previous entry and start a new one
     if line.match(patternMapLabel):
-      table = newTable[int, int]()
-      add(output, table)
-      # echo line
-    
+      if entry.label != "":
+        output.add(entry)  # Add the completed entry to output
+      let label = line.split(patternSpace)[0]
+      entry = (label: label, ranges: @[])  # Start a new entry
+
     # When it's a set of numbers, add the range
-    if line.match(patternNumbers):
+    elif line.match(patternNumbers):
       let args = line.findAll(patternNumbers).mapIt(parseInt(it))
-      table.addRange(args[0], args[1], args[2])
+      let range = (dest: args[0], src: args[1], length: args[2])
+      entry.ranges.add(range)
+
+  # Add the last entry after the loop
+  if entry.label != "":
+    output.add(entry)
 
   return output
 
 
-const idxToKey = ["seed", "soil", "fertilizer", "water", "light", "temperature", "humidity", "location"]
-proc initEntry(seedId: int, almanac: Almanac): seq[int] =
-  var idList: seq[int] = @[seedId]
-  var lastId = seedId
-  for i in 0..(len(almanac)-1):
-    lastId = almanac[i].getOrKey(lastId)
-    idList.add(lastId)
 
-  echo "idList ", idList, " zipped: ", zip(idxToKey, idList)
-  return idList
+#
+# Returns true when num is inside
+proc isInRange(num: int, range: AlmanacRange): bool =
+  let min = range.src
+  let max = range.src + (range.length)
+  if (num >= min) and (num < max):
+    return true
 
 
 #
@@ -91,18 +78,15 @@ proc initEntry(seedId: int, almanac: Almanac): seq[int] =
 # 
 let rawTextLines: seq[string] = readFileLines(filePath)
 let startingSeedIds = rawTextLines[0].findAll(patternNumbers).map(parseInt)
-let almanac = initMaps(rawTextLines[1..^1])
+let almanac = initAlmanac(rawTextLines[1..^1])
 
 echo "\n--- Part One ---\n"
 echo "startingSeedIds ", startingSeedIds
-echo "almanac ", almanac.len
+echo "almanac ", almanac
+echo "-"
+echo "79.isInRange ", isInRange(79,almanac[0].ranges[1])
+echo "14.isInRange ", isInRange(14,almanac[0].ranges[1])
+echo "55.isInRange ", isInRange(55,almanac[0].ranges[1])
 
-let list = startingSeedIds.mapIt(initEntry(it, almanac))
-# let one = initEntry(79, almanac)
-# let two = initEntry(14, almanac)
-# let list = @[one, two]
-
-# Map to a list of location positions and then find the smallest one.
-let locationPositions = list.mapIt(it[7])
-let partOneValue = min(locationPositions)
+let partOneValue = 0
 echo "Answer ", partOneValue 
