@@ -69,7 +69,7 @@ proc initAlmanac(lines: seq[string]): Almanac =
 # Returns true when num is inside
 proc isInRange(num: int, range: AlmanacRange): bool =
   let min = range.src
-  let max = range.src + (range.length-1)
+  let max = range.src + (range.length)
   if (num >= min) and (num < max):
     return true
 
