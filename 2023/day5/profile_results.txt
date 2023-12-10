@@ -1,1 +1,15 @@
 total executions of each stack trace:
+Entry: 1/6 Calls: 195012/375051 = 52.00% [sum: 195012; 195012/375051 = 52.00%]
+  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: toMappedId 357077/375051 = 95.21%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: calcLastId 373111/375051 = 99.48%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 375050/375051 = 100.00%
+Entry: 2/6 Calls: 162065/375051 = 43.21% [sum: 357077; 357077/375051 = 95.21%]
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: isInRange 162065/375051 = 43.21%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: toMappedId 357077/375051 = 95.21%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: calcLastId 373111/375051 = 99.48%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 375050/375051 = 100.00%
+Entry: 3/6 Calls: 16034/375051 = 4.28% [sum: 373111; 373111/375051 = 99.48%]
+  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: calcLastId 373111/375051 = 99.48%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 375050/375051 = 100.00%
+Entry: 4/6 Calls: 1938/375051 = 0.52% [sum: 375049; 375049/375051 = 100.00%]
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 375050/375051 = 100.00%
