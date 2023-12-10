@@ -1,21 +1,20 @@
 import std/os
 import std/re
 import std/sequtils
-import std/tables
 import std/strutils
+
+import nimprof
 
 import ../day2/fileutils
 
-const DEBUG = true
-const filePath = if DEBUG: "./test.txt" else: "./input.txt"
+const USE_TEST_DATA = true
+const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 5"
 
 if not fileExists(filePath):
   # Output an error message and exit the program
   stderr.writeLine("Error: input.txt file not found at: ", filePath)
   quit()
-
-# const idxToCatgory = ["seed", "soil", "fertilizer", "water", "light", "temperature", "humidity", "location"]
 
 #
 # Regex Patterns
@@ -27,6 +26,7 @@ let patternSpace = re" "
 #
 # Types!! Strict Types Yo! It's like, a mean dad or something.
 type
+  SeedRange = tuple[start: int, length: int]
   AlmanacRange = tuple[dest: int, src: int, length: int]
   AlmanacEntry = tuple[label: string,  ranges: seq[AlmanacRange]]
   Almanac = seq[AlmanacEntry]
@@ -36,10 +36,12 @@ type
 #
 # Load from the file
 proc initAlmanac(lines: seq[string]): Almanac =
+  ## Converts the lines from the file into an Almanac
   var output: Almanac
   var entry: AlmanacEntry = (label: "", ranges: @[])
 
   for line in lines:
+    # Skip Empty Lines
     if line == "":
       continue
 
@@ -67,7 +69,7 @@ proc initAlmanac(lines: seq[string]): Almanac =
 # Returns true when num is inside
 proc isInRange(num: int, range: AlmanacRange): bool =
   let min = range.src
-  let max = range.src + (range.length)
+  let max = range.src + (range.length-1)
   if (num >= min) and (num < max):
     return true
 
@@ -95,6 +97,15 @@ proc toMappedId(num: int, entry: AlmanacEntry): int =
   return mapRange.dest + offset
 
 
+
+proc calcLastId(seedId: int, almanac: Almanac): int =
+  ## Calculates the final ID by iterating through each AlmanacEntry in the provided Almanac.
+  ## In each iteration, the current ID is transformed based on the AlmanacEntry using `toMappedId`.
+  var resultId: int = seedId
+  for entry in almanac:
+    resultId = resultId.toMappedId(entry)
+  resultId
+
 #
 # Main
 # 
@@ -109,11 +120,39 @@ echo "-"
 
 var results: seq[int] = @[]
 for seedId in startingSeedIds:
-  var resultId: int = seedId
-  for entry in almanac:
-    resultId = resultId.toMappedId(entry)
+  var resultId: int = seedId.calcLastId(almanac)
   results.add(resultId)
 
 echo "results: ", results
 let partOneValue = results.min
 echo "Answer ", partOneValue 
+if USE_TEST_DATA and partOneValue == 35:
+  echo "Success!"
+
+
+
+
+echo "\n--- Part Two ---\n"
+var seedGroups: seq[SeedRange] = startingSeedIds.distribute(2).mapIt((it[0], it[1]))
+echo "seedGroups ", seedGroups
+
+var partTwoValue: int = -1
+for seedRange in seedGroups:
+  let maxSeedId: int = seedRange.start + (seedRange.length-1)
+  var seedid: int = seedRange.start
+  echo "Checking seedRange: ", seedRange
+
+  while seedId <= maxSeedId:
+    let locationId = seedId.calcLastId(almanac)
+    if (partTwoValue > locationId) or (partTwoValue == -1):
+      partTwoValue = locationId
+    inc(seedId)
+
+
+
+echo "Answer ", partTwoValue 
+if USE_TEST_DATA and partTwoValue == 46:
+  echo "Success!"
+else:
+  if partTwoValue == 702443113:
+    echo "Oops, Wrong Answer. Too high."
