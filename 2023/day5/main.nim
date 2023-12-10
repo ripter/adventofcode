@@ -34,7 +34,7 @@ type
 
 
 #
-# initMaps loads a list of maps
+# Load from the file
 proc initAlmanac(lines: seq[string]): Almanac =
   var output: Almanac
   var entry: AlmanacEntry = (label: "", ranges: @[])
@@ -63,7 +63,6 @@ proc initAlmanac(lines: seq[string]): Almanac =
   return output
 
 
-
 #
 # Returns true when num is inside
 proc isInRange(num: int, range: AlmanacRange): bool =
@@ -71,6 +70,27 @@ proc isInRange(num: int, range: AlmanacRange): bool =
   let max = range.src + (range.length)
   if (num >= min) and (num < max):
     return true
+
+
+proc toMappedId(num: int, entry: AlmanacEntry): int =
+  var rangeIdx: int = -1
+
+  # Find the first range than contains num
+  for idx, range in entry.ranges:
+    if num.isInRange(range):
+      rangeIdx = idx 
+      break
+
+  let isInRange = rangeIdx != -1
+
+  if not isInRange:
+    # Not in any range. num maps to num.
+    return num
+
+  # num is in range, convert the value
+  let mapRange = entry.ranges[rangeIdx]
+  let offset = num - mapRange.src
+  return mapRange.dest + offset
 
 
 #
@@ -87,6 +107,11 @@ echo "-"
 echo "79.isInRange ", isInRange(79,almanac[0].ranges[1])
 echo "14.isInRange ", isInRange(14,almanac[0].ranges[1])
 echo "55.isInRange ", isInRange(55,almanac[0].ranges[1])
+echo "-"
+echo "79 corresponds to soil number 81: ", 79.toMappedId(almanac[0])
+echo "14 corresponds to soil number 14: ", 14.toMappedId(almanac[0])
+echo "55 corresponds to soil number 57: ", 55.toMappedId(almanac[0])
+echo "13 corresponds to soil number 13: ", 13.toMappedId(almanac[0])
 
 let partOneValue = 0
 echo "Answer ", partOneValue 
