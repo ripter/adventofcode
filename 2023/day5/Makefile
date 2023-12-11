@@ -1,7 +1,7 @@
 .PHONY: build-run, mem-profile, performance 
 
 build-run:
-	nim c --run main.nim
+	nim c --run main.nim > output.txt
 
 mem-profile:
 	nim c --profiler:off --stacktrace:on -d:memProfiler  --run main.nim > output.txt
