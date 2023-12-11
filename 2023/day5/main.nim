@@ -5,11 +5,12 @@ import std/strutils
 import std/times
 
 import ../day2/fileutils
+import timeutils
 
 when compileOption("profiler"):
   import nimprof
 
-const USE_TEST_DATA = true
+const USE_TEST_DATA = false
 const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 5"
 
@@ -28,8 +29,8 @@ let patternSpace = re" "
 #
 # Types!! Strict Types Yo! It's like, a mean dad or something.
 type
-  SeedRange = tuple[start: int, length: int]
-  AlmanacRange = tuple[dest: int, src: int, length: int]
+  SeedRange = tuple[start: int64, length: int64]
+  AlmanacRange = tuple[dest: int64, src: int64, length: int64]
   AlmanacEntry = tuple[label: string,  ranges: seq[AlmanacRange]]
   Almanac = seq[AlmanacEntry]
 
@@ -57,7 +58,7 @@ proc initAlmanac(lines: seq[string]): Almanac =
 
     # When it's a set of numbers, add the range
     elif line.match(patternNumbers):
-      let args = line.findAll(patternNumbers).mapIt(parseInt(it))
+      let args = line.findAll(patternNumbers).mapIt(parseBiggestInt(it))
       let range = (dest: args[0], src: args[1], length: args[2])
       entry.ranges.add(range)
 
@@ -70,13 +71,13 @@ proc initAlmanac(lines: seq[string]): Almanac =
   return output
 
 
-proc isInRange(num: int, start: int, length: int): bool =
+proc isInRange(num: int64, start: int64, length: int64): bool =
   ## Returns true when num in inside the range
   let max = start + length
   if (num >= start) and (num < max):
     return true
 
-proc isInRange(num: int, range: AlmanacRange): bool =
+proc isInRange(num: int64, range: AlmanacRange): bool =
   ## Shorthand when using the src from AlmanacRange
   isInRange(num, range.src, range.length)
 
@@ -84,8 +85,8 @@ proc isInRange(num: int, range: AlmanacRange): bool =
 
 #
 # Converts num to a mapped id based on entry
-proc toMappedId(num: int, entry: AlmanacEntry): int =
-  var rangeIdx: int = -1
+proc toMappedId(num: int64, entry: AlmanacEntry): int64 =
+  var rangeIdx: int64 = -1
 
   # Find the first range than contains num
   for idx, range in entry.ranges:
@@ -108,12 +109,10 @@ proc toMappedId(num: int, entry: AlmanacEntry): int =
 
 
 
-proc toSeedId(locationId: int, almanac: Almanac): int =
-  var resultId: int = locationId
+proc toSeedId(locationId: int64, almanac: Almanac): int64 =
+  var resultId: int64 = locationId
   ## Starting from the locationId, finds the matching seedId
   ## It does this by walking backward
-  
-  # Walk backwards, starting from location so we end up at seeds.
   var entryIdx = almanac.len - 1
   while entryIdx >= 0:
     let entry = almanac[entryIdx]
@@ -128,10 +127,10 @@ proc toSeedId(locationId: int, almanac: Almanac): int =
 
 
 
-proc toLocationId(seedId: int, almanac: Almanac): int =
+proc toLocationId(seedId: int64, almanac: Almanac): int64 =
   ## Calculates the final ID by iterating through each AlmanacEntry in the provided Almanac.
   ## In each iteration, the current ID is transformed based on the AlmanacEntry using `toMappedId`.
-  var resultId: int = seedId
+  var resultId: int64 = seedId
   for entry in almanac:
     resultId = resultId.toMappedId(entry)
 
@@ -144,7 +143,7 @@ proc toLocationId(seedId: int, almanac: Almanac): int =
 # 
 let appStartTime = cpuTime()
 let rawTextLines: seq[string] = readFileLines(filePath)
-let startingSeedIds = rawTextLines[0].findAll(patternNumbers).map(parseInt)
+let startingSeedIds: seq[int64] = rawTextLines[0].findAll(patternNumbers).map(parseBiggestInt)
 let almanac = initAlmanac(rawTextLines[1..^1])
 
 
@@ -156,9 +155,9 @@ let partOneStartTime = cpuTime()
 # echo "almanac ", almanac
 echo "-"
 
-var results: seq[int] = @[]
+var results: seq[int64] = @[]
 for seedId in startingSeedIds:
-  var resultId: int = seedId.toLocationId(almanac)
+  var resultId: int64 = seedId.toLocationId(almanac)
   results.add(resultId)
 
 echo "results: ", results
@@ -171,7 +170,7 @@ elif partOneValue == 196167384:
   echo "Success!"
 
 let partOneEndTime = cpuTime()
-echo "Part One - Time taken: ", partOneEndTime - partOneStartTime, " seconds"
+echo "Part One - Time taken: ", formatTime(int(partOneEndTime - partOneStartTime)), " seconds"
 
 
 
@@ -181,46 +180,27 @@ let partTwoStartTime = cpuTime()
 var seedGroups: seq[SeedRange] = startingSeedIds.distribute(2).mapIt((it[0], it[1]))
 echo "seedGroups ", seedGroups
 
-var partTwoValue: int = -1
-var partTwoLocationNum: int = 0
-while partTwoLocationNum <= high(int):
-  let seedId = partTwoLocationNum.toSeedId(almanac)
+var partTwoLocationId: int64 = 0
+while partTwoLocationId <= high(int64):
+  let seedId = partTwoLocationId.toSeedId(almanac)
   if seedGroups.anyIt((seedId >= it.start) and (seedId < (it.start + it.length))):
-    partTwoValue = partTwoLocationNum
+    # We found it! Exit out
     break;
-  inc(partTwoLocationNum)
+  else:
+    inc(partTwoLocationId)
   
 
-
-# for seedRange in seedGroups:
-#   let maxSeedId: int = seedRange.start + (seedRange.length-1)
-#   var seedid: int = seedRange.start
-#   echo "Checking seedRange: ", seedRange
-
-#   while seedId <= maxSeedId:
-#     let locationId = seedId.toLocationId(almanac)
-#     if (partTwoValue > locationId) or (partTwoValue == -1):
-#       partTwoValue = locationId
-#     inc(seedId)
-
-
-
-echo "Answer ", partTwoValue 
-if USE_TEST_DATA and partTwoValue == 46:
+echo "Answer ", partTwoLocationId 
+if USE_TEST_DATA and partTwoLocationId == 46:
   echo "Success!"
 else:
-  if partTwoValue == 702443113:
+  if partTwoLocationId == 702443113:
     echo "Oops, Wrong Answer. Too high."
   else:
     echo "New Answer! Try it!"
 
 let partTwoEndTime = cpuTime()
-echo "Part Two - Time taken: ", partTwoEndTime - partTwoStartTime, " seconds"
+echo "Part Two - Time taken: ", formatTime(int(partTwoEndTime - partTwoStartTime)), " seconds"
 
 let appEndTime = cpuTime()
-echo "Total Time taken: ", appEndTime - appStartTime, " seconds"
-
-echo "\n--- toSeedId ---\n"
-echo 46, " <- ", toSeedId(46, almanac)
-echo 47, " <- ", toSeedId(47, almanac)
-echo "\n----------------\n"
+echo "Total Time taken: ", formatTime(int(appEndTime - appStartTime)), " seconds"

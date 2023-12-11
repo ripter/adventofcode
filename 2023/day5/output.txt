@@ -1,28 +1,21 @@
 Advent Of Code 2023 - Day 5
-0.0001749999999999998 seconds.	initAlmanac()
-
-TEST toSeedId()
-
-810 === 79
-
-END
-
+0.002064000000000002 seconds.	initAlmanac()
 
 --- Part One ---
 
-startingSeedIds @[79, 14, 55, 13]
+startingSeedIds @[950527520, 85181200, 546703948, 123777711, 63627802, 279111951, 1141059215, 246466925, 1655973293, 98210926, 3948361820, 92804510, 2424412143, 247735408, 4140139679, 82572647, 2009732824, 325159757, 3575518161, 370114248]
 -
-results: @[82, 43, 86, 35]
-Answer 35
+results: @[1847272394, 768667180, 2265106447, 196167384, 747113782, 4275950542, 2939770087, 4243305516, 3229630316, 781696906, 3014246475, 776290490, 2689967236, 4244573999, 1378139923, 766058627, 1257121020, 4109751284, 3356199914, 519542390]
+Answer 196167384
 Success!
-Part One - Time taken: 3.599999999999957e-05 seconds
+Part One - Time taken: 0h 0m 0s seconds
 
 --- Part Two ---
 
-seedGroups @[(start: 79, length: 14), (start: 55, length: 13)]
-Checking seedRange: (start: 79, length: 14)
-Checking seedRange: (start: 55, length: 13)
-Answer 46
-Success!
-Part Two - Time taken: 6.800000000000035e-05 seconds
-Total Time taken: 0.0005570000000000002 seconds
+seedGroups @[(start: 950527520, length: 85181200), (start: 3948361820, length: 92804510)]
+Answer 702443113
+Oops, Wrong Answer. Too high.
+Part Two - Time taken: 1h 5m 8s seconds
+Total Time taken: 1h 5m 8s seconds
+writing profile_results.txt...
+... done

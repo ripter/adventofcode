@@ -1,15 +1,10 @@
 total executions of each stack trace:
-Entry: 1/6 Calls: 195012/375051 = 52.00% [sum: 195012; 195012/375051 = 52.00%]
-  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: toMappedId 357077/375051 = 95.21%
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: calcLastId 373111/375051 = 99.48%
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 375050/375051 = 100.00%
-Entry: 2/6 Calls: 162065/375051 = 43.21% [sum: 357077; 357077/375051 = 95.21%]
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: isInRange 162065/375051 = 43.21%
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: toMappedId 357077/375051 = 95.21%
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: calcLastId 373111/375051 = 99.48%
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 375050/375051 = 100.00%
-Entry: 3/6 Calls: 16034/375051 = 4.28% [sum: 373111; 373111/375051 = 99.48%]
-  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: calcLastId 373111/375051 = 99.48%
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 375050/375051 = 100.00%
-Entry: 4/6 Calls: 1938/375051 = 0.52% [sum: 375049; 375049/375051 = 100.00%]
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 375050/375051 = 100.00%
+Entry: 1/4 Calls: 421972/788213 = 53.54% [sum: 421972; 421972/788213 = 53.54%]
+  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: toSeedId 775641/788213 = 98.40%
+  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: main 788212/788213 = 100.00%
+Entry: 2/4 Calls: 353669/788213 = 44.87% [sum: 775641; 775641/788213 = 98.40%]
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: isInRange 353669/788213 = 44.87%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: toSeedId 775641/788213 = 98.40%
+  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: main 788212/788213 = 100.00%
+Entry: 3/4 Calls: 12571/788213 = 1.59% [sum: 788212; 788212/788213 = 100.00%]
+  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: main 788212/788213 = 100.00%
