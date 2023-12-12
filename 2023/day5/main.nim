@@ -5,12 +5,12 @@ import std/strutils
 import std/times
 
 import ../day2/fileutils
-import timeutils
+import formatutils
 
 when compileOption("profiler"):
   import nimprof
 
-const USE_TEST_DATA = false
+const USE_TEST_DATA = true
 const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 5"
 
@@ -30,10 +30,28 @@ let patternSpace = re" "
 # Types!! Strict Types Yo! It's like, a mean dad or something.
 type
   SeedRange = tuple[start: int64, length: int64]
+  SeedList = seq[SeedRange]
   AlmanacRange = tuple[dest: int64, src: int64, length: int64]
   AlmanacEntry = tuple[label: string,  ranges: seq[AlmanacRange]]
   Almanac = seq[AlmanacEntry]
 
+
+
+proc initSeedRange(inputStr: string): SeedRange =
+  ## Creates a SeedRange from a number string
+  let nums = inputStr.findAll(patternNumbers).map(parseBiggestInt)
+  return (start: nums[0], length: nums[1])
+
+
+proc initSeedList(inputStr: string): SeedList =
+  let rawSeedNumbers = inputStr.findAll(patternNumbers).map(parseBiggestInt)
+  var seedList: SeedList = @[]
+  var i = 0
+  while (i < len(rawSeedNumbers)):
+    add(seedList, (start: rawSeedNumbers[i], length: rawSeedNumbers[i+1]))
+    inc(i, 2)
+
+  return seedList
 
 
 #
@@ -80,6 +98,9 @@ proc isInRange(num: int64, start: int64, length: int64): bool =
 proc isInRange(num: int64, range: AlmanacRange): bool =
   ## Shorthand when using the src from AlmanacRange
   isInRange(num, range.src, range.length)
+
+proc isInRange(num: int64, range: SeedRange): bool =
+  isInRange(num, range.start, range.length)
 
 
 
@@ -145,6 +166,7 @@ let appStartTime = cpuTime()
 let rawTextLines: seq[string] = readFileLines(filePath)
 let startingSeedIds: seq[int64] = rawTextLines[0].findAll(patternNumbers).map(parseBiggestInt)
 let almanac = initAlmanac(rawTextLines[1..^1])
+let seedGroup: SeedList = initSeedList(rawTextLines[0])
 
 
 
@@ -176,15 +198,14 @@ echo "Part One - Time taken: ", formatTime(int(partOneEndTime - partOneStartTime
 
 echo "\n--- Part Two ---\n"
 let partTwoStartTime = cpuTime()
-# grab two nums, convert to tuple, return as seq
-var seedGroups: seq[SeedRange] = startingSeedIds.distribute(2).mapIt((it[0], it[1]))
-echo "seedGroups ", seedGroups
+echo "seedGroup ", seedGroup
 
 var partTwoLocationId: int64 = 0
 while partTwoLocationId <= high(int64):
   let seedId = partTwoLocationId.toSeedId(almanac)
-  if seedGroups.anyIt((seedId >= it.start) and (seedId < (it.start + it.length))):
+  if seedGroup.anyIt(isInRange(seedId, it)):
     # We found it! Exit out
+    echo "Found It! ", seedId, " is in SeedGroup ", seedGroup.filterIt(isInRange(seedId, it))
     break;
   else:
     inc(partTwoLocationId)
@@ -204,3 +225,10 @@ echo "Part Two - Time taken: ", formatTime(int(partTwoEndTime - partTwoStartTime
 
 let appEndTime = cpuTime()
 echo "Total Time taken: ", formatTime(int(appEndTime - appStartTime)), " seconds"
+
+
+
+# echo "\n--- Debuging ---\n"
+# const seedLine = "seeds: 950527520 85181200 546703948 123777711 63627802 279111951 1141059215 246466925 1655973293 98210926 3948361820 92804510 2424412143 247735408 4140139679 82572647 2009732824 325159757 3575518161 370114248"
+# let groupList = initSeedList(seedLine)
+# echo "groupList ", groupList
