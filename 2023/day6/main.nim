@@ -1,4 +1,3 @@
-import std/sugar
 import std/os
 import std/[sequtils, strutils]
 import times
@@ -8,7 +7,7 @@ import ../day2/fileutils
 import ../day5/formatutils
 import patterns
 
-const USE_TEST_DATA = true
+const USE_TEST_DATA = false
 const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 6"
 
@@ -19,7 +18,7 @@ if not fileExists(filePath):
 
 
 type
-  Race = tuple[time: int, distance: int]
+  Race = tuple[time: int64, distance: int64]
 
 
 proc calcDistance(chargeTime: int, totalTime: int): int =
@@ -43,7 +42,13 @@ proc countWinCases(race: Race): int =
 proc initRaceList(lines: seq[string]): seq[Race] =
   ## Creates a Race list from a file.
   let textNums = lines.mapIt(it.findAll(patternNumbers))
-  return zip(textNums[0], textNums[1]).mapIt((time: parseInt(it[0]), distance: parseInt(it[1])))
+  return zip(textNums[0], textNums[1]).mapIt((time: parseBiggestInt(it[0]), distance: parseBiggestInt(it[1])))
+
+proc initRaceListPartTwo(lines: seq[string]): Race =
+  let textNums = lines.mapIt(it.findAll(patternNumbers))
+  let nums = textNums.mapIt(it.foldl(a & b)).mapIt(parseBiggestInt(it))
+  return (time: nums[0], distance: nums[1])
+
 
 #
 # Main
@@ -53,11 +58,12 @@ let appStartTime = cpuTime()
 echo "\n--- Loading Data File ---\n"
 let rawTextLines: seq[string] = readFileLines(filePath)
 let raceList = initRaceList(rawTextLines)
-echo "raceList ", raceList
+let race2 = initRaceListPartTwo(rawTextLines)
 
 
 
 echo "\n--- Part One ---\n"
+echo "raceList ", raceList
 var partOneValue: int64 = 1
 for race in raceList:
   partOneValue = partOneValue * countWinCases(race) 
@@ -65,11 +71,19 @@ for race in raceList:
 echo "partOneValue ", partOneValue
 if USE_TEST_DATA and partOneValue == 288:
   echo "Success!"
+if not USE_TEST_DATA and partOneValue == 4568778:
+  echo "Success!"
 else:
   echo "Unknown! Try it out!"
 
 
+
 echo "\n--- Part Two ---\n"
+echo "race: ", race2
+
+let partTwoValue: int64 = countWinCases(race2)
+echo "partTwoValue ", partTwoValue
+
 
 
 

@@ -1,0 +1,18 @@
+Advent Of Code 2023 - Day 6
+
+--- Loading Data File ---
+
+
+--- Part One ---
+
+raceList @[(time: 48, distance: 390), (time: 98, distance: 1103), (time: 90, distance: 1112), (time: 83, distance: 1360)]
+partOneValue 4568778
+Success!
+
+--- Part Two ---
+
+race: (time: 48989083, distance: 390110311121360)
+partTwoValue 28973936
+
+----------------
+Total Time taken: 0h 0m 0s seconds
