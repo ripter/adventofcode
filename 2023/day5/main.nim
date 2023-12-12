@@ -10,7 +10,7 @@ import formatutils
 when compileOption("profiler"):
   import nimprof
 
-const USE_TEST_DATA = true
+const USE_TEST_DATA = false
 const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 5"
 
@@ -35,12 +35,6 @@ type
   AlmanacEntry = tuple[label: string,  ranges: seq[AlmanacRange]]
   Almanac = seq[AlmanacEntry]
 
-
-
-proc initSeedRange(inputStr: string): SeedRange =
-  ## Creates a SeedRange from a number string
-  let nums = inputStr.findAll(patternNumbers).map(parseBiggestInt)
-  return (start: nums[0], length: nums[1])
 
 
 proc initSeedList(inputStr: string): SeedList =

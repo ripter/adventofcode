@@ -1,10 +1,17 @@
 total executions of each stack trace:
-Entry: 1/4 Calls: 421972/788213 = 53.54% [sum: 421972; 421972/788213 = 53.54%]
-  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: toSeedId 775641/788213 = 98.40%
-  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: main 788212/788213 = 100.00%
-Entry: 2/4 Calls: 353669/788213 = 44.87% [sum: 775641; 775641/788213 = 98.40%]
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: isInRange 353669/788213 = 44.87%
-  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: toSeedId 775641/788213 = 98.40%
-  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: main 788212/788213 = 100.00%
-Entry: 3/4 Calls: 12571/788213 = 1.59% [sum: 788212; 788212/788213 = 100.00%]
-  /Users/chrisrichards/.choosenim/toolchains/nim-2.0.0/lib/system/iterators.nim: main 788212/788213 = 100.00%
+Entry: 1/6 Calls: 67533/147849 = 45.68% [sum: 67533; 67533/147849 = 45.68%]
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: toSeedId 124563/147849 = 84.25%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 147848/147849 = 100.00%
+Entry: 2/6 Calls: 57030/147849 = 38.57% [sum: 124563; 124563/147849 = 84.25%]
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: isInRange 71951/147849 = 48.67%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: toSeedId 124563/147849 = 84.25%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 147848/147849 = 100.00%
+Entry: 3/6 Calls: 8364/147849 = 5.66% [sum: 132927; 132927/147849 = 89.91%]
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 147848/147849 = 100.00%
+Entry: 4/6 Calls: 7650/147849 = 5.17% [sum: 140577; 140577/147849 = 95.08%]
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: isInRange 71951/147849 = 48.67%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 147848/147849 = 100.00%
+Entry: 5/6 Calls: 7271/147849 = 4.92% [sum: 147848; 147848/147849 = 100.00%]
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: isInRange 71951/147849 = 48.67%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: isInRange 71951/147849 = 48.67%
+  /Users/chrisrichards/dev/adventofcode/2023/day5/main.nim: main 147848/147849 = 100.00%

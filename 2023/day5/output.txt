@@ -1,5 +1,5 @@
 Advent Of Code 2023 - Day 5
-0.002064000000000002 seconds.	initAlmanac()
+0.001869000000000001 seconds.	initAlmanac()
 
 --- Part One ---
 
@@ -12,10 +12,11 @@ Part One - Time taken: 0h 0m 0s seconds
 
 --- Part Two ---
 
-seedGroups @[(start: 950527520, length: 85181200), (start: 3948361820, length: 92804510)]
-Answer 702443113
-Oops, Wrong Answer. Too high.
-Part Two - Time taken: 1h 5m 8s seconds
-Total Time taken: 1h 5m 8s seconds
+seedGroup @[(start: 950527520, length: 85181200), (start: 546703948, length: 123777711), (start: 63627802, length: 279111951), (start: 1141059215, length: 246466925), (start: 1655973293, length: 98210926), (start: 3948361820, length: 92804510), (start: 2424412143, length: 247735408), (start: 4140139679, length: 82572647), (start: 2009732824, length: 325159757), (start: 3575518161, length: 370114248)]
+Found It! 2561416827 is in SeedGroup @[(start: 2424412143, length: 247735408)]
+Answer 125742456
+New Answer! Try it!
+Part Two - Time taken: 0h 12m 12s seconds
+Total Time taken: 0h 12m 12s seconds
 writing profile_results.txt...
 ... done
