@@ -219,10 +219,3 @@ echo "Part Two - Time taken: ", formatTime(int(partTwoEndTime - partTwoStartTime
 
 let appEndTime = cpuTime()
 echo "Total Time taken: ", formatTime(int(appEndTime - appStartTime)), " seconds"
-
-
-
-# echo "\n--- Debuging ---\n"
-# const seedLine = "seeds: 950527520 85181200 546703948 123777711 63627802 279111951 1141059215 246466925 1655973293 98210926 3948361820 92804510 2424412143 247735408 4140139679 82572647 2009732824 325159757 3575518161 370114248"
-# let groupList = initSeedList(seedLine)
-# echo "groupList ", groupList
