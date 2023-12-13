@@ -43,7 +43,7 @@ proc cmpHandType(a: Bet, b: Bet): int =
   ## Compare based on HandType
   let aRankValue = typeRanking.find(a.handType)
   let bRankValue = typeRanking.find(b.handType)
-  return bRankValue - aRankValue
+  return aRankValue - bRankValue
 
 proc cmpCardFace(a: Bet, b: Bet): int =
   ## Compare based on Card Face value.
@@ -55,7 +55,7 @@ proc cmpCardFace(a: Bet, b: Bet): int =
     let aFaceValue = cardValues.find(a.hand[idx])
     let bFaceValue = cardValues.find(b.hand[idx])
     if aFaceValue != bFaceValue:
-      return bFaceValue - aFaceValue
+      return aFaceValue - bFaceValue
 
   return 0
 
@@ -124,9 +124,12 @@ echo "Bets ", bets
 sort(bets, cmpHandType)
 sort(bets, cmpCardFace)
 echo "\nSorted "
-for bet in bets:
-  echo bet
+var partOneValue: int64 = 0
+for idx, bet in bets.pairs:
+  inc(partOneValue, bet.amount * (idx+1))
+  echo idx, " ", bet
 
+echo "Answer ", partOneValue
 
 
 
