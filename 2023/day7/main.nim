@@ -1,6 +1,7 @@
 import std/os
 import std/[sequtils, strutils]
 import std/tables
+import std/algorithm
 import times
 
 import ../day2/fileutils
@@ -34,12 +35,32 @@ type
     handType: HandType
 
 # Using index to create a ranking score.
-const cardValues = @["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
+const cardValues = @['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
 const typeRanking = @[htHighCard, htOne, htTwo, htThree, htFullHouse, htFour, htFive]
 
 
+proc cmpHandType(a: Bet, b: Bet): int =
+  ## Compare based on HandType
+  let aRankValue = typeRanking.find(a.handType)
+  let bRankValue = typeRanking.find(b.handType)
+  return bRankValue - aRankValue
+
+proc cmpCardFace(a: Bet, b: Bet): int =
+  ## Compare based on Card Face value.
+  ## Only sorts Bets with the same HandType
+  if a.handType != b.handType:
+    return 0
+
+  for idx in (0..4):
+    let aFaceValue = cardValues.find(a.hand[idx])
+    let bFaceValue = cardValues.find(b.hand[idx])
+    if aFaceValue != bFaceValue:
+      return bFaceValue - aFaceValue
+
+  return 0
 
 proc initHandType(hand: Hand): HandType =
+  ## Finds the HandType for the provided hand
   let letterFreq = toCountTable(hand)
   # Do the easy checks first. We don't need to look at pairs or anything with these.
   let largest = letterFreq.largest
@@ -97,12 +118,15 @@ let rawTextLines: seq[string] = readFileLines(filePath)
 echo "rawTextLines ", rawTextLines
 
 echo "\n--- Part One ---\n"
-let bets = loadBets(rawTextLines)
+var bets = loadBets(rawTextLines)
 echo "Bets ", bets
 
-let betIdx = 1
-let handType = initHandType(bets[betIdx].hand)
-echo handType, " for ", bets[betIdx].hand
+sort(bets, cmpHandType)
+sort(bets, cmpCardFace)
+echo "\nSorted "
+for bet in bets:
+  echo bet
+
 
 
 
