@@ -9,7 +9,7 @@ import ../day5/formatutils
 import ../day6/patterns
 
 
-const USE_TEST_DATA = true
+const USE_TEST_DATA = false
 const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 7"
 
@@ -70,8 +70,6 @@ proc initHandType(hand: Hand): HandType =
     return htFive
   if largest.val == 4:
     return htFour
-  if largest.val == 3:
-    return htThree
 
   # count pairs for the rest of the checks.
   var pairCount: int = 0
@@ -84,6 +82,8 @@ proc initHandType(hand: Hand): HandType =
 
   if threeCount == 1 and pairCount == 1:
     return htFullHouse
+  elif largest.val == 3:
+    return htThree
   elif pairCount == 2:
     return htTwo
   elif pairCount == 1:
@@ -119,17 +119,28 @@ echo "rawTextLines ", rawTextLines
 
 echo "\n--- Part One ---\n"
 var bets = loadBets(rawTextLines)
-echo "Bets ", bets
+# echo "Bets ", bets
 
 sort(bets, cmpHandType)
 sort(bets, cmpCardFace)
-echo "\nSorted "
+# echo "\nSorted "
 var partOneValue: int64 = 0
 for idx, bet in bets.pairs:
   inc(partOneValue, bet.amount * (idx+1))
-  echo idx, " ", bet
+  # partOneValue += bet.amount * (idx+1)
+  echo idx+1, " ", bet, " ", bet.amount * (idx+1), " new value: ", partOneValue
 
 echo "Answer ", partOneValue
+if USE_TEST_DATA and partOneValue == 6440:
+  echo "Success!"
+elif USE_TEST_DATA:
+  echo "Uh oh! Something went wrong!"
+elif partOneValue == 251106089:
+  echo "Success!"
+elif partOneValue == 251141154:
+  echo "The Value is to high"
+else:
+  echo "Unknown value! Try it!"
 
 
 
