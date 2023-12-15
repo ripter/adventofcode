@@ -8,7 +8,7 @@ import ../day2/fileutils
 import ../day5/formatutils
 
 
-const USE_TEST_DATA = true
+const USE_TEST_DATA = false
 const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 7"
 
@@ -190,6 +190,8 @@ elif partTwoValue == 249802690:
   echo "Value is too high."
 elif partTwoValue == 249840916:
   echo "Value is too high."
+elif partTwoValue == 249427371:
+  echo "Still Wrong"
 else:
   echo "Unknown value! Try it!"
 
@@ -198,7 +200,8 @@ else:
 echo "\n--- DEBUG ---\n"
 # echo initHandType("JJJJJ", false), " : Jack"
 # echo initHandType("JJJJJ", true), " : Joker"
-echo initHandType("33TTJ", true), " - Should be a full house"
+echo initHandType("33TTJ", true), " - 33TTJ - Should be a Full House"
+echo initHandType("J3749", true), " - J3749 - Should be One Pair"
 
 
 
