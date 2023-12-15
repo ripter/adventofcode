@@ -1009,5 +1009,1014 @@ rawTextLines @["8444T 864", "6TK4Q 440", "A5555 197", "53353 712", "6K68A 216", 
 Answer 251106089
 Success!
 
+--- Part Two ---
+
+1 (hand: "J3749", amount: 432, handType: High Card) 432 new value: 432
+2 (hand: "J4792", amount: 992, handType: High Card) 1984 new value: 2416
+3 (hand: "J47Q8", amount: 413, handType: High Card) 1239 new value: 3655
+4 (hand: "J4QA2", amount: 49, handType: High Card) 196 new value: 3851
+5 (hand: "J6954", amount: 2, handType: High Card) 10 new value: 3861
+6 (hand: "J6T2K", amount: 841, handType: High Card) 5046 new value: 8907
+7 (hand: "J7234", amount: 917, handType: High Card) 6419 new value: 15326
+8 (hand: "J7425", amount: 948, handType: High Card) 7584 new value: 22910
+9 (hand: "J753Q", amount: 772, handType: High Card) 6948 new value: 29858
+10 (hand: "J9386", amount: 852, handType: High Card) 8520 new value: 38378
+11 (hand: "JT534", amount: 160, handType: High Card) 1760 new value: 40138
+12 (hand: "JK5T4", amount: 564, handType: High Card) 6768 new value: 46906
+13 (hand: "JK987", amount: 292, handType: High Card) 3796 new value: 50702
+14 (hand: "JA9K5", amount: 535, handType: High Card) 7490 new value: 58192
+15 (hand: "2J7K8", amount: 618, handType: High Card) 9270 new value: 67462
+16 (hand: "2379T", amount: 372, handType: High Card) 5952 new value: 73414
+17 (hand: "23T6J", amount: 575, handType: High Card) 9775 new value: 83189
+18 (hand: "23T85", amount: 83, handType: High Card) 1494 new value: 84683
+19 (hand: "258AT", amount: 901, handType: High Card) 17119 new value: 101802
+20 (hand: "26Q97", amount: 527, handType: High Card) 10540 new value: 112342
+21 (hand: "2735J", amount: 167, handType: High Card) 3507 new value: 115849
+22 (hand: "27QAJ", amount: 616, handType: High Card) 13552 new value: 129401
+23 (hand: "2879J", amount: 483, handType: High Card) 11109 new value: 140510
+24 (hand: "29JQ7", amount: 366, handType: High Card) 8784 new value: 149294
+25 (hand: "293A8", amount: 762, handType: High Card) 19050 new value: 168344
+26 (hand: "2T9J6", amount: 364, handType: High Card) 9464 new value: 177808
+27 (hand: "2T9JQ", amount: 113, handType: High Card) 3051 new value: 180859
+28 (hand: "2Q3KJ", amount: 929, handType: High Card) 26012 new value: 206871
+29 (hand: "2Q9J6", amount: 568, handType: High Card) 16472 new value: 223343
+30 (hand: "2QA84", amount: 602, handType: High Card) 18060 new value: 241403
+31 (hand: "2K8TA", amount: 283, handType: High Card) 8773 new value: 250176
+32 (hand: "32954", amount: 563, handType: High Card) 18016 new value: 268192
+33 (hand: "32A85", amount: 750, handType: High Card) 24750 new value: 292942
+34 (hand: "345T8", amount: 824, handType: High Card) 28016 new value: 320958
+35 (hand: "347AQ", amount: 103, handType: High Card) 3605 new value: 324563
+36 (hand: "35T98", amount: 453, handType: High Card) 16308 new value: 340871
+37 (hand: "36J95", amount: 502, handType: High Card) 18574 new value: 359445
+38 (hand: "375KA", amount: 490, handType: High Card) 18620 new value: 378065
+39 (hand: "38T97", amount: 119, handType: High Card) 4641 new value: 382706
+40 (hand: "39285", amount: 648, handType: High Card) 25920 new value: 408626
+41 (hand: "39TJ2", amount: 261, handType: High Card) 10701 new value: 419327
+42 (hand: "3T596", amount: 570, handType: High Card) 23940 new value: 443267
+43 (hand: "3Q4J8", amount: 518, handType: High Card) 22274 new value: 465541
+44 (hand: "3Q4KA", amount: 398, handType: High Card) 17512 new value: 483053
+45 (hand: "3Q58T", amount: 677, handType: High Card) 30465 new value: 513518
+46 (hand: "3KT5Q", amount: 759, handType: High Card) 34914 new value: 548432
+47 (hand: "3A74T", amount: 997, handType: High Card) 46859 new value: 595291
+48 (hand: "3A8T9", amount: 124, handType: High Card) 5952 new value: 601243
+49 (hand: "3AQ2K", amount: 151, handType: High Card) 7399 new value: 608642
+50 (hand: "42698", amount: 606, handType: High Card) 30300 new value: 638942
+51 (hand: "42857", amount: 80, handType: High Card) 4080 new value: 643022
+52 (hand: "429QK", amount: 414, handType: High Card) 21528 new value: 664550
+53 (hand: "42TJ8", amount: 82, handType: High Card) 4346 new value: 668896
+54 (hand: "45T2Q", amount: 287, handType: High Card) 15498 new value: 684394
+55 (hand: "47K3J", amount: 139, handType: High Card) 7645 new value: 692039
+56 (hand: "4T982", amount: 58, handType: High Card) 3248 new value: 695287
+57 (hand: "4TK7A", amount: 869, handType: High Card) 49533 new value: 744820
+58 (hand: "4Q5TA", amount: 240, handType: High Card) 13920 new value: 758740
+59 (hand: "4Q635", amount: 726, handType: High Card) 42834 new value: 801574
+60 (hand: "523T9", amount: 323, handType: High Card) 19380 new value: 820954
+61 (hand: "53K82", amount: 348, handType: High Card) 21228 new value: 842182
+62 (hand: "542A7", amount: 419, handType: High Card) 25978 new value: 868160
+63 (hand: "56384", amount: 728, handType: High Card) 45864 new value: 914024
+64 (hand: "5684J", amount: 956, handType: High Card) 61184 new value: 975208
+65 (hand: "56948", amount: 784, handType: High Card) 50960 new value: 1026168
+66 (hand: "56QKA", amount: 230, handType: High Card) 15180 new value: 1041348
+67 (hand: "592Q4", amount: 823, handType: High Card) 55141 new value: 1096489
+68 (hand: "59A28", amount: 401, handType: High Card) 27268 new value: 1123757
+69 (hand: "5T7J3", amount: 482, handType: High Card) 33258 new value: 1157015
+70 (hand: "5TK28", amount: 571, handType: High Card) 39970 new value: 1196985
+71 (hand: "5Q2A3", amount: 20, handType: High Card) 1420 new value: 1198405
+72 (hand: "5Q428", amount: 665, handType: High Card) 47880 new value: 1246285
+73 (hand: "5Q8A6", amount: 396, handType: High Card) 28908 new value: 1275193
+74 (hand: "5QK23", amount: 163, handType: High Card) 12062 new value: 1287255
+75 (hand: "5KJ8A", amount: 842, handType: High Card) 63150 new value: 1350405
+76 (hand: "5K47T", amount: 591, handType: High Card) 44916 new value: 1395321
+77 (hand: "5A8J3", amount: 40, handType: High Card) 3080 new value: 1398401
+78 (hand: "6J57Q", amount: 157, handType: High Card) 12246 new value: 1410647
+79 (hand: "6J58Q", amount: 687, handType: High Card) 54273 new value: 1464920
+80 (hand: "6JAQ2", amount: 955, handType: High Card) 76400 new value: 1541320
+81 (hand: "62JQ8", amount: 474, handType: High Card) 38394 new value: 1579714
+82 (hand: "62K39", amount: 341, handType: High Card) 27962 new value: 1607676
+83 (hand: "634TA", amount: 804, handType: High Card) 66732 new value: 1674408
+84 (hand: "63T4K", amount: 138, handType: High Card) 11592 new value: 1686000
+85 (hand: "69J7Q", amount: 57, handType: High Card) 4845 new value: 1690845
+86 (hand: "69873", amount: 859, handType: High Card) 73874 new value: 1764719
+87 (hand: "698T4", amount: 370, handType: High Card) 32190 new value: 1796909
+88 (hand: "69QT4", amount: 811, handType: High Card) 71368 new value: 1868277
+89 (hand: "69A2Q", amount: 774, handType: High Card) 68886 new value: 1937163
+90 (hand: "6TQ27", amount: 635, handType: High Card) 57150 new value: 1994313
+91 (hand: "6TK4Q", amount: 440, handType: High Card) 40040 new value: 2034353
+92 (hand: "6KA2J", amount: 748, handType: High Card) 68816 new value: 2103169
+93 (hand: "6A78J", amount: 562, handType: High Card) 52266 new value: 2155435
+94 (hand: "6AKJ9", amount: 178, handType: High Card) 16732 new value: 2172167
+95 (hand: "726K8", amount: 244, handType: High Card) 23180 new value: 2195347
+96 (hand: "72934", amount: 700, handType: High Card) 67200 new value: 2262547
+97 (hand: "72T38", amount: 260, handType: High Card) 25220 new value: 2287767
+98 (hand: "73854", amount: 868, handType: High Card) 85064 new value: 2372831
+99 (hand: "74TQ2", amount: 335, handType: High Card) 33165 new value: 2405996
+100 (hand: "7538J", amount: 630, handType: High Card) 63000 new value: 2468996
+101 (hand: "7598T", amount: 982, handType: High Card) 99182 new value: 2568178
+102 (hand: "784A5", amount: 248, handType: High Card) 25296 new value: 2593474
+103 (hand: "789KA", amount: 947, handType: High Card) 97541 new value: 2691015
+104 (hand: "78Q5J", amount: 818, handType: High Card) 85072 new value: 2776087
+105 (hand: "7TA49", amount: 839, handType: High Card) 88095 new value: 2864182
+106 (hand: "7Q685", amount: 410, handType: High Card) 43460 new value: 2907642
+107 (hand: "7KQJ3", amount: 451, handType: High Card) 48257 new value: 2955899
+108 (hand: "8J572", amount: 121, handType: High Card) 13068 new value: 2968967
+109 (hand: "8J76Q", amount: 308, handType: High Card) 33572 new value: 3002539
+110 (hand: "8JA4T", amount: 481, handType: High Card) 52910 new value: 3055449
+111 (hand: "8JAT9", amount: 442, handType: High Card) 49062 new value: 3104511
+112 (hand: "826JT", amount: 172, handType: High Card) 19264 new value: 3123775
+113 (hand: "82AK7", amount: 338, handType: High Card) 38194 new value: 3161969
+114 (hand: "84937", amount: 675, handType: High Card) 76950 new value: 3238919
+115 (hand: "84TA3", amount: 444, handType: High Card) 51060 new value: 3289979
+116 (hand: "84K5T", amount: 831, handType: High Card) 96396 new value: 3386375
+117 (hand: "86452", amount: 744, handType: High Card) 87048 new value: 3473423
+118 (hand: "874TK", amount: 257, handType: High Card) 30326 new value: 3503749
+119 (hand: "87K94", amount: 894, handType: High Card) 106386 new value: 3610135
+120 (hand: "87KTA", amount: 942, handType: High Card) 113040 new value: 3723175
+121 (hand: "892Q4", amount: 893, handType: High Card) 108053 new value: 3831228
+122 (hand: "8Q4JT", amount: 44, handType: High Card) 5368 new value: 3836596
+123 (hand: "8Q93J", amount: 872, handType: High Card) 107256 new value: 3943852
+124 (hand: "8K942", amount: 458, handType: High Card) 56792 new value: 4000644
+125 (hand: "8KQJ4", amount: 241, handType: High Card) 30125 new value: 4030769
+126 (hand: "9JK3Q", amount: 412, handType: High Card) 51912 new value: 4082681
+127 (hand: "93T86", amount: 452, handType: High Card) 57404 new value: 4140085
+128 (hand: "93A54", amount: 621, handType: High Card) 79488 new value: 4219573
+129 (hand: "94J68", amount: 79, handType: High Card) 10191 new value: 4229764
+130 (hand: "943Q5", amount: 671, handType: High Card) 87230 new value: 4316994
+131 (hand: "954TJ", amount: 135, handType: High Card) 17685 new value: 4334679
+132 (hand: "95TA4", amount: 650, handType: High Card) 85800 new value: 4420479
+133 (hand: "97623", amount: 996, handType: High Card) 132468 new value: 4552947
+134 (hand: "98243", amount: 832, handType: High Card) 111488 new value: 4664435
+135 (hand: "9T58Q", amount: 493, handType: High Card) 66555 new value: 4730990
+136 (hand: "9TAK5", amount: 352, handType: High Card) 47872 new value: 4778862
+137 (hand: "9QKT8", amount: 6, handType: High Card) 822 new value: 4779684
+138 (hand: "9K4A5", amount: 488, handType: High Card) 67344 new value: 4847028
+139 (hand: "9K5T7", amount: 93, handType: High Card) 12927 new value: 4859955
+140 (hand: "9KA57", amount: 723, handType: High Card) 101220 new value: 4961175
+141 (hand: "TJ562", amount: 245, handType: High Card) 34545 new value: 4995720
+142 (hand: "TJK9A", amount: 168, handType: High Card) 23856 new value: 5019576
+143 (hand: "T2Q4A", amount: 454, handType: High Card) 64922 new value: 5084498
+144 (hand: "T38A6", amount: 988, handType: High Card) 142272 new value: 5226770
+145 (hand: "T39QJ", amount: 281, handType: High Card) 40745 new value: 5267515
+146 (hand: "T678Q", amount: 731, handType: High Card) 106726 new value: 5374241
+147 (hand: "T73JA", amount: 633, handType: High Card) 93051 new value: 5467292
+148 (hand: "T76JA", amount: 761, handType: High Card) 112628 new value: 5579920
+149 (hand: "T962K", amount: 210, handType: High Card) 31290 new value: 5611210
+150 (hand: "T9AJ6", amount: 360, handType: High Card) 54000 new value: 5665210
+151 (hand: "TQ382", amount: 120, handType: High Card) 18120 new value: 5683330
+152 (hand: "TKJQ7", amount: 48, handType: High Card) 7296 new value: 5690626
+153 (hand: "TK384", amount: 543, handType: High Card) 83079 new value: 5773705
+154 (hand: "TK392", amount: 435, handType: High Card) 66990 new value: 5840695
+155 (hand: "TK8Q7", amount: 792, handType: High Card) 122760 new value: 5963455
+156 (hand: "TAJ49", amount: 697, handType: High Card) 108732 new value: 6072187
+157 (hand: "TA28Q", amount: 218, handType: High Card) 34226 new value: 6106413
+158 (hand: "Q3792", amount: 5, handType: High Card) 790 new value: 6107203
+159 (hand: "Q452J", amount: 450, handType: High Card) 71550 new value: 6178753
+160 (hand: "Q5384", amount: 322, handType: High Card) 51520 new value: 6230273
+161 (hand: "Q6TKA", amount: 899, handType: High Card) 144739 new value: 6375012
+162 (hand: "Q7TJ4", amount: 594, handType: High Card) 96228 new value: 6471240
+163 (hand: "Q98K4", amount: 325, handType: High Card) 52975 new value: 6524215
+164 (hand: "QT4K7", amount: 501, handType: High Card) 82164 new value: 6606379
+165 (hand: "QT57K", amount: 941, handType: High Card) 155265 new value: 6761644
+166 (hand: "K29J5", amount: 752, handType: High Card) 124832 new value: 6886476
+167 (hand: "K2Q45", amount: 510, handType: High Card) 85170 new value: 6971646
+168 (hand: "K38AJ", amount: 659, handType: High Card) 110712 new value: 7082358
+169 (hand: "K473A", amount: 649, handType: High Card) 109681 new value: 7192039
+170 (hand: "K492J", amount: 408, handType: High Card) 69360 new value: 7261399
+171 (hand: "K4927", amount: 968, handType: High Card) 165528 new value: 7426927
+172 (hand: "K5J74", amount: 339, handType: High Card) 58308 new value: 7485235
+173 (hand: "K6A49", amount: 807, handType: High Card) 139611 new value: 7624846
+174 (hand: "KT625", amount: 342, handType: High Card) 59508 new value: 7684354
+175 (hand: "KQJA9", amount: 764, handType: High Card) 133700 new value: 7818054
+176 (hand: "KQ369", amount: 33, handType: High Card) 5808 new value: 7823862
+177 (hand: "AJ725", amount: 60, handType: High Card) 10620 new value: 7834482
+178 (hand: "AJ758", amount: 506, handType: High Card) 90068 new value: 7924550
+179 (hand: "AJT47", amount: 713, handType: High Card) 127627 new value: 8052177
+180 (hand: "A2TQJ", amount: 64, handType: High Card) 11520 new value: 8063697
+181 (hand: "A4372", amount: 329, handType: High Card) 59549 new value: 8123246
+182 (hand: "A4T96", amount: 128, handType: High Card) 23296 new value: 8146542
+183 (hand: "A4K86", amount: 990, handType: High Card) 181170 new value: 8327712
+184 (hand: "A5TKQ", amount: 497, handType: High Card) 91448 new value: 8419160
+185 (hand: "A6K43", amount: 749, handType: High Card) 138565 new value: 8557725
+186 (hand: "A8T26", amount: 312, handType: High Card) 58032 new value: 8615757
+187 (hand: "A97Q4", amount: 235, handType: High Card) 43945 new value: 8659702
+188 (hand: "A97K3", amount: 891, handType: High Card) 167508 new value: 8827210
+189 (hand: "AT4J2", amount: 300, handType: High Card) 56700 new value: 8883910
+190 (hand: "22835", amount: 595, handType: One Pair) 113050 new value: 8996960
+191 (hand: "229A7", amount: 334, handType: One Pair) 63794 new value: 9060754
+192 (hand: "22TK5", amount: 647, handType: One Pair) 124224 new value: 9184978
+193 (hand: "24258", amount: 780, handType: One Pair) 150540 new value: 9335518
+194 (hand: "24874", amount: 628, handType: One Pair) 121832 new value: 9457350
+195 (hand: "25K59", amount: 662, handType: One Pair) 129090 new value: 9586440
+196 (hand: "265Q5", amount: 449, handType: One Pair) 88004 new value: 9674444
+197 (hand: "2T284", amount: 561, handType: One Pair) 110517 new value: 9784961
+198 (hand: "2T2KQ", amount: 645, handType: One Pair) 127710 new value: 9912671
+199 (hand: "2T37T", amount: 694, handType: One Pair) 138106 new value: 10050777
+200 (hand: "2K2QA", amount: 153, handType: One Pair) 30600 new value: 10081377
+201 (hand: "2KK73", amount: 608, handType: One Pair) 122208 new value: 10203585
+202 (hand: "326A3", amount: 208, handType: One Pair) 42016 new value: 10245601
+203 (hand: "3422Q", amount: 971, handType: One Pair) 197113 new value: 10442714
+204 (hand: "344A5", amount: 186, handType: One Pair) 37944 new value: 10480658
+205 (hand: "34K24", amount: 270, handType: One Pair) 55350 new value: 10536008
+206 (hand: "35683", amount: 347, handType: One Pair) 71482 new value: 10607490
+207 (hand: "37764", amount: 460, handType: One Pair) 95220 new value: 10702710
+208 (hand: "3TAT7", amount: 19, handType: One Pair) 3952 new value: 10706662
+209 (hand: "3Q522", amount: 653, handType: One Pair) 136477 new value: 10843139
+210 (hand: "3Q8QK", amount: 137, handType: One Pair) 28770 new value: 10871909
+211 (hand: "3A379", amount: 421, handType: One Pair) 88831 new value: 10960740
+212 (hand: "42KTT", amount: 457, handType: One Pair) 96884 new value: 11057624
+213 (hand: "42A47", amount: 420, handType: One Pair) 89460 new value: 11147084
+214 (hand: "436Q3", amount: 192, handType: One Pair) 41088 new value: 11188172
+215 (hand: "4429T", amount: 846, handType: One Pair) 181890 new value: 11370062
+216 (hand: "448T9", amount: 598, handType: One Pair) 129168 new value: 11499230
+217 (hand: "46T65", amount: 42, handType: One Pair) 9114 new value: 11508344
+218 (hand: "47AA9", amount: 314, handType: One Pair) 68452 new value: 11576796
+219 (hand: "4A898", amount: 788, handType: One Pair) 172572 new value: 11749368
+220 (hand: "532A2", amount: 11, handType: One Pair) 2420 new value: 11751788
+221 (hand: "54Q49", amount: 800, handType: One Pair) 176800 new value: 11928588
+222 (hand: "54KKA", amount: 721, handType: One Pair) 160062 new value: 12088650
+223 (hand: "5579A", amount: 373, handType: One Pair) 83179 new value: 12171829
+224 (hand: "558T4", amount: 407, handType: One Pair) 91168 new value: 12262997
+225 (hand: "56223", amount: 141, handType: One Pair) 31725 new value: 12294722
+226 (hand: "563A5", amount: 156, handType: One Pair) 35256 new value: 12329978
+227 (hand: "56862", amount: 63, handType: One Pair) 14301 new value: 12344279
+228 (hand: "5852Q", amount: 601, handType: One Pair) 137028 new value: 12481307
+229 (hand: "598K5", amount: 791, handType: One Pair) 181139 new value: 12662446
+230 (hand: "5Q54T", amount: 9, handType: One Pair) 2070 new value: 12664516
+231 (hand: "62825", amount: 207, handType: One Pair) 47817 new value: 12712333
+232 (hand: "62928", amount: 233, handType: One Pair) 54056 new value: 12766389
+233 (hand: "64796", amount: 45, handType: One Pair) 10485 new value: 12776874
+234 (hand: "64TT2", amount: 827, handType: One Pair) 193518 new value: 12970392
+235 (hand: "653K6", amount: 797, handType: One Pair) 187295 new value: 13157687
+236 (hand: "66287", amount: 443, handType: One Pair) 104548 new value: 13262235
+237 (hand: "665AT", amount: 798, handType: One Pair) 189126 new value: 13451361
+238 (hand: "684T6", amount: 523, handType: One Pair) 124474 new value: 13575835
+239 (hand: "6K68A", amount: 216, handType: One Pair) 51624 new value: 13627459
+240 (hand: "6K7Q6", amount: 384, handType: One Pair) 92160 new value: 13719619
+241 (hand: "6KK8T", amount: 279, handType: One Pair) 67239 new value: 13786858
+242 (hand: "6AK88", amount: 819, handType: One Pair) 198198 new value: 13985056
+243 (hand: "7336A", amount: 182, handType: One Pair) 44226 new value: 14029282
+244 (hand: "742Q4", amount: 259, handType: One Pair) 63196 new value: 14092478
+245 (hand: "75AA2", amount: 92, handType: One Pair) 22540 new value: 14115018
+246 (hand: "76864", amount: 345, handType: One Pair) 84870 new value: 14199888
+247 (hand: "76K74", amount: 815, handType: One Pair) 201305 new value: 14401193
+248 (hand: "772T5", amount: 480, handType: One Pair) 119040 new value: 14520233
+249 (hand: "78T33", amount: 682, handType: One Pair) 169818 new value: 14690051
+250 (hand: "78QT8", amount: 424, handType: One Pair) 106000 new value: 14796051
+251 (hand: "7T2KK", amount: 202, handType: One Pair) 50702 new value: 14846753
+252 (hand: "7T847", amount: 328, handType: One Pair) 82656 new value: 14929409
+253 (hand: "7T973", amount: 531, handType: One Pair) 134343 new value: 15063752
+254 (hand: "7TQ6T", amount: 171, handType: One Pair) 43434 new value: 15107186
+255 (hand: "7TK88", amount: 736, handType: One Pair) 187680 new value: 15294866
+256 (hand: "7A275", amount: 416, handType: One Pair) 106496 new value: 15401362
+257 (hand: "828KT", amount: 778, handType: One Pair) 199946 new value: 15601308
+258 (hand: "82K23", amount: 250, handType: One Pair) 64500 new value: 15665808
+259 (hand: "82AA9", amount: 306, handType: One Pair) 79254 new value: 15745062
+260 (hand: "8323Q", amount: 627, handType: One Pair) 163020 new value: 15908082
+261 (hand: "859T8", amount: 655, handType: One Pair) 170955 new value: 16079037
+262 (hand: "862T2", amount: 558, handType: One Pair) 146196 new value: 16225233
+263 (hand: "8948Q", amount: 828, handType: One Pair) 217764 new value: 16442997
+264 (hand: "8Q4Q5", amount: 542, handType: One Pair) 143088 new value: 16586085
+265 (hand: "8Q656", amount: 74, handType: One Pair) 19610 new value: 16605695
+266 (hand: "8Q928", amount: 678, handType: One Pair) 180348 new value: 16786043
+267 (hand: "8K696", amount: 463, handType: One Pair) 123621 new value: 16909664
+268 (hand: "8AA67", amount: 145, handType: One Pair) 38860 new value: 16948524
+269 (hand: "93965", amount: 676, handType: One Pair) 181844 new value: 17130368
+270 (hand: "93KA3", amount: 55, handType: One Pair) 14850 new value: 17145218
+271 (hand: "979T6", amount: 134, handType: One Pair) 36314 new value: 17181532
+272 (hand: "9TK39", amount: 981, handType: One Pair) 266832 new value: 17448364
+273 (hand: "9TKT4", amount: 310, handType: One Pair) 84630 new value: 17532994
+274 (hand: "9QA49", amount: 302, handType: One Pair) 82748 new value: 17615742
+275 (hand: "9K6KQ", amount: 638, handType: One Pair) 175450 new value: 17791192
+276 (hand: "9A975", amount: 821, handType: One Pair) 226596 new value: 18017788
+277 (hand: "T269T", amount: 794, handType: One Pair) 219938 new value: 18237726
+278 (hand: "T556Q", amount: 999, handType: One Pair) 277722 new value: 18515448
+279 (hand: "T7479", amount: 705, handType: One Pair) 196695 new value: 18712143
+280 (hand: "T8K5T", amount: 466, handType: One Pair) 130480 new value: 18842623
+281 (hand: "T989A", amount: 462, handType: One Pair) 129822 new value: 18972445
+282 (hand: "TK9T8", amount: 220, handType: One Pair) 62040 new value: 19034485
+283 (hand: "Q252K", amount: 660, handType: One Pair) 186780 new value: 19221265
+284 (hand: "Q4KT4", amount: 61, handType: One Pair) 17324 new value: 19238589
+285 (hand: "Q696T", amount: 949, handType: One Pair) 270465 new value: 19509054
+286 (hand: "Q8738", amount: 515, handType: One Pair) 147290 new value: 19656344
+287 (hand: "Q8KKT", amount: 430, handType: One Pair) 123410 new value: 19779754
+288 (hand: "Q96A9", amount: 358, handType: One Pair) 103104 new value: 19882858
+289 (hand: "QTKQ6", amount: 796, handType: One Pair) 230044 new value: 20112902
+290 (hand: "QQ367", amount: 28, handType: One Pair) 8120 new value: 20121022
+291 (hand: "QA366", amount: 651, handType: One Pair) 189441 new value: 20310463
+292 (hand: "QA36Q", amount: 923, handType: One Pair) 269516 new value: 20579979
+293 (hand: "QAT4A", amount: 625, handType: One Pair) 183125 new value: 20763104
+294 (hand: "K23TK", amount: 144, handType: One Pair) 42336 new value: 20805440
+295 (hand: "K5K37", amount: 875, handType: One Pair) 258125 new value: 21063565
+296 (hand: "K7KA2", amount: 843, handType: One Pair) 249528 new value: 21313093
+297 (hand: "K8227", amount: 368, handType: One Pair) 109296 new value: 21422389
+298 (hand: "K96QQ", amount: 374, handType: One Pair) 111452 new value: 21533841
+299 (hand: "KTAT5", amount: 989, handType: One Pair) 295711 new value: 21829552
+300 (hand: "KK587", amount: 607, handType: One Pair) 182100 new value: 22011652
+301 (hand: "KK7Q3", amount: 469, handType: One Pair) 141169 new value: 22152821
+302 (hand: "KAK46", amount: 666, handType: One Pair) 201132 new value: 22353953
+303 (hand: "A2624", amount: 767, handType: One Pair) 232401 new value: 22586354
+304 (hand: "A59A8", amount: 274, handType: One Pair) 83296 new value: 22669650
+305 (hand: "A6A24", amount: 332, handType: One Pair) 101260 new value: 22770910
+306 (hand: "A79QQ", amount: 900, handType: One Pair) 275400 new value: 23046310
+307 (hand: "A7TA5", amount: 803, handType: One Pair) 246521 new value: 23292831
+308 (hand: "A9282", amount: 587, handType: One Pair) 180796 new value: 23473627
+309 (hand: "AT727", amount: 576, handType: One Pair) 177984 new value: 23651611
+310 (hand: "AK8K3", amount: 479, handType: One Pair) 148490 new value: 23800101
+311 (hand: "AK8A9", amount: 316, handType: One Pair) 98276 new value: 23898377
+312 (hand: "AKK97", amount: 417, handType: One Pair) 130104 new value: 24028481
+313 (hand: "AA3Q5", amount: 433, handType: One Pair) 135529 new value: 24164010
+314 (hand: "2233T", amount: 68, handType: Two Pair) 21352 new value: 24185362
+315 (hand: "22776", amount: 977, handType: Two Pair) 307755 new value: 24493117
+316 (hand: "22QQ7", amount: 927, handType: Two Pair) 292932 new value: 24786049
+317 (hand: "242K4", amount: 242, handType: Two Pair) 76714 new value: 24862763
+318 (hand: "24642", amount: 395, handType: Two Pair) 125610 new value: 24988373
+319 (hand: "24924", amount: 118, handType: Two Pair) 37642 new value: 25026015
+320 (hand: "26KK6", amount: 801, handType: Two Pair) 256320 new value: 25282335
+321 (hand: "27828", amount: 896, handType: Two Pair) 287616 new value: 25569951
+322 (hand: "299T2", amount: 599, handType: Two Pair) 192878 new value: 25762829
+323 (hand: "2TTQQ", amount: 104, handType: Two Pair) 33592 new value: 25796421
+324 (hand: "2KK62", amount: 400, handType: Two Pair) 129600 new value: 25926021
+325 (hand: "2A299", amount: 733, handType: Two Pair) 238225 new value: 26164246
+326 (hand: "32432", amount: 16, handType: Two Pair) 5216 new value: 26169462
+327 (hand: "33994", amount: 919, handType: Two Pair) 300513 new value: 26469975
+328 (hand: "33A88", amount: 547, handType: Two Pair) 179416 new value: 26649391
+329 (hand: "35T35", amount: 795, handType: Two Pair) 261555 new value: 26910946
+330 (hand: "35AA5", amount: 954, handType: Two Pair) 314820 new value: 27225766
+331 (hand: "3T3KK", amount: 8, handType: Two Pair) 2648 new value: 27228414
+332 (hand: "3TT36", amount: 533, handType: Two Pair) 176956 new value: 27405370
+333 (hand: "3K77K", amount: 850, handType: Two Pair) 283050 new value: 27688420
+334 (hand: "44669", amount: 708, handType: Two Pair) 236472 new value: 27924892
+335 (hand: "45488", amount: 441, handType: Two Pair) 147735 new value: 28072627
+336 (hand: "46Q4Q", amount: 836, handType: Two Pair) 280896 new value: 28353523
+337 (hand: "47A4A", amount: 517, handType: Two Pair) 174229 new value: 28527752
+338 (hand: "4Q334", amount: 22, handType: Two Pair) 7436 new value: 28535188
+339 (hand: "4A774", amount: 720, handType: Two Pair) 244080 new value: 28779268
+340 (hand: "52KK5", amount: 998, handType: Two Pair) 339320 new value: 29118588
+341 (hand: "535K3", amount: 110, handType: Two Pair) 37510 new value: 29156098
+342 (hand: "54K4K", amount: 814, handType: Two Pair) 278388 new value: 29434486
+343 (hand: "5522A", amount: 238, handType: Two Pair) 81634 new value: 29516120
+344 (hand: "55TT4", amount: 170, handType: Two Pair) 58480 new value: 29574600
+345 (hand: "57474", amount: 237, handType: Two Pair) 81765 new value: 29656365
+346 (hand: "57K5K", amount: 874, handType: Two Pair) 302404 new value: 29958769
+347 (hand: "59335", amount: 472, handType: Two Pair) 163784 new value: 30122553
+348 (hand: "59QQ9", amount: 556, handType: Two Pair) 193488 new value: 30316041
+349 (hand: "5T5QT", amount: 294, handType: Two Pair) 102606 new value: 30418647
+350 (hand: "64622", amount: 663, handType: Two Pair) 232050 new value: 30650697
+351 (hand: "64K6K", amount: 684, handType: Two Pair) 240084 new value: 30890781
+352 (hand: "6633A", amount: 613, handType: Two Pair) 215776 new value: 31106557
+353 (hand: "66TT8", amount: 572, handType: Two Pair) 201916 new value: 31308473
+354 (hand: "6KK96", amount: 222, handType: Two Pair) 78588 new value: 31387061
+355 (hand: "6KKT6", amount: 336, handType: Two Pair) 119280 new value: 31506341
+356 (hand: "6A6A2", amount: 147, handType: Two Pair) 52332 new value: 31558673
+357 (hand: "7227T", amount: 255, handType: Two Pair) 91035 new value: 31649708
+358 (hand: "7272Q", amount: 734, handType: Two Pair) 262772 new value: 31912480
+359 (hand: "73T3T", amount: 583, handType: Two Pair) 209297 new value: 32121777
+360 (hand: "74554", amount: 793, handType: Two Pair) 285480 new value: 32407257
+361 (hand: "74799", amount: 785, handType: Two Pair) 283385 new value: 32690642
+362 (hand: "7667K", amount: 487, handType: Two Pair) 176294 new value: 32866936
+363 (hand: "77QQ4", amount: 806, handType: Two Pair) 292578 new value: 33159514
+364 (hand: "78448", amount: 148, handType: Two Pair) 53872 new value: 33213386
+365 (hand: "79669", amount: 123, handType: Two Pair) 44895 new value: 33258281
+366 (hand: "79957", amount: 983, handType: Two Pair) 359778 new value: 33618059
+367 (hand: "799T7", amount: 963, handType: Two Pair) 353421 new value: 33971480
+368 (hand: "7T47T", amount: 629, handType: Two Pair) 231472 new value: 34202952
+369 (hand: "7Q7Q2", amount: 394, handType: Two Pair) 145386 new value: 34348338
+370 (hand: "7K57K", amount: 986, handType: Two Pair) 364820 new value: 34713158
+371 (hand: "7K6K6", amount: 614, handType: Two Pair) 227794 new value: 34940952
+372 (hand: "833QQ", amount: 735, handType: Two Pair) 273420 new value: 35214372
+373 (hand: "83866", amount: 592, handType: Two Pair) 220816 new value: 35435188
+374 (hand: "844QQ", amount: 246, handType: Two Pair) 92004 new value: 35527192
+375 (hand: "86T8T", amount: 369, handType: Two Pair) 138375 new value: 35665567
+376 (hand: "86A68", amount: 718, handType: Two Pair) 269968 new value: 35935535
+377 (hand: "87867", amount: 777, handType: Two Pair) 292929 new value: 36228464
+378 (hand: "8989Q", amount: 857, handType: Two Pair) 323946 new value: 36552410
+379 (hand: "89T98", amount: 428, handType: Two Pair) 162212 new value: 36714622
+380 (hand: "8QKKQ", amount: 426, handType: Two Pair) 161880 new value: 36876502
+381 (hand: "8A4A8", amount: 252, handType: Two Pair) 96012 new value: 36972514
+382 (hand: "8A86A", amount: 473, handType: Two Pair) 180686 new value: 37153200
+383 (hand: "98968", amount: 560, handType: Two Pair) 214480 new value: 37367680
+384 (hand: "9TT96", amount: 703, handType: Two Pair) 269952 new value: 37637632
+385 (hand: "9A9KK", amount: 18, handType: Two Pair) 6930 new value: 37644562
+386 (hand: "T4433", amount: 112, handType: Two Pair) 43232 new value: 37687794
+387 (hand: "T4466", amount: 266, handType: Two Pair) 102942 new value: 37790736
+388 (hand: "T57T7", amount: 727, handType: Two Pair) 282076 new value: 38072812
+389 (hand: "T63T6", amount: 566, handType: Two Pair) 220174 new value: 38292986
+390 (hand: "T7T67", amount: 895, handType: Two Pair) 349050 new value: 38642036
+391 (hand: "T8282", amount: 504, handType: Two Pair) 197064 new value: 38839100
+392 (hand: "T955T", amount: 319, handType: Two Pair) 125048 new value: 38964148
+393 (hand: "T9944", amount: 256, handType: Two Pair) 100608 new value: 39064756
+394 (hand: "TT3KK", amount: 1000, handType: Two Pair) 394000 new value: 39458756
+395 (hand: "TT488", amount: 36, handType: Two Pair) 14220 new value: 39472976
+396 (hand: "TT7AA", amount: 690, handType: Two Pair) 273240 new value: 39746216
+397 (hand: "TTKK5", amount: 254, handType: Two Pair) 100838 new value: 39847054
+398 (hand: "TQTQ4", amount: 974, handType: Two Pair) 387652 new value: 40234706
+399 (hand: "Q3AQA", amount: 56, handType: Two Pair) 22344 new value: 40257050
+400 (hand: "Q4Q45", amount: 641, handType: Two Pair) 256400 new value: 40513450
+401 (hand: "Q6767", amount: 810, handType: Two Pair) 324810 new value: 40838260
+402 (hand: "Q7Q78", amount: 938, handType: Two Pair) 377076 new value: 41215336
+403 (hand: "Q9339", amount: 529, handType: Two Pair) 213187 new value: 41428523
+404 (hand: "QQ7KK", amount: 359, handType: Two Pair) 145036 new value: 41573559
+405 (hand: "QQA88", amount: 23, handType: Two Pair) 9315 new value: 41582874
+406 (hand: "QQAA6", amount: 775, handType: Two Pair) 314650 new value: 41897524
+407 (hand: "K3Q3Q", amount: 491, handType: Two Pair) 199837 new value: 42097361
+408 (hand: "K3K66", amount: 578, handType: Two Pair) 235824 new value: 42333185
+409 (hand: "K42K2", amount: 232, handType: Two Pair) 94888 new value: 42428073
+410 (hand: "K442K", amount: 783, handType: Two Pair) 321030 new value: 42749103
+411 (hand: "K554K", amount: 920, handType: Two Pair) 378120 new value: 43127223
+412 (hand: "K5KQQ", amount: 299, handType: Two Pair) 123188 new value: 43250411
+413 (hand: "KK3Q3", amount: 520, handType: Two Pair) 214760 new value: 43465171
+414 (hand: "KK559", amount: 521, handType: Two Pair) 215694 new value: 43680865
+415 (hand: "KK5T5", amount: 910, handType: Two Pair) 377650 new value: 44058515
+416 (hand: "KK939", amount: 915, handType: Two Pair) 380640 new value: 44439155
+417 (hand: "KA9A9", amount: 69, handType: Two Pair) 28773 new value: 44467928
+418 (hand: "A27A2", amount: 760, handType: Two Pair) 317680 new value: 44785608
+419 (hand: "A3Q3A", amount: 776, handType: Two Pair) 325144 new value: 45110752
+420 (hand: "A4A45", amount: 343, handType: Two Pair) 144060 new value: 45254812
+421 (hand: "A65A5", amount: 206, handType: Two Pair) 86726 new value: 45341538
+422 (hand: "A7733", amount: 930, handType: Two Pair) 392460 new value: 45733998
+423 (hand: "A77A9", amount: 304, handType: Two Pair) 128592 new value: 45862590
+424 (hand: "A9494", amount: 391, handType: Two Pair) 165784 new value: 46028374
+425 (hand: "A9889", amount: 664, handType: Two Pair) 282200 new value: 46310574
+426 (hand: "ATQQT", amount: 155, handType: Two Pair) 66030 new value: 46376604
+427 (hand: "AKA66", amount: 505, handType: Two Pair) 215635 new value: 46592239
+428 (hand: "AA252", amount: 758, handType: Two Pair) 324424 new value: 46916663
+429 (hand: "AA55Q", amount: 189, handType: Two Pair) 81081 new value: 46997744
+430 (hand: "J3347", amount: 755, handType: Three of a Kind) 324650 new value: 47322394
+431 (hand: "J367J", amount: 114, handType: Three of a Kind) 49134 new value: 47371528
+432 (hand: "J3QQ3", amount: 589, handType: Three of a Kind) 254448 new value: 47625976
+433 (hand: "J4472", amount: 950, handType: Three of a Kind) 411350 new value: 48037326
+434 (hand: "J45J6", amount: 787, handType: Three of a Kind) 341558 new value: 48378884
+435 (hand: "J49AA", amount: 132, handType: Three of a Kind) 57420 new value: 48436304
+436 (hand: "J525T", amount: 657, handType: Three of a Kind) 286452 new value: 48722756
+437 (hand: "J544K", amount: 550, handType: Three of a Kind) 240350 new value: 48963106
+438 (hand: "J5495", amount: 624, handType: Three of a Kind) 273312 new value: 49236418
+439 (hand: "J5599", amount: 166, handType: Three of a Kind) 72874 new value: 49309292
+440 (hand: "J5775", amount: 78, handType: Three of a Kind) 34320 new value: 49343612
+441 (hand: "J5AA4", amount: 844, handType: Three of a Kind) 372204 new value: 49715816
+442 (hand: "J665T", amount: 766, handType: Three of a Kind) 338572 new value: 50054388
+443 (hand: "J6A33", amount: 975, handType: Three of a Kind) 431925 new value: 50486313
+444 (hand: "J828T", amount: 622, handType: Three of a Kind) 276168 new value: 50762481
+445 (hand: "J8836", amount: 545, handType: Three of a Kind) 242525 new value: 51005006
+446 (hand: "J8899", amount: 946, handType: Three of a Kind) 421916 new value: 51426922
+447 (hand: "J88KK", amount: 906, handType: Three of a Kind) 404982 new value: 51831904
+448 (hand: "J9JQA", amount: 264, handType: Three of a Kind) 118272 new value: 51950176
+449 (hand: "J9933", amount: 309, handType: Three of a Kind) 138741 new value: 52088917
+450 (hand: "JT38J", amount: 957, handType: Three of a Kind) 430650 new value: 52519567
+451 (hand: "JTT83", amount: 936, handType: Three of a Kind) 422136 new value: 52941703
+452 (hand: "JTA9T", amount: 346, handType: Three of a Kind) 156392 new value: 53098095
+453 (hand: "JTAA2", amount: 371, handType: Three of a Kind) 168063 new value: 53266158
+454 (hand: "JQ55Q", amount: 884, handType: Three of a Kind) 401336 new value: 53667494
+455 (hand: "JQTQ3", amount: 198, handType: Three of a Kind) 90090 new value: 53757584
+456 (hand: "JK6AA", amount: 861, handType: Three of a Kind) 392616 new value: 54150200
+457 (hand: "JKK25", amount: 195, handType: Three of a Kind) 89115 new value: 54239315
+458 (hand: "JKAAK", amount: 876, handType: Three of a Kind) 401208 new value: 54640523
+459 (hand: "JATAQ", amount: 291, handType: Three of a Kind) 133569 new value: 54774092
+460 (hand: "JAQ2A", amount: 91, handType: Three of a Kind) 41860 new value: 54815952
+461 (hand: "JAA35", amount: 740, handType: Three of a Kind) 341140 new value: 55157092
+462 (hand: "2J239", amount: 885, handType: Three of a Kind) 408870 new value: 55565962
+463 (hand: "2J283", amount: 24, handType: Three of a Kind) 11112 new value: 55577074
+464 (hand: "2J2A7", amount: 932, handType: Three of a Kind) 432448 new value: 56009522
+465 (hand: "2J757", amount: 286, handType: Three of a Kind) 132990 new value: 56142512
+466 (hand: "2JA6J", amount: 577, handType: Three of a Kind) 268882 new value: 56411394
+467 (hand: "22239", amount: 375, handType: Three of a Kind) 175125 new value: 56586519
+468 (hand: "22246", amount: 389, handType: Three of a Kind) 182052 new value: 56768571
+469 (hand: "22263", amount: 960, handType: Three of a Kind) 450240 new value: 57218811
+470 (hand: "22428", amount: 404, handType: Three of a Kind) 189880 new value: 57408691
+471 (hand: "22429", amount: 882, handType: Three of a Kind) 415422 new value: 57824113
+472 (hand: "22732", amount: 99, handType: Three of a Kind) 46728 new value: 57870841
+473 (hand: "22Q26", amount: 812, handType: Three of a Kind) 384076 new value: 58254917
+474 (hand: "22Q27", amount: 111, handType: Three of a Kind) 52614 new value: 58307531
+475 (hand: "23J2A", amount: 34, handType: Three of a Kind) 16150 new value: 58323681
+476 (hand: "23JTT", amount: 695, handType: Three of a Kind) 330820 new value: 58654501
+477 (hand: "232J6", amount: 87, handType: Three of a Kind) 41499 new value: 58696000
+478 (hand: "23393", amount: 140, handType: Three of a Kind) 66920 new value: 58762920
+479 (hand: "23733", amount: 445, handType: Three of a Kind) 213155 new value: 58976075
+480 (hand: "24J42", amount: 546, handType: Three of a Kind) 262080 new value: 59238155
+481 (hand: "2422A", amount: 834, handType: Three of a Kind) 401154 new value: 59639309
+482 (hand: "25J85", amount: 174, handType: Three of a Kind) 83868 new value: 59723177
+483 (hand: "25A55", amount: 683, handType: Three of a Kind) 329889 new value: 60053066
+484 (hand: "25AAA", amount: 689, handType: Three of a Kind) 333476 new value: 60386542
+485 (hand: "26555", amount: 350, handType: Three of a Kind) 169750 new value: 60556292
+486 (hand: "27292", amount: 25, handType: Three of a Kind) 12150 new value: 60568442
+487 (hand: "279JJ", amount: 691, handType: Three of a Kind) 336517 new value: 60904959
+488 (hand: "288K8", amount: 866, handType: Three of a Kind) 422608 new value: 61327567
+489 (hand: "2TJT2", amount: 548, handType: Three of a Kind) 267972 new value: 61595539
+490 (hand: "2T333", amount: 658, handType: Three of a Kind) 322420 new value: 61917959
+491 (hand: "2TTKJ", amount: 105, handType: Three of a Kind) 51555 new value: 61969514
+492 (hand: "2K22T", amount: 513, handType: Three of a Kind) 252396 new value: 62221910
+493 (hand: "2K322", amount: 698, handType: Three of a Kind) 344114 new value: 62566024
+494 (hand: "2AJT2", amount: 355, handType: Three of a Kind) 175370 new value: 62741394
+495 (hand: "32242", amount: 569, handType: Three of a Kind) 281655 new value: 63023049
+496 (hand: "33J56", amount: 249, handType: Three of a Kind) 123504 new value: 63146553
+497 (hand: "33348", amount: 203, handType: Three of a Kind) 100891 new value: 63247444
+498 (hand: "333Q8", amount: 590, handType: Three of a Kind) 293820 new value: 63541264
+499 (hand: "333Q9", amount: 603, handType: Three of a Kind) 300897 new value: 63842161
+500 (hand: "335A3", amount: 284, handType: Three of a Kind) 142000 new value: 63984161
+501 (hand: "337JT", amount: 911, handType: Three of a Kind) 456411 new value: 64440572
+502 (hand: "3377J", amount: 152, handType: Three of a Kind) 76304 new value: 64516876
+503 (hand: "33TJ4", amount: 77, handType: Three of a Kind) 38731 new value: 64555607
+504 (hand: "33Q37", amount: 870, handType: Three of a Kind) 438480 new value: 64994087
+505 (hand: "343J4", amount: 4, handType: Three of a Kind) 2020 new value: 64996107
+506 (hand: "35339", amount: 892, handType: Three of a Kind) 451352 new value: 65447459
+507 (hand: "35KJ3", amount: 75, handType: Three of a Kind) 38025 new value: 65485484
+508 (hand: "38JQ3", amount: 503, handType: Three of a Kind) 255524 new value: 65741008
+509 (hand: "38JK8", amount: 725, handType: Three of a Kind) 369025 new value: 66110033
+510 (hand: "39K9J", amount: 406, handType: Three of a Kind) 207060 new value: 66317093
+511 (hand: "3Q3K3", amount: 904, handType: Three of a Kind) 461944 new value: 66779037
+512 (hand: "3QQQ4", amount: 38, handType: Three of a Kind) 19456 new value: 66798493
+513 (hand: "3KKK8", amount: 37, handType: Three of a Kind) 18981 new value: 66817474
+514 (hand: "4J2JT", amount: 499, handType: Three of a Kind) 256486 new value: 67073960
+515 (hand: "4JQ22", amount: 54, handType: Three of a Kind) 27810 new value: 67101770
+516 (hand: "422J7", amount: 717, handType: Three of a Kind) 369972 new value: 67471742
+517 (hand: "4244A", amount: 164, handType: Three of a Kind) 84788 new value: 67556530
+518 (hand: "4332J", amount: 514, handType: Three of a Kind) 266252 new value: 67822782
+519 (hand: "43944", amount: 150, handType: Three of a Kind) 77850 new value: 67900632
+520 (hand: "4442Q", amount: 969, handType: Three of a Kind) 503880 new value: 68404512
+521 (hand: "44492", amount: 96, handType: Three of a Kind) 50016 new value: 68454528
+522 (hand: "444A6", amount: 573, handType: Three of a Kind) 299106 new value: 68753634
+523 (hand: "4464K", amount: 231, handType: Three of a Kind) 120813 new value: 68874447
+524 (hand: "4556J", amount: 169, handType: Three of a Kind) 88556 new value: 68963003
+525 (hand: "46665", amount: 478, handType: Three of a Kind) 250950 new value: 69213953
+526 (hand: "477J4", amount: 50, handType: Three of a Kind) 26300 new value: 69240253
+527 (hand: "48744", amount: 976, handType: Three of a Kind) 514352 new value: 69754605
+528 (hand: "48777", amount: 820, handType: Three of a Kind) 432960 new value: 70187565
+529 (hand: "4TT5T", amount: 165, handType: Three of a Kind) 87285 new value: 70274850
+530 (hand: "4TTTK", amount: 854, handType: Three of a Kind) 452620 new value: 70727470
+531 (hand: "4KAKK", amount: 539, handType: Three of a Kind) 286209 new value: 71013679
+532 (hand: "4A4AJ", amount: 229, handType: Three of a Kind) 121828 new value: 71135507
+533 (hand: "5JJ76", amount: 611, handType: Three of a Kind) 325663 new value: 71461170
+534 (hand: "5J527", amount: 620, handType: Three of a Kind) 331080 new value: 71792250
+535 (hand: "53455", amount: 826, handType: Three of a Kind) 441910 new value: 72234160
+536 (hand: "535K5", amount: 459, handType: Three of a Kind) 246024 new value: 72480184
+537 (hand: "54525", amount: 516, handType: Three of a Kind) 277092 new value: 72757276
+538 (hand: "5455Q", amount: 973, handType: Three of a Kind) 523474 new value: 73280750
+539 (hand: "55J33", amount: 897, handType: Three of a Kind) 483483 new value: 73764233
+540 (hand: "5558T", amount: 688, handType: Three of a Kind) 371520 new value: 74135753
+541 (hand: "558J8", amount: 580, handType: Three of a Kind) 313780 new value: 74449533
+542 (hand: "55T59", amount: 331, handType: Three of a Kind) 179402 new value: 74628935
+543 (hand: "55K56", amount: 381, handType: Three of a Kind) 206883 new value: 74835818
+544 (hand: "566J5", amount: 853, handType: Three of a Kind) 464032 new value: 75299850
+545 (hand: "58355", amount: 730, handType: Three of a Kind) 397850 new value: 75697700
+546 (hand: "58A55", amount: 926, handType: Three of a Kind) 505596 new value: 76203296
+547 (hand: "595J8", amount: 538, handType: Three of a Kind) 294286 new value: 76497582
+548 (hand: "5975J", amount: 835, handType: Three of a Kind) 457580 new value: 76955162
+549 (hand: "5T999", amount: 609, handType: Three of a Kind) 334341 new value: 77289503
+550 (hand: "5KK2K", amount: 177, handType: Three of a Kind) 97350 new value: 77386853
+551 (hand: "5AJ3J", amount: 159, handType: Three of a Kind) 87609 new value: 77474462
+552 (hand: "6J76K", amount: 581, handType: Three of a Kind) 320712 new value: 77795174
+553 (hand: "62966", amount: 567, handType: Three of a Kind) 313551 new value: 78108725
+554 (hand: "63433", amount: 858, handType: Three of a Kind) 475332 new value: 78584057
+555 (hand: "64J4A", amount: 209, handType: Three of a Kind) 115995 new value: 78700052
+556 (hand: "66J2K", amount: 295, handType: Three of a Kind) 164020 new value: 78864072
+557 (hand: "66263", amount: 741, handType: Three of a Kind) 412737 new value: 79276809
+558 (hand: "66268", amount: 528, handType: Three of a Kind) 294624 new value: 79571433
+559 (hand: "6665A", amount: 136, handType: Three of a Kind) 76024 new value: 79647457
+560 (hand: "66T68", amount: 612, handType: Three of a Kind) 342720 new value: 79990177
+561 (hand: "66TKJ", amount: 226, handType: Three of a Kind) 126786 new value: 80116963
+562 (hand: "66TK6", amount: 423, handType: Three of a Kind) 237726 new value: 80354689
+563 (hand: "685J6", amount: 913, handType: Three of a Kind) 514019 new value: 80868708
+564 (hand: "688J9", amount: 344, handType: Three of a Kind) 194016 new value: 81062724
+565 (hand: "68884", amount: 399, handType: Three of a Kind) 225435 new value: 81288159
+566 (hand: "6KK6J", amount: 161, handType: Three of a Kind) 91126 new value: 81379285
+567 (hand: "6AJQQ", amount: 173, handType: Three of a Kind) 98091 new value: 81477376
+568 (hand: "6A6JA", amount: 541, handType: Three of a Kind) 307288 new value: 81784664
+569 (hand: "6ATJJ", amount: 916, handType: Three of a Kind) 521204 new value: 82305868
+570 (hand: "7JT78", amount: 738, handType: Three of a Kind) 420660 new value: 82726528
+571 (hand: "72KKK", amount: 471, handType: Three of a Kind) 268941 new value: 82995469
+572 (hand: "73334", amount: 934, handType: Three of a Kind) 534248 new value: 83529717
+573 (hand: "748J8", amount: 816, handType: Three of a Kind) 467568 new value: 83997285
+574 (hand: "75J7A", amount: 377, handType: Three of a Kind) 216398 new value: 84213683
+575 (hand: "76877", amount: 757, handType: Three of a Kind) 435275 new value: 84648958
+576 (hand: "77473", amount: 646, handType: Three of a Kind) 372096 new value: 85021054
+577 (hand: "7765J", amount: 732, handType: Three of a Kind) 422364 new value: 85443418
+578 (hand: "77736", amount: 771, handType: Three of a Kind) 445638 new value: 85889056
+579 (hand: "7782J", amount: 183, handType: Three of a Kind) 105957 new value: 85995013
+580 (hand: "77T37", amount: 436, handType: Three of a Kind) 252880 new value: 86247893
+581 (hand: "77TTJ", amount: 995, handType: Three of a Kind) 578095 new value: 86825988
+582 (hand: "77TK7", amount: 200, handType: Three of a Kind) 116400 new value: 86942388
+583 (hand: "77Q57", amount: 327, handType: Three of a Kind) 190641 new value: 87133029
+584 (hand: "78868", amount: 848, handType: Three of a Kind) 495232 new value: 87628261
+585 (hand: "79775", amount: 429, handType: Three of a Kind) 250965 new value: 87879226
+586 (hand: "79T99", amount: 1, handType: Three of a Kind) 586 new value: 87879812
+587 (hand: "79Q99", amount: 317, handType: Three of a Kind) 186079 new value: 88065891
+588 (hand: "7TJ73", amount: 95, handType: Three of a Kind) 55860 new value: 88121751
+589 (hand: "7K555", amount: 149, handType: Three of a Kind) 87761 new value: 88209512
+590 (hand: "7K7JK", amount: 886, handType: Three of a Kind) 522740 new value: 88732252
+591 (hand: "7A787", amount: 461, handType: Three of a Kind) 272451 new value: 89004703
+592 (hand: "7A87J", amount: 106, handType: Three of a Kind) 62752 new value: 89067455
+593 (hand: "8JJ62", amount: 940, handType: Three of a Kind) 557420 new value: 89624875
+594 (hand: "8J3J5", amount: 829, handType: Three of a Kind) 492426 new value: 90117301
+595 (hand: "8J699", amount: 184, handType: Three of a Kind) 109480 new value: 90226781
+596 (hand: "83878", amount: 277, handType: Three of a Kind) 165092 new value: 90391873
+597 (hand: "83AAA", amount: 935, handType: Three of a Kind) 558195 new value: 90950068
+598 (hand: "8444T", amount: 864, handType: Three of a Kind) 516672 new value: 91466740
+599 (hand: "84K4J", amount: 890, handType: Three of a Kind) 533110 new value: 91999850
+600 (hand: "85J35", amount: 763, handType: Three of a Kind) 457800 new value: 92457650
+601 (hand: "865J5", amount: 881, handType: Three of a Kind) 529481 new value: 92987131
+602 (hand: "87KKK", amount: 924, handType: Three of a Kind) 556248 new value: 93543379
+603 (hand: "88638", amount: 35, handType: Three of a Kind) 21105 new value: 93564484
+604 (hand: "8882Q", amount: 856, handType: Three of a Kind) 517024 new value: 94081508
+605 (hand: "88983", amount: 239, handType: Three of a Kind) 144595 new value: 94226103
+606 (hand: "88QJQ", amount: 509, handType: Three of a Kind) 308454 new value: 94534557
+607 (hand: "88A86", amount: 922, handType: Three of a Kind) 559654 new value: 95094211
+608 (hand: "89777", amount: 593, handType: Three of a Kind) 360544 new value: 95454755
+609 (hand: "8T8JT", amount: 290, handType: Three of a Kind) 176610 new value: 95631365
+610 (hand: "8TTJ7", amount: 849, handType: Three of a Kind) 517890 new value: 96149255
+611 (hand: "8TK88", amount: 41, handType: Three of a Kind) 25051 new value: 96174306
+612 (hand: "8QT88", amount: 221, handType: Three of a Kind) 135252 new value: 96309558
+613 (hand: "8KJJ7", amount: 536, handType: Three of a Kind) 328568 new value: 96638126
+614 (hand: "8AJTA", amount: 498, handType: Three of a Kind) 305772 new value: 96943898
+615 (hand: "8A8J7", amount: 643, handType: Three of a Kind) 395445 new value: 97339343
+616 (hand: "8AQ88", amount: 81, handType: Three of a Kind) 49896 new value: 97389239
+617 (hand: "9J4KK", amount: 72, handType: Three of a Kind) 44424 new value: 97433663
+618 (hand: "9J696", amount: 991, handType: Three of a Kind) 612438 new value: 98046101
+619 (hand: "9J6AJ", amount: 883, handType: Three of a Kind) 546577 new value: 98592678
+620 (hand: "92J49", amount: 579, handType: Three of a Kind) 358980 new value: 98951658
+621 (hand: "93996", amount: 837, handType: Three of a Kind) 519777 new value: 99471435
+622 (hand: "9665J", amount: 194, handType: Three of a Kind) 120668 new value: 99592103
+623 (hand: "98788", amount: 90, handType: Three of a Kind) 56070 new value: 99648173
+624 (hand: "9939T", amount: 640, handType: Three of a Kind) 399360 new value: 100047533
+625 (hand: "999QK", amount: 146, handType: Three of a Kind) 91250 new value: 100138783
+626 (hand: "99T2J", amount: 867, handType: Three of a Kind) 542742 new value: 100681525
+627 (hand: "99TK9", amount: 554, handType: Three of a Kind) 347358 new value: 101028883
+628 (hand: "99QJ8", amount: 754, handType: Three of a Kind) 473512 new value: 101502395
+629 (hand: "9T98J", amount: 133, handType: Three of a Kind) 83657 new value: 101586052
+630 (hand: "9QTJT", amount: 619, handType: Three of a Kind) 389970 new value: 101976022
+631 (hand: "9K939", amount: 142, handType: Three of a Kind) 89602 new value: 102065624
+632 (hand: "9AJ69", amount: 199, handType: Three of a Kind) 125768 new value: 102191392
+633 (hand: "TJJQ4", amount: 719, handType: Three of a Kind) 455127 new value: 102646519
+634 (hand: "TJ72J", amount: 939, handType: Three of a Kind) 595326 new value: 103241845
+635 (hand: "TJT55", amount: 751, handType: Three of a Kind) 476885 new value: 103718730
+636 (hand: "T33JA", amount: 224, handType: Three of a Kind) 142464 new value: 103861194
+637 (hand: "T3933", amount: 311, handType: Three of a Kind) 198107 new value: 104059301
+638 (hand: "T3TT9", amount: 773, handType: Three of a Kind) 493174 new value: 104552475
+639 (hand: "T4J34", amount: 59, handType: Three of a Kind) 37701 new value: 104590176
+640 (hand: "T4T7J", amount: 476, handType: Three of a Kind) 304640 new value: 104894816
+641 (hand: "T5JTK", amount: 17, handType: Three of a Kind) 10897 new value: 104905713
+642 (hand: "T5556", amount: 234, handType: Three of a Kind) 150228 new value: 105055941
+643 (hand: "T5557", amount: 931, handType: Three of a Kind) 598633 new value: 105654574
+644 (hand: "T6966", amount: 422, handType: Three of a Kind) 271768 new value: 105926342
+645 (hand: "T8J48", amount: 30, handType: Three of a Kind) 19350 new value: 105945692
+646 (hand: "T8887", amount: 365, handType: Three of a Kind) 235790 new value: 106181482
+647 (hand: "T8TTA", amount: 464, handType: Three of a Kind) 300208 new value: 106481690
+648 (hand: "T8AJT", amount: 959, handType: Three of a Kind) 621432 new value: 107103122
+649 (hand: "TT4T2", amount: 191, handType: Three of a Kind) 123959 new value: 107227081
+650 (hand: "TT82T", amount: 196, handType: Three of a Kind) 127400 new value: 107354481
+651 (hand: "TTT72", amount: 605, handType: Three of a Kind) 393855 new value: 107748336
+652 (hand: "TTTQ7", amount: 107, handType: Three of a Kind) 69764 new value: 107818100
+653 (hand: "TQ3JJ", amount: 361, handType: Three of a Kind) 235733 new value: 108053833
+654 (hand: "TQT2T", amount: 654, handType: Three of a Kind) 427716 new value: 108481549
+655 (hand: "TQT9T", amount: 131, handType: Three of a Kind) 85805 new value: 108567354
+656 (hand: "TKTKJ", amount: 102, handType: Three of a Kind) 66912 new value: 108634266
+657 (hand: "QJ24Q", amount: 115, handType: Three of a Kind) 75555 new value: 108709821
+658 (hand: "QJ55T", amount: 122, handType: Three of a Kind) 80276 new value: 108790097
+659 (hand: "QJ7AQ", amount: 47, handType: Three of a Kind) 30973 new value: 108821070
+660 (hand: "QJQ99", amount: 958, handType: Three of a Kind) 632280 new value: 109453350
+661 (hand: "QJQ9T", amount: 715, handType: Three of a Kind) 472615 new value: 109925965
+662 (hand: "Q244J", amount: 967, handType: Three of a Kind) 640154 new value: 110566119
+663 (hand: "Q26QQ", amount: 549, handType: Three of a Kind) 363987 new value: 110930106
+664 (hand: "Q5557", amount: 455, handType: Three of a Kind) 302120 new value: 111232226
+665 (hand: "Q6AQQ", amount: 979, handType: Three of a Kind) 651035 new value: 111883261
+666 (hand: "Q8444", amount: 385, handType: Three of a Kind) 256410 new value: 112139671
+667 (hand: "Q8884", amount: 204, handType: Three of a Kind) 136068 new value: 112275739
+668 (hand: "Q9AQQ", amount: 492, handType: Three of a Kind) 328656 new value: 112604395
+669 (hand: "QTTKT", amount: 66, handType: Three of a Kind) 44154 new value: 112648549
+670 (hand: "QQJ44", amount: 878, handType: Three of a Kind) 588260 new value: 113236809
+671 (hand: "QQ97Q", amount: 905, handType: Three of a Kind) 607255 new value: 113844064
+672 (hand: "QK888", amount: 227, handType: Three of a Kind) 152544 new value: 113996608
+673 (hand: "QA22J", amount: 585, handType: Three of a Kind) 393705 new value: 114390313
+674 (hand: "KJ6J8", amount: 978, handType: Three of a Kind) 659172 new value: 115049485
+675 (hand: "KJ66A", amount: 117, handType: Three of a Kind) 78975 new value: 115128460
+676 (hand: "KJ8K7", amount: 933, handType: Three of a Kind) 630708 new value: 115759168
+677 (hand: "KJK44", amount: 228, handType: Three of a Kind) 154356 new value: 115913524
+678 (hand: "KJKT3", amount: 251, handType: Three of a Kind) 170178 new value: 116083702
+679 (hand: "K2KAK", amount: 467, handType: Three of a Kind) 317093 new value: 116400795
+680 (hand: "K33JQ", amount: 485, handType: Three of a Kind) 329800 new value: 116730595
+681 (hand: "K5444", amount: 833, handType: Three of a Kind) 567273 new value: 117297868
+682 (hand: "K64J6", amount: 297, handType: Three of a Kind) 202554 new value: 117500422
+683 (hand: "K6KK8", amount: 438, handType: Three of a Kind) 299154 new value: 117799576
+684 (hand: "K6KK9", amount: 644, handType: Three of a Kind) 440496 new value: 118240072
+685 (hand: "K7J78", amount: 702, handType: Three of a Kind) 480870 new value: 118720942
+686 (hand: "K7JA7", amount: 486, handType: Three of a Kind) 333396 new value: 119054338
+687 (hand: "K7747", amount: 889, handType: Three of a Kind) 610743 new value: 119665081
+688 (hand: "K88QJ", amount: 707, handType: Three of a Kind) 486416 new value: 120151497
+689 (hand: "K93JK", amount: 669, handType: Three of a Kind) 460941 new value: 120612438
+690 (hand: "K98JJ", amount: 786, handType: Three of a Kind) 542340 new value: 121154778
+691 (hand: "KQ22J", amount: 267, handType: Three of a Kind) 184497 new value: 121339275
+692 (hand: "KQK8K", amount: 97, handType: Three of a Kind) 67124 new value: 121406399
+693 (hand: "KKJ23", amount: 847, handType: Three of a Kind) 586971 new value: 121993370
+694 (hand: "KK7KA", amount: 247, handType: Three of a Kind) 171418 new value: 122164788
+695 (hand: "KKK3Q", amount: 552, handType: Three of a Kind) 383640 new value: 122548428
+696 (hand: "KA5J5", amount: 326, handType: Three of a Kind) 226896 new value: 122775324
+697 (hand: "AJ22A", amount: 512, handType: Three of a Kind) 356864 new value: 123132188
+698 (hand: "AJQ8Q", amount: 258, handType: Three of a Kind) 180084 new value: 123312272
+699 (hand: "AJATT", amount: 52, handType: Three of a Kind) 36348 new value: 123348620
+700 (hand: "A25JJ", amount: 101, handType: Three of a Kind) 70700 new value: 123419320
+701 (hand: "A47AJ", amount: 880, handType: Three of a Kind) 616880 new value: 124036200
+702 (hand: "A664J", amount: 409, handType: Three of a Kind) 287118 new value: 124323318
+703 (hand: "A9J55", amount: 994, handType: Three of a Kind) 698782 new value: 125022100
+704 (hand: "A9699", amount: 845, handType: Three of a Kind) 594880 new value: 125616980
+705 (hand: "A979J", amount: 7, handType: Three of a Kind) 4935 new value: 125621915
+706 (hand: "A9979", amount: 386, handType: Three of a Kind) 272516 new value: 125894431
+707 (hand: "AQ333", amount: 753, handType: Three of a Kind) 532371 new value: 126426802
+708 (hand: "AK333", amount: 626, handType: Three of a Kind) 443208 new value: 126870010
+709 (hand: "AA43A", amount: 88, handType: Three of a Kind) 62392 new value: 126932402
+710 (hand: "AA4A5", amount: 431, handType: Three of a Kind) 306010 new value: 127238412
+711 (hand: "AA5A7", amount: 706, handType: Three of a Kind) 501966 new value: 127740378
+712 (hand: "AA8AQ", amount: 223, handType: Three of a Kind) 158776 new value: 127899154
+713 (hand: "AAA6T", amount: 586, handType: Three of a Kind) 417818 new value: 128316972
+714 (hand: "222KK", amount: 363, handType: Full House) 259182 new value: 128576154
+715 (hand: "22QQQ", amount: 555, handType: Full House) 396825 new value: 128972979
+716 (hand: "22AAA", amount: 12, handType: Full House) 8592 new value: 128981571
+717 (hand: "23223", amount: 825, handType: Full House) 591525 new value: 129573096
+718 (hand: "29292", amount: 596, handType: Full House) 427928 new value: 130001024
+719 (hand: "2TT22", amount: 285, handType: Full House) 204915 new value: 130205939
+720 (hand: "2Q22Q", amount: 205, handType: Full House) 147600 new value: 130353539
+721 (hand: "33666", amount: 289, handType: Full House) 208369 new value: 130561908
+722 (hand: "33AA3", amount: 768, handType: Full House) 554496 new value: 131116404
+723 (hand: "39933", amount: 877, handType: Full House) 634071 new value: 131750475
+724 (hand: "39939", amount: 437, handType: Full House) 316388 new value: 132066863
+725 (hand: "3KK33", amount: 756, handType: Full House) 548100 new value: 132614963
+726 (hand: "43334", amount: 987, handType: Full House) 716562 new value: 133331525
+727 (hand: "44555", amount: 809, handType: Full House) 588143 new value: 133919668
+728 (hand: "44888", amount: 634, handType: Full House) 461552 new value: 134381220
+729 (hand: "44AA4", amount: 871, handType: Full House) 634959 new value: 135016179
+730 (hand: "44AAA", amount: 540, handType: Full House) 394200 new value: 135410379
+731 (hand: "47477", amount: 980, handType: Full House) 716380 new value: 136126759
+732 (hand: "49499", amount: 282, handType: Full House) 206424 new value: 136333183
+733 (hand: "4TT44", amount: 280, handType: Full House) 205240 new value: 136538423
+734 (hand: "4Q4QQ", amount: 356, handType: Full House) 261304 new value: 136799727
+735 (hand: "53353", amount: 712, handType: Full House) 523320 new value: 137323047
+736 (hand: "555TT", amount: 484, handType: Full House) 356224 new value: 137679271
+737 (hand: "555AA", amount: 271, handType: Full House) 199727 new value: 137878998
+738 (hand: "55775", amount: 524, handType: Full House) 386712 new value: 138265710
+739 (hand: "56556", amount: 301, handType: Full House) 222439 new value: 138488149
+740 (hand: "57577", amount: 439, handType: Full House) 324860 new value: 138813009
+741 (hand: "5KKK5", amount: 855, handType: Full House) 633555 new value: 139446564
+742 (hand: "63633", amount: 13, handType: Full House) 9646 new value: 139456210
+743 (hand: "64446", amount: 830, handType: Full House) 616690 new value: 140072900
+744 (hand: "66222", amount: 632, handType: Full House) 470208 new value: 140543108
+745 (hand: "66565", amount: 747, handType: Full House) 556515 new value: 141099623
+746 (hand: "66622", amount: 745, handType: Full House) 555770 new value: 141655393
+747 (hand: "66644", amount: 862, handType: Full House) 643914 new value: 142299307
+748 (hand: "67667", amount: 623, handType: Full House) 466004 new value: 142765311
+749 (hand: "68886", amount: 269, handType: Full House) 201481 new value: 142966792
+750 (hand: "6K6K6", amount: 907, handType: Full House) 680250 new value: 143647042
+751 (hand: "6AAA6", amount: 970, handType: Full House) 728470 new value: 144375512
+752 (hand: "74474", amount: 953, handType: Full House) 716656 new value: 145092168
+753 (hand: "77227", amount: 597, handType: Full House) 449541 new value: 145541709
+754 (hand: "77999", amount: 403, handType: Full House) 303862 new value: 145845571
+755 (hand: "77QQ7", amount: 534, handType: Full House) 403170 new value: 146248741
+756 (hand: "79797", amount: 349, handType: Full House) 263844 new value: 146512585
+757 (hand: "82288", amount: 873, handType: Full House) 660861 new value: 147173446
+758 (hand: "83383", amount: 722, handType: Full House) 547276 new value: 147720722
+759 (hand: "85585", amount: 415, handType: Full House) 314985 new value: 148035707
+760 (hand: "87887", amount: 921, handType: Full House) 699960 new value: 148735667
+761 (hand: "88777", amount: 448, handType: Full House) 340928 new value: 149076595
+762 (hand: "88QQ8", amount: 405, handType: Full House) 308610 new value: 149385205
+763 (hand: "88KK8", amount: 376, handType: Full House) 286888 new value: 149672093
+764 (hand: "88KKK", amount: 127, handType: Full House) 97028 new value: 149769121
+765 (hand: "88A8A", amount: 188, handType: Full House) 143820 new value: 149912941
+766 (hand: "89889", amount: 14, handType: Full House) 10724 new value: 149923665
+767 (hand: "8Q8QQ", amount: 65, handType: Full House) 49855 new value: 149973520
+768 (hand: "8A8AA", amount: 27, handType: Full House) 20736 new value: 149994256
+769 (hand: "95559", amount: 278, handType: Full House) 213782 new value: 150208038
+770 (hand: "9KK9K", amount: 333, handType: Full House) 256410 new value: 150464448
+771 (hand: "T99T9", amount: 530, handType: Full House) 408630 new value: 150873078
+772 (hand: "TT33T", amount: 185, handType: Full House) 142820 new value: 151015898
+773 (hand: "TT6T6", amount: 779, handType: Full House) 602167 new value: 151618065
+774 (hand: "TT7T7", amount: 692, handType: Full House) 535608 new value: 152153673
+775 (hand: "TT88T", amount: 912, handType: Full House) 706800 new value: 152860473
+776 (hand: "TT9T9", amount: 71, handType: Full House) 55096 new value: 152915569
+777 (hand: "TTT22", amount: 652, handType: Full House) 506604 new value: 153422173
+778 (hand: "TTKKT", amount: 29, handType: Full House) 22562 new value: 153444735
+779 (hand: "TTAAT", amount: 427, handType: Full House) 332633 new value: 153777368
+780 (hand: "TAAAT", amount: 273, handType: Full House) 212940 new value: 153990308
+781 (hand: "Q333Q", amount: 181, handType: Full House) 141361 new value: 154131669
+782 (hand: "Q4Q44", amount: 330, handType: Full House) 258060 new value: 154389729
+783 (hand: "Q6QQ6", amount: 914, handType: Full House) 715662 new value: 155105391
+784 (hand: "Q9Q99", amount: 600, handType: Full House) 470400 new value: 155575791
+785 (hand: "QTTQT", amount: 465, handType: Full House) 365025 new value: 155940816
+786 (hand: "QTQTQ", amount: 887, handType: Full House) 697182 new value: 156637998
+787 (hand: "QQ555", amount: 525, handType: Full House) 413175 new value: 157051173
+788 (hand: "QQ77Q", amount: 73, handType: Full House) 57524 new value: 157108697
+789 (hand: "QQ99Q", amount: 701, handType: Full House) 553089 new value: 157661786
+790 (hand: "QQQ33", amount: 495, handType: Full House) 391050 new value: 158052836
+791 (hand: "QQQ55", amount: 193, handType: Full House) 152663 new value: 158205499
+792 (hand: "QKQKK", amount: 937, handType: Full House) 742104 new value: 158947603
+793 (hand: "K4K4K", amount: 51, handType: Full House) 40443 new value: 158988046
+794 (hand: "K66KK", amount: 615, handType: Full House) 488310 new value: 159476356
+795 (hand: "KQQQK", amount: 670, handType: Full House) 532650 new value: 160009006
+796 (hand: "KK555", amount: 699, handType: Full House) 556404 new value: 160565410
+797 (hand: "KK7K7", amount: 588, handType: Full House) 468636 new value: 161034046
+798 (hand: "KK999", amount: 944, handType: Full House) 753312 new value: 161787358
+799 (hand: "KKTTK", amount: 70, handType: Full House) 55930 new value: 161843288
+800 (hand: "A3A3A", amount: 307, handType: Full House) 245600 new value: 162088888
+801 (hand: "A7A77", amount: 130, handType: Full House) 104130 new value: 162193018
+802 (hand: "AKAKK", amount: 693, handType: Full House) 555786 new value: 162748804
+803 (hand: "AA5A5", amount: 272, handType: Full House) 218416 new value: 162967220
+804 (hand: "AA77A", amount: 790, handType: Full House) 635160 new value: 163602380
+805 (hand: "AAAQQ", amount: 337, handType: Full House) 271285 new value: 163873665
+806 (hand: "JJ225", amount: 100, handType: Four of a Kind) 80600 new value: 163954265
+807 (hand: "JJ229", amount: 62, handType: Four of a Kind) 50034 new value: 164004299
+808 (hand: "JJ6QQ", amount: 214, handType: Four of a Kind) 172912 new value: 164177211
+809 (hand: "J228J", amount: 817, handType: Four of a Kind) 660953 new value: 164838164
+810 (hand: "J3353", amount: 838, handType: Four of a Kind) 678780 new value: 165516944
+811 (hand: "J3393", amount: 544, handType: Four of a Kind) 441184 new value: 165958128
+812 (hand: "J344J", amount: 321, handType: Four of a Kind) 260652 new value: 166218780
+813 (hand: "J3666", amount: 43, handType: Four of a Kind) 34959 new value: 166253739
+814 (hand: "J4494", amount: 215, handType: Four of a Kind) 175010 new value: 166428749
+815 (hand: "J4A4J", amount: 98, handType: Four of a Kind) 79870 new value: 166508619
+816 (hand: "J77JT", amount: 219, handType: Four of a Kind) 178704 new value: 166687323
+817 (hand: "J7767", amount: 379, handType: Four of a Kind) 309643 new value: 166996966
+818 (hand: "J8555", amount: 236, handType: Four of a Kind) 193048 new value: 167190014
+819 (hand: "J8828", amount: 507, handType: Four of a Kind) 415233 new value: 167605247
+820 (hand: "J9996", amount: 392, handType: Four of a Kind) 321440 new value: 167926687
+821 (hand: "J9QQQ", amount: 109, handType: Four of a Kind) 89489 new value: 168016176
+822 (hand: "JT88J", amount: 661, handType: Four of a Kind) 543342 new value: 168559518
+823 (hand: "JTTJ2", amount: 808, handType: Four of a Kind) 664984 new value: 169224502
+824 (hand: "JQJ3Q", amount: 610, handType: Four of a Kind) 502640 new value: 169727142
+825 (hand: "JQQJ5", amount: 511, handType: Four of a Kind) 421575 new value: 170148717
+826 (hand: "JQQ6Q", amount: 500, handType: Four of a Kind) 413000 new value: 170561717
+827 (hand: "JKJ5J", amount: 411, handType: Four of a Kind) 339897 new value: 170901614
+828 (hand: "JKKJA", amount: 15, handType: Four of a Kind) 12420 new value: 170914034
+829 (hand: "JAAJT", amount: 387, handType: Four of a Kind) 320823 new value: 171234857
+830 (hand: "JAAA5", amount: 21, handType: Four of a Kind) 17430 new value: 171252287
+831 (hand: "22JQ2", amount: 522, handType: Four of a Kind) 433782 new value: 171686069
+832 (hand: "222J9", amount: 879, handType: Four of a Kind) 731328 new value: 172417397
+833 (hand: "2222A", amount: 681, handType: Four of a Kind) 567273 new value: 172984670
+834 (hand: "22522", amount: 789, handType: Four of a Kind) 658026 new value: 173642696
+835 (hand: "22822", amount: 604, handType: Four of a Kind) 504340 new value: 174147036
+836 (hand: "23222", amount: 268, handType: Four of a Kind) 224048 new value: 174371084
+837 (hand: "25JJ5", amount: 636, handType: Four of a Kind) 532332 new value: 174903416
+838 (hand: "2AAJJ", amount: 496, handType: Four of a Kind) 415648 new value: 175319064
+839 (hand: "3JJ88", amount: 390, handType: Four of a Kind) 327210 new value: 175646274
+840 (hand: "33233", amount: 813, handType: Four of a Kind) 682920 new value: 176329194
+841 (hand: "333JT", amount: 489, handType: Four of a Kind) 411249 new value: 176740443
+842 (hand: "33363", amount: 212, handType: Four of a Kind) 178504 new value: 176918947
+843 (hand: "3337J", amount: 918, handType: Four of a Kind) 773874 new value: 177692821
+844 (hand: "333Q3", amount: 143, handType: Four of a Kind) 120692 new value: 177813513
+845 (hand: "336J3", amount: 340, handType: Four of a Kind) 287300 new value: 178100813
+846 (hand: "33933", amount: 320, handType: Four of a Kind) 270720 new value: 178371533
+847 (hand: "34444", amount: 631, handType: Four of a Kind) 534457 new value: 178905990
+848 (hand: "37333", amount: 972, handType: Four of a Kind) 824256 new value: 179730246
+849 (hand: "38888", amount: 770, handType: Four of a Kind) 653730 new value: 180383976
+850 (hand: "3K333", amount: 288, handType: Four of a Kind) 244800 new value: 180628776
+851 (hand: "3AAJJ", amount: 425, handType: Four of a Kind) 361675 new value: 180990451
+852 (hand: "4J244", amount: 367, handType: Four of a Kind) 312684 new value: 181303135
+853 (hand: "4J44A", amount: 945, handType: Four of a Kind) 806085 new value: 182109220
+854 (hand: "4J4T4", amount: 116, handType: Four of a Kind) 99064 new value: 182208284
+855 (hand: "4JKKK", amount: 714, handType: Four of a Kind) 610470 new value: 182818754
+856 (hand: "422J2", amount: 696, handType: Four of a Kind) 595776 new value: 183414530
+857 (hand: "44J47", amount: 46, handType: Four of a Kind) 39422 new value: 183453952
+858 (hand: "44J84", amount: 313, handType: Four of a Kind) 268554 new value: 183722506
+859 (hand: "44244", amount: 477, handType: Four of a Kind) 409743 new value: 184132249
+860 (hand: "44484", amount: 965, handType: Four of a Kind) 829900 new value: 184962149
+861 (hand: "44744", amount: 863, handType: Four of a Kind) 743043 new value: 185705192
+862 (hand: "454J4", amount: 201, handType: Four of a Kind) 173262 new value: 185878454
+863 (hand: "45444", amount: 388, handType: Four of a Kind) 334844 new value: 186213298
+864 (hand: "4T444", amount: 909, handType: Four of a Kind) 785376 new value: 186998674
+865 (hand: "55J65", amount: 158, handType: Four of a Kind) 136670 new value: 187135344
+866 (hand: "55525", amount: 324, handType: Four of a Kind) 280584 new value: 187415928
+867 (hand: "55553", amount: 380, handType: Four of a Kind) 329460 new value: 187745388
+868 (hand: "5555T", amount: 296, handType: Four of a Kind) 256928 new value: 188002316
+869 (hand: "5555Q", amount: 519, handType: Four of a Kind) 451011 new value: 188453327
+870 (hand: "555K5", amount: 303, handType: Four of a Kind) 263610 new value: 188716937
+871 (hand: "55955", amount: 704, handType: Four of a Kind) 613184 new value: 189330121
+872 (hand: "56666", amount: 213, handType: Four of a Kind) 185736 new value: 189515857
+873 (hand: "58555", amount: 553, handType: Four of a Kind) 482769 new value: 189998626
+874 (hand: "5QJ55", amount: 782, handType: Four of a Kind) 683468 new value: 190682094
+875 (hand: "6JT66", amount: 642, handType: Four of a Kind) 561750 new value: 191243844
+876 (hand: "6JTTT", amount: 951, handType: Four of a Kind) 833076 new value: 192076920
+877 (hand: "6266J", amount: 769, handType: Four of a Kind) 674413 new value: 192751333
+878 (hand: "66JK6", amount: 584, handType: Four of a Kind) 512752 new value: 193264085
+879 (hand: "66636", amount: 765, handType: Four of a Kind) 672435 new value: 193936520
+880 (hand: "66667", amount: 565, handType: Four of a Kind) 497200 new value: 194433720
+881 (hand: "66669", amount: 961, handType: Four of a Kind) 846641 new value: 195280361
+882 (hand: "666K6", amount: 508, handType: Four of a Kind) 448056 new value: 195728417
+883 (hand: "67777", amount: 383, handType: Four of a Kind) 338189 new value: 196066606
+884 (hand: "6QQQQ", amount: 952, handType: Four of a Kind) 841568 new value: 196908174
+885 (hand: "6KKKK", amount: 537, handType: Four of a Kind) 475245 new value: 197383419
+886 (hand: "6AAAA", amount: 668, handType: Four of a Kind) 591848 new value: 197975267
+887 (hand: "7JJJ5", amount: 494, handType: Four of a Kind) 438178 new value: 198413445
+888 (hand: "7JJ44", amount: 840, handType: Four of a Kind) 745920 new value: 199159365
+889 (hand: "7JQJ7", amount: 362, handType: Four of a Kind) 321818 new value: 199481183
+890 (hand: "722J2", amount: 582, handType: Four of a Kind) 517980 new value: 199999163
+891 (hand: "76J66", amount: 966, handType: Four of a Kind) 860706 new value: 200859869
+892 (hand: "77477", amount: 685, handType: Four of a Kind) 611020 new value: 201470889
+893 (hand: "7772J", amount: 742, handType: Four of a Kind) 662606 new value: 202133495
+894 (hand: "77877", amount: 667, handType: Four of a Kind) 596298 new value: 202729793
+895 (hand: "77977", amount: 526, handType: Four of a Kind) 470770 new value: 203200563
+896 (hand: "7T7J7", amount: 574, handType: Four of a Kind) 514304 new value: 203714867
+897 (hand: "7Q77J", amount: 822, handType: Four of a Kind) 737334 new value: 204452201
+898 (hand: "7K77J", amount: 3, handType: Four of a Kind) 2694 new value: 204454895
+899 (hand: "7KKKK", amount: 298, handType: Four of a Kind) 267902 new value: 204722797
+900 (hand: "7A777", amount: 32, handType: Four of a Kind) 28800 new value: 204751597
+901 (hand: "833J3", amount: 351, handType: Four of a Kind) 316251 new value: 205067848
+902 (hand: "83333", amount: 551, handType: Four of a Kind) 497002 new value: 205564850
+903 (hand: "86666", amount: 674, handType: Four of a Kind) 608622 new value: 206173472
+904 (hand: "8688J", amount: 94, handType: Four of a Kind) 84976 new value: 206258448
+905 (hand: "86888", amount: 354, handType: Four of a Kind) 320370 new value: 206578818
+906 (hand: "87888", amount: 851, handType: Four of a Kind) 771006 new value: 207349824
+907 (hand: "885JJ", amount: 456, handType: Four of a Kind) 413592 new value: 207763416
+908 (hand: "88882", amount: 253, handType: Four of a Kind) 229724 new value: 207993140
+909 (hand: "88Q88", amount: 225, handType: Four of a Kind) 204525 new value: 208197665
+910 (hand: "88KJ8", amount: 108, handType: Four of a Kind) 98280 new value: 208295945
+911 (hand: "88K88", amount: 898, handType: Four of a Kind) 818078 new value: 209114023
+912 (hand: "89888", amount: 470, handType: Four of a Kind) 428640 new value: 209542663
+913 (hand: "8QQQQ", amount: 799, handType: Four of a Kind) 729487 new value: 210272150
+914 (hand: "8KKKK", amount: 964, handType: Four of a Kind) 881096 new value: 211153246
+915 (hand: "8A88J", amount: 928, handType: Four of a Kind) 849120 new value: 212002366
+916 (hand: "9J959", amount: 984, handType: Four of a Kind) 901344 new value: 212903710
+917 (hand: "9J9Q9", amount: 89, handType: Four of a Kind) 81613 new value: 212985323
+918 (hand: "94999", amount: 729, handType: Four of a Kind) 669222 new value: 213654545
+919 (hand: "97J77", amount: 985, handType: Four of a Kind) 905215 new value: 214559760
+920 (hand: "9979J", amount: 805, handType: Four of a Kind) 740600 new value: 215300360
+921 (hand: "99992", amount: 129, handType: Four of a Kind) 118809 new value: 215419169
+922 (hand: "99995", amount: 673, handType: Four of a Kind) 620506 new value: 216039675
+923 (hand: "99T99", amount: 10, handType: Four of a Kind) 9230 new value: 216048905
+924 (hand: "9A999", amount: 125, handType: Four of a Kind) 115500 new value: 216164405
+925 (hand: "9AAAA", amount: 26, handType: Four of a Kind) 24050 new value: 216188455
+926 (hand: "TJ3TT", amount: 865, handType: Four of a Kind) 800990 new value: 216989445
+927 (hand: "T33JJ", amount: 275, handType: Four of a Kind) 254925 new value: 217244370
+928 (hand: "T6666", amount: 53, handType: Four of a Kind) 49184 new value: 217293554
+929 (hand: "TTJT2", amount: 943, handType: Four of a Kind) 876047 new value: 218169601
+930 (hand: "TT7TT", amount: 217, handType: Four of a Kind) 201810 new value: 218371411
+931 (hand: "TT9TT", amount: 710, handType: Four of a Kind) 661010 new value: 219032421
+932 (hand: "TTTT6", amount: 353, handType: Four of a Kind) 328996 new value: 219361417
+933 (hand: "TTTTK", amount: 162, handType: Four of a Kind) 151146 new value: 219512563
+934 (hand: "TTTTA", amount: 962, handType: Four of a Kind) 898508 new value: 220411071
+935 (hand: "TQJQQ", amount: 737, handType: Four of a Kind) 689095 new value: 221100166
+936 (hand: "TQTTT", amount: 716, handType: Four of a Kind) 670176 new value: 221770342
+937 (hand: "TATTJ", amount: 902, handType: Four of a Kind) 845174 new value: 222615516
+938 (hand: "TAAAJ", amount: 802, handType: Four of a Kind) 752276 new value: 223367792
+939 (hand: "QJQQ8", amount: 860, handType: Four of a Kind) 807540 new value: 224175332
+940 (hand: "QJQQA", amount: 305, handType: Four of a Kind) 286700 new value: 224462032
+941 (hand: "Q666J", amount: 672, handType: Four of a Kind) 632352 new value: 225094384
+942 (hand: "Q7777", amount: 475, handType: Four of a Kind) 447450 new value: 225541834
+943 (hand: "Q9999", amount: 176, handType: Four of a Kind) 165968 new value: 225707802
+944 (hand: "QTTJT", amount: 179, handType: Four of a Kind) 168976 new value: 225876778
+945 (hand: "QQ2QQ", amount: 190, handType: Four of a Kind) 179550 new value: 226056328
+946 (hand: "QQ4QQ", amount: 263, handType: Four of a Kind) 248798 new value: 226305126
+947 (hand: "QQ5QJ", amount: 724, handType: Four of a Kind) 685628 new value: 226990754
+948 (hand: "QQQQ7", amount: 446, handType: Four of a Kind) 422808 new value: 227413562
+949 (hand: "QKJKJ", amount: 743, handType: Four of a Kind) 705107 new value: 228118669
+950 (hand: "QKKKK", amount: 418, handType: Four of a Kind) 397100 new value: 228515769
+951 (hand: "QAQQQ", amount: 211, handType: Four of a Kind) 200661 new value: 228716430
+952 (hand: "K444J", amount: 434, handType: Four of a Kind) 413168 new value: 229129598
+953 (hand: "K4KKK", amount: 318, handType: Four of a Kind) 303054 new value: 229432652
+954 (hand: "KTJJK", amount: 393, handType: Four of a Kind) 374922 new value: 229807574
+955 (hand: "KTKKJ", amount: 315, handType: Four of a Kind) 300825 new value: 230108399
+956 (hand: "KKJ8J", amount: 679, handType: Four of a Kind) 649124 new value: 230757523
+957 (hand: "KKQKJ", amount: 903, handType: Four of a Kind) 864171 new value: 231621694
+958 (hand: "KKK3K", amount: 402, handType: Four of a Kind) 385116 new value: 232006810
+959 (hand: "KKK7J", amount: 382, handType: Four of a Kind) 366338 new value: 232373148
+960 (hand: "KKK9K", amount: 262, handType: Four of a Kind) 251520 new value: 232624668
+961 (hand: "KKKKT", amount: 154, handType: Four of a Kind) 147994 new value: 232772662
+962 (hand: "AJAKA", amount: 532, handType: Four of a Kind) 511784 new value: 233284446
+963 (hand: "A4444", amount: 187, handType: Four of a Kind) 180081 new value: 233464527
+964 (hand: "A5555", amount: 197, handType: Four of a Kind) 189908 new value: 233654435
+965 (hand: "A5AAA", amount: 468, handType: Four of a Kind) 451620 new value: 234106055
+966 (hand: "A6666", amount: 639, handType: Four of a Kind) 617274 new value: 234723329
+967 (hand: "A777J", amount: 925, handType: Four of a Kind) 894475 new value: 235617804
+968 (hand: "AKKKK", amount: 557, handType: Four of a Kind) 539176 new value: 236156980
+969 (hand: "AAJ7A", amount: 276, handType: Four of a Kind) 267444 new value: 236424424
+970 (hand: "AA8AA", amount: 559, handType: Four of a Kind) 542230 new value: 236966654
+971 (hand: "AAAJ6", amount: 293, handType: Four of a Kind) 284503 new value: 237251157
+972 (hand: "AAA3A", amount: 637, handType: Four of a Kind) 619164 new value: 237870321
+973 (hand: "AAAQA", amount: 656, handType: Four of a Kind) 638288 new value: 238508609
+974 (hand: "JJJJJ", amount: 739, handType: Five of a Kind) 719786 new value: 239228395
+975 (hand: "JJ8JJ", amount: 378, handType: Five of a Kind) 368550 new value: 239596945
+976 (hand: "J2222", amount: 993, handType: Five of a Kind) 969168 new value: 240566113
+977 (hand: "J5555", amount: 126, handType: Five of a Kind) 123102 new value: 240689215
+978 (hand: "J7J7J", amount: 709, handType: Five of a Kind) 693402 new value: 241382617
+979 (hand: "J77J7", amount: 175, handType: Five of a Kind) 171325 new value: 241553942
+980 (hand: "J9J99", amount: 680, handType: Five of a Kind) 666400 new value: 242220342
+981 (hand: "J9999", amount: 397, handType: Five of a Kind) 389457 new value: 242609799
+982 (hand: "JQQQJ", amount: 243, handType: Five of a Kind) 238626 new value: 242848425
+983 (hand: "JAJAA", amount: 746, handType: Five of a Kind) 733318 new value: 243581743
+984 (hand: "2J22J", amount: 39, handType: Five of a Kind) 38376 new value: 243620119
+985 (hand: "33JJ3", amount: 31, handType: Five of a Kind) 30535 new value: 243650654
+986 (hand: "3333J", amount: 711, handType: Five of a Kind) 701046 new value: 244351700
+987 (hand: "4J44J", amount: 85, handType: Five of a Kind) 83895 new value: 244435595
+988 (hand: "444J4", amount: 908, handType: Five of a Kind) 897104 new value: 245332699
+989 (hand: "5J5J5", amount: 265, handType: Five of a Kind) 262085 new value: 245594784
+990 (hand: "6J6J6", amount: 76, handType: Five of a Kind) 75240 new value: 245670024
+991 (hand: "666J6", amount: 447, handType: Five of a Kind) 442977 new value: 246113001
+992 (hand: "7J777", amount: 888, handType: Five of a Kind) 880896 new value: 246993897
+993 (hand: "8J88J", amount: 686, handType: Five of a Kind) 681198 new value: 247675095
+994 (hand: "88J88", amount: 84, handType: Five of a Kind) 83496 new value: 247758591
+995 (hand: "TJTTT", amount: 67, handType: Five of a Kind) 66665 new value: 247825256
+996 (hand: "TTJJT", amount: 617, handType: Five of a Kind) 614532 new value: 248439788
+997 (hand: "QQQJQ", amount: 781, handType: Five of a Kind) 778657 new value: 249218445
+998 (hand: "KKJKJ", amount: 86, handType: Five of a Kind) 85828 new value: 249304273
+999 (hand: "KKKKJ", amount: 357, handType: Five of a Kind) 356643 new value: 249660916
+1000 (hand: "AJAAA", amount: 180, handType: Five of a Kind) 180000 new value: 249840916
+Answer 249840916
+Value is too high.
+
+--- DEBUG ---
+
+Five of a Kind - Should be 5 of a Kind, 8 high
+
 ----------------
 Total Time taken: 0h 0m 0s seconds

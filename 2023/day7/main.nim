@@ -6,10 +6,9 @@ import times
 
 import ../day2/fileutils
 import ../day5/formatutils
-import ../day6/patterns
 
 
-const USE_TEST_DATA = false
+const USE_TEST_DATA = true
 const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 7"
 
@@ -37,6 +36,7 @@ type
 # Using index to create a ranking score.
 const cardValues = @['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
 const typeRanking = @[htHighCard, htOne, htTwo, htThree, htFullHouse, htFour, htFive]
+const cardValuesPartTwo = @['J', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'Q', 'K', 'A']
 
 
 proc cmpHandType(a: Bet, b: Bet): int =
@@ -59,11 +59,37 @@ proc cmpCardFace(a: Bet, b: Bet): int =
 
   return 0
 
-proc initHandType(hand: Hand): HandType =
+proc cmpCardFaceWithJoker(a: Bet, b: Bet): int =
+  ## Compare based on Card Face value.
+  ## Only sorts Bets with the same HandType
+  if a.handType != b.handType:
+    return 0
+
+  for idx in (0..4):
+    let aFaceValue = cardValuesPartTwo.find(a.hand[idx])
+    let bFaceValue = cardValuesPartTwo.find(b.hand[idx])
+    if aFaceValue != bFaceValue:
+      return aFaceValue - bFaceValue
+
+  return 0
+
+proc initHandType(hand: Hand, hasJokersWild: bool): HandType =
   ## Finds the HandType for the provided hand
-  let letterFreq = toCountTable(hand)
+  var letterFreq = toCountTable(hand)
+  let jokerCount: int = letterFreq['J']
+
+  # Check for the case of all wild cards.
+  if hasJokersWild and jokerCount == 5:
+    return htFive
+  elif hasJokersWild:
+    letterFreq.del('J')
+
+  var largest = letterFreq.largest
+  # Add wild cards to the count
+  if hasJokersWild:
+    inc(largest.val, jokerCount)
+  
   # Do the easy checks first. We don't need to look at pairs or anything with these.
-  let largest = letterFreq.largest
   if largest.val == 1:
     return htHighCard
   if largest.val == 5:
@@ -73,27 +99,29 @@ proc initHandType(hand: Hand): HandType =
 
   # count pairs for the rest of the checks.
   var pairCount: int = 0
-  var threeCount: int = 0
   for key, val in letterFreq.pairs:
-    if val == 3:
-      inc(threeCount)
-    elif val == 2:
+    if val == 2:
       inc(pairCount)
 
-  if threeCount == 1 and pairCount == 1:
-    return htFullHouse
-  elif largest.val == 3:
-    return htThree
-  elif pairCount == 2:
+  if pairCount == 2:
+    # Check if a wild can turn this into a full house
+    if hasJokersWild:
+      if jokerCount == 1:
+        return htFullHouse
+
     return htTwo
   elif pairCount == 1:
-    return htOne
+    if largest.val == 3:
+      return htFullHouse
+    else:
+      return htOne
+  elif largest.val == 3:
+    return htThree
 
-  echo "largest ", largest
   return htHighCard
 
 
-proc loadBets(lines: seq[string]): seq[Bet] =
+proc loadBets(lines: seq[string], hasJokersWild: bool): seq[Bet] =
   # Loads the Bets from file contents
   var hands: seq[Bet] = @[]
   for line in lines:
@@ -101,7 +129,7 @@ proc loadBets(lines: seq[string]): seq[Bet] =
     let bet = Bet(
       hand: pairs[0],
       amount: parseBiggestInt(pairs[1]),
-      handType: initHandType(pairs[0]),
+      handType: initHandType(pairs[0], hasJokersWild),
     )
     hands.add(bet)
 
@@ -118,16 +146,13 @@ let rawTextLines: seq[string] = readFileLines(filePath)
 echo "rawTextLines ", rawTextLines
 
 echo "\n--- Part One ---\n"
-var bets = loadBets(rawTextLines)
-# echo "Bets ", bets
-
+var bets = loadBets(rawTextLines, false)
 sort(bets, cmpHandType)
 sort(bets, cmpCardFace)
-# echo "\nSorted "
+
 var partOneValue: int64 = 0
 for idx, bet in bets.pairs:
   inc(partOneValue, bet.amount * (idx+1))
-  # partOneValue += bet.amount * (idx+1)
   echo idx+1, " ", bet, " ", bet.amount * (idx+1), " new value: ", partOneValue
 
 echo "Answer ", partOneValue
@@ -141,6 +166,39 @@ elif partOneValue == 251141154:
   echo "The Value is to high"
 else:
   echo "Unknown value! Try it!"
+
+
+echo "\n--- Part Two ---\n"
+bets = loadBets(rawTextLines, true)
+sort(bets, cmpHandType)
+sort(bets, cmpCardFaceWithJoker)
+
+var partTwoValue: int64 = 0
+for idx, bet in bets.pairs:
+  inc(partTwoValue, bet.amount * (idx+1))
+  echo idx+1, " ", bet, " ", bet.amount * (idx+1), " new value: ", partTwoValue
+
+echo "Answer ", partTwoValue
+
+if USE_TEST_DATA and partTwoValue == 5905:
+  echo "Success!"
+elif USE_TEST_DATA:
+  echo "Uh oh! Something went wrong!"
+elif partTwoValue == 250588040:
+  echo "Value is too high."
+elif partTwoValue == 249802690:
+  echo "Value is too high."
+elif partTwoValue == 249840916:
+  echo "Value is too high."
+else:
+  echo "Unknown value! Try it!"
+
+
+
+echo "\n--- DEBUG ---\n"
+# echo initHandType("JJJJJ", false), " : Jack"
+# echo initHandType("JJJJJ", true), " : Joker"
+echo initHandType("33TTJ", true), " - Should be a full house"
 
 
 
