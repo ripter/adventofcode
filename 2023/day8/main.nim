@@ -38,13 +38,24 @@ proc get(map: NodeMap, key: NodeID, nav: char): NodeID =
     return map[key].right
 
 
-proc walkMap(map: var NodeMap, startId: NodeID, nav: NavigationMap): NodeID =
-  let endID = map.get(startId, nav[0])
+proc walkMap(map: var NodeMap, startId: NodeID, nav: NavigationMap, stepCount: int64): (NodeID, int64) =
+  ## Starting from startId, walks the map by following nav
+  ## nav is a string of "L" and "R" meaning left and right.
+  let navHead = nav[0]
+  let nextId = map.get(startId, navHead)
 
-  if nav.len > 1:
-    return walkMap(map, endID, nav[1..len(nav)-1])
+  # If this was the last item in the nav map
+  if len(nav) == 1:
+    return (nextId, stepCount)
 
-  return endID
+  # Once we find the end, there is no need to continue walking.
+  if nextId == "ZZZ":
+    return (nextId, stepCount)
+
+  # Try again with the tail
+  let navTail = nav[1..(len(nav)-1)]
+  return walkMap(map, nextId, navTail, stepCount+1)
+
 
 #
 # Main
@@ -65,10 +76,13 @@ echo &"Node Map: {nodeMap}"
 echo "\n--- Part One ---\n"
 echo &"Nav Map: {navMap}"
 
-var optimizedNodeMap = newTable[NodeID, NodeID]()
+var optimizedNodeMap = newTable[NodeID, (NodeID, int64)]()
 for key, val in nodeMap.pairs:
-  echo &"Key: {key}, Value: {val}"
-  echo walkMap(nodeMap, "AAA", navMap)
+  optimizedNodeMap[key] = walkMap(nodeMap, key, navMap, 1)
+
+echo "optimizedNodeMap ", optimizedNodeMap
+# echo "WalkMap from AAA ends at ", walkMap(nodeMap, "AAA", navMap)
+# echo "WalkMap from BBB ends at ", walkMap(nodeMap, "BBB", navMap)
 
 #TODO: Load the raw map from file into a table[NodeID, NodePair]
 #      Then create an optimized table[NodeID, NodeID]
