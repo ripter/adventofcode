@@ -1,5 +1,5 @@
 import std/os
-import std/[sequtils, strutils]
+import std/strutils
 import std/tables
 import std/algorithm
 import times
@@ -45,7 +45,7 @@ proc cmpHandType(a: Bet, b: Bet): int =
   let bRankValue = typeRanking.find(b.handType)
   return aRankValue - bRankValue
 
-proc cmpCardFace(a: Bet, b: Bet): int =
+proc cmpCardFace(a: Bet; b: Bet): int =
   ## Compare based on Card Face value.
   ## Only sorts Bets with the same HandType
   if a.handType != b.handType:
@@ -59,7 +59,7 @@ proc cmpCardFace(a: Bet, b: Bet): int =
 
   return 0
 
-proc cmpCardFaceWithJoker(a: Bet, b: Bet): int =
+proc cmpCardFaceWithJoker(a: Bet; b: Bet): int =
   ## Compare based on Card Face value.
   ## Only sorts Bets with the same HandType
   if a.handType != b.handType:
@@ -73,28 +73,30 @@ proc cmpCardFaceWithJoker(a: Bet, b: Bet): int =
 
   return 0
 
-proc initHandType(hand: Hand, hasJokersWild: bool): HandType =
+proc initHandType(hand: Hand; hasJokersWild: bool): HandType =
   ## Finds the HandType for the provided hand
   var letterFreq = toCountTable(hand)
+  # var largest = letterFreq.largest
   let jokerCount: int = letterFreq['J']
 
   # Check for the case of all wild cards.
   if hasJokersWild and jokerCount == 5:
     return htFive
   elif hasJokersWild:
+    # Delete the jokers
     letterFreq.del('J')
-
-  var largest = letterFreq.largest
-  # Add wild cards to the count
-  if hasJokersWild:
-    inc(largest.val, jokerCount)
+    # get the new largest now that the jokers are removed
+    let largest = letterFreq.largest
+    # Add the jokers to the largest.
+    letterFreq[largest.key] = letterFreq[largest.key] + jokerCount
+    # 
   
   # Do the easy checks first. We don't need to look at pairs or anything with these.
-  if largest.val == 1:
+  if letterFreq.largest.val == 1:
     return htHighCard
-  if largest.val == 5:
+  if letterFreq.largest.val == 5:
     return htFive
-  if largest.val == 4:
+  if letterFreq.largest.val == 4:
     return htFour
 
   # count pairs for the rest of the checks.
@@ -103,20 +105,20 @@ proc initHandType(hand: Hand, hasJokersWild: bool): HandType =
     if val == 2:
       inc(pairCount)
 
+  # Two Pairs
   if pairCount == 2:
-    # Check if a wild can turn this into a full house
-    if hasJokersWild:
-      if jokerCount == 1:
-        return htFullHouse
-
     return htTwo
+  # One Pair
   elif pairCount == 1:
-    if largest.val == 3:
+    if letterFreq.largest.val == 3:
       return htFullHouse
     else:
       return htOne
-  elif largest.val == 3:
+  # No Pairs
+  elif letterFreq.largest.val == 3:
     return htThree
+  elif letterFreq.largest.val == 2:
+    return htOne
 
   return htHighCard
 
@@ -153,7 +155,7 @@ sort(bets, cmpCardFace)
 var partOneValue: int64 = 0
 for idx, bet in bets.pairs:
   inc(partOneValue, bet.amount * (idx+1))
-  echo idx+1, " ", bet, " ", bet.amount * (idx+1), " new value: ", partOneValue
+  # echo idx+1, " ", bet, " ", bet.amount * (idx+1), " new value: ", partOneValue
 
 echo "Answer ", partOneValue
 if USE_TEST_DATA and partOneValue == 6440:
@@ -192,6 +194,8 @@ elif partTwoValue == 249840916:
   echo "Value is too high."
 elif partTwoValue == 249427371:
   echo "Still Wrong"
+elif partTwoValue == 249032195:
+  echo "Still Wrong"
 else:
   echo "Unknown value! Try it!"
 
@@ -200,9 +204,10 @@ else:
 echo "\n--- DEBUG ---\n"
 # echo initHandType("JJJJJ", false), " : Jack"
 # echo initHandType("JJJJJ", true), " : Joker"
-echo initHandType("33TTJ", true), " - 33TTJ - Should be a Full House"
-echo initHandType("J3749", true), " - J3749 - Should be One Pair"
-
+# echo initHandType("33TTJ", true), " - 33TTJ - Should be a Full House"
+# echo initHandType("J3749", true), " - J3749 - Should be One Pair"
+# echo initHandType("2735J", true), " - 2735J - Should be One Pair"
+# echo initHandType("2233J", true), " - 2233J - Should be Full House"
 
 
 echo "\n----------------"
