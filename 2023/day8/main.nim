@@ -10,7 +10,7 @@ import ../day5/formatutils
 const USE_TEST_DATA = true
 const RUN_PART_ONE = false
 const filePath = if not USE_TEST_DATA: "./input.txt" else:
-  if RUN_PART_ONE: "test_day1.txt" else: "test_day2.txt"
+  if RUN_PART_ONE: "test_part1.txt" else: "test_part2.txt"
 echo "Advent Of Code 2023 - Day 8"
 
 if not fileExists(filePath):
@@ -19,30 +19,24 @@ if not fileExists(filePath):
   quit()
 
 
-#
-# idea: Use the pattern as a token length. like LLR is 3
-# For each starting point, find the end result after applying the full token.
-# AAA = BBB, AAA, BBB
-# BBB = AAA, BBB, ZZZ
-# ZZZ = ZZZ, ZZZ, ZZZ
-#
 
 type
   NavigationMap = string
-  NodeID = string
-  NodePair = tuple[left: NodeID, right: NodeID]
-  NodeMap = TableRef[NodeID, NodePair]
+  NodeId = string
+  NodePair = tuple[left: NodeId, right: NodeId]
+  NodeMap = TableRef[NodeId, NodePair]
 
-proc get(map: NodeMap, key: NodeID, nav: char): NodeID =
+proc get(map: NodeMap, key: NodeId, nav: char): NodeId =
   if nav == 'L':
     return map[key].left
   elif nav == 'R':
     return map[key].right
 
 
-proc walkMap(map: var NodeMap, startId: NodeID, nav: NavigationMap, stepCount: int64): (NodeID, int64) =
+proc walkMap(map: var NodeMap, startId: NodeId, nav: NavigationMap, stepCount: int64): (NodeId, int64) =
   ## Starting from startId, walks the map by following nav
   ## nav is a string of "L" and "R" meaning left and right.
+  ## Also stops walking when finding a ZZZ nodeId
   let navHead = nav[0]
   let nextId = map.get(startId, navHead)
 
@@ -67,7 +61,7 @@ echo "\n--- Loading Data File ---\n"
 echo &"Load from file: \"{filePath}\""
 let rawTextLines: seq[string] = readFileLines(filePath)
 let navMap = rawTextLines[0]
-var nodeMap = newTable[NodeID, NodePair]()
+var nodeMap = newTable[NodeId, NodePair]()
 
 for line in rawTextLines[2..(len(rawTextLines)-1)]:
   var matches: array[3, string] 
@@ -79,12 +73,12 @@ for line in rawTextLines[2..(len(rawTextLines)-1)]:
 if RUN_PART_ONE:
   echo "\n--- Part One ---\n"
 
-  var optimizedNodeMap = newTable[NodeID, (NodeID, int64)]()
+  var optimizedNodeMap = newTable[NodeId, (NodeId, int64)]()
   for key, val in nodeMap.pairs:
     optimizedNodeMap[key] = walkMap(nodeMap, key, navMap, 1)
 
   var partOneValue: int64 = 0
-  var nodeId: NodeID = "AAA"
+  var nodeId: NodeId = "AAA"
   while nodeId != "ZZZ":
     let value = optimizedNodeMap[nodeId]
     inc(partOneValue, value[1])
