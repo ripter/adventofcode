@@ -29,7 +29,7 @@ type
   NodeId = string
   NodePair = tuple[left: NodeId, right: NodeId]
   NodeMap = TableRef[NodeId, NodePair]
-  Ghost = tuple[id: NodeId, count: int64, unfinishedNav: NavigationMap]
+  Ghost = tuple[id: NodeId, count: int64]
 
 
 # proc endsWidth(nodeId: NodeId, suffix: char): bool =
@@ -81,25 +81,24 @@ proc atEnd(ghosts: seq[Ghost]): bool =
   )
 
 
-proc ghostWalk(map: var NodeMap, nav: NavigationMap): int64 =
+proc ghostWalk(map: NodeMap, nav: NavigationMap): int64 =
   ## Performs a "Ghost" walk by starting at all the nodes that end with "A"
   ## and walking until all those ghosts land on a node that ends with "Z" at the same time.
+  # var totalSteps: int64 = 0
   var ghosts: seq[Ghost] = collect:
     for nodeId in map.keys:
       if nodeId.endsWith('A'):
-        (nodeId, int64(0), "")
+        (nodeId, int64(0))
 
   while not ghosts.atEnd():
     echo &"Taking {ghosts} out for a walk."
-    # If any ghosts have leftover turns, finish them out.
-    # ghosts.applyIt(walkMap(map, it.id, it.unfinishedNav, it.count+1))
+    for step in nav:
+      ghosts = ghosts.map((ghost: Ghost) => (
+        id: map.get(ghost.id, step), 
+        count: ghost.count + 1)
+      )
 
-
-    # Let each ghost walk
-    ghosts.applyIt(walkMap(map, it.id, nav, it.count+1))
-    echo &"Now the {ghosts} have been walked.\n"
-  
-  discard
+  return ghosts[0].count
 
 #
 # Main
