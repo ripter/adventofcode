@@ -1,6 +1,10 @@
 import std/os
-import std/strformat
 import std/re
+import std/strformat
+import std/strutils
+import std/sequtils
+import std/sugar
+import std/tasks
 import times
 import tables
 
@@ -25,6 +29,13 @@ type
   NodeId = string
   NodePair = tuple[left: NodeId, right: NodeId]
   NodeMap = TableRef[NodeId, NodePair]
+  Ghost = tuple[id: NodeId, count: int64, unfinishedNav: NavigationMap]
+
+
+# proc endsWidth(nodeId: NodeId, suffix: char): bool =
+#   let str: string = nodeId
+#   str.endsWidth(suffix)
+
 
 proc get(map: NodeMap, key: NodeId, nav: char): NodeId =
   if nav == 'L':
@@ -33,25 +44,62 @@ proc get(map: NodeMap, key: NodeId, nav: char): NodeId =
     return map[key].right
 
 
-proc walkMap(map: var NodeMap, startId: NodeId, nav: NavigationMap, stepCount: int64): (NodeId, int64) =
+proc walkMap(map: var NodeMap, startId: NodeId, nav: NavigationMap, stepCount: int64): (NodeId, int64, string) =
   ## Starting from startId, walks the map by following nav
   ## nav is a string of "L" and "R" meaning left and right.
   ## Also stops walking when finding a ZZZ nodeId
+  if nav == "":
+    return (startId, stepCount, "")
+
   let navHead = nav[0]
   let nextId = map.get(startId, navHead)
 
+
   # If this was the last item in the nav map
   if len(nav) == 1:
-    return (nextId, stepCount)
+    return (nextId, stepCount, "")
+
+  let navTail = nav[1..(len(nav)-1)]
 
   # Once we find the end, there is no need to continue walking.
-  if nextId == "ZZZ":
-    return (nextId, stepCount)
+  if nextId.endsWith('Z'):
+    return (nextId, stepCount, navTail)
 
   # Try again with the tail
-  let navTail = nav[1..(len(nav)-1)]
   return walkMap(map, nextId, navTail, stepCount+1)
 
+
+proc atEnd(ghosts: seq[Ghost]): bool =
+  ## All NodeIds end with Z and have the same step count
+  let stepCount = ghosts[0].count
+  if stepCount >= 7:
+    return true
+
+  return ghosts.allIt(
+    it.id.endsWith('Z') and 
+    it.count == stepCount
+  )
+
+
+proc ghostWalk(map: var NodeMap, nav: NavigationMap): int64 =
+  ## Performs a "Ghost" walk by starting at all the nodes that end with "A"
+  ## and walking until all those ghosts land on a node that ends with "Z" at the same time.
+  var ghosts: seq[Ghost] = collect:
+    for nodeId in map.keys:
+      if nodeId.endsWith('A'):
+        (nodeId, int64(0), "")
+
+  while not ghosts.atEnd():
+    echo &"Taking {ghosts} out for a walk."
+    # If any ghosts have leftover turns, finish them out.
+    # ghosts.applyIt(walkMap(map, it.id, it.unfinishedNav, it.count+1))
+
+
+    # Let each ghost walk
+    ghosts.applyIt(walkMap(map, it.id, nav, it.count+1))
+    echo &"Now the {ghosts} have been walked.\n"
+  
+  discard
 
 #
 # Main
@@ -73,7 +121,7 @@ for line in rawTextLines[2..(len(rawTextLines)-1)]:
 if RUN_PART_ONE:
   echo "\n--- Part One ---\n"
 
-  var optimizedNodeMap = newTable[NodeId, (NodeId, int64)]()
+  var optimizedNodeMap = newTable[NodeId, (NodeId, int64, string)]()
   for key, val in nodeMap.pairs:
     optimizedNodeMap[key] = walkMap(nodeMap, key, navMap, 1)
 
@@ -88,6 +136,9 @@ if RUN_PART_ONE:
 
 else:
   echo "\n--- Part Two ---\n"
+
+  let partTwoValue = ghostWalk(nodeMap, navMap)
+  echo &"Answer: {partTwoValue}"
 
 
 
