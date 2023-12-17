@@ -79,15 +79,17 @@ echo &"Nav Map: {navMap}"
 var optimizedNodeMap = newTable[NodeID, (NodeID, int64)]()
 for key, val in nodeMap.pairs:
   optimizedNodeMap[key] = walkMap(nodeMap, key, navMap, 1)
-
 echo "optimizedNodeMap ", optimizedNodeMap
-# echo "WalkMap from AAA ends at ", walkMap(nodeMap, "AAA", navMap)
-# echo "WalkMap from BBB ends at ", walkMap(nodeMap, "BBB", navMap)
 
-#TODO: Load the raw map from file into a table[NodeID, NodePair]
-#      Then create an optimized table[NodeID, NodeID]
-#      Start at AAA, count the steps to ZZZ
+var partOneValue: int64 = 0
+var nodeId: NodeID = "AAA"
+while nodeId != "ZZZ":
+  let value = optimizedNodeMap[nodeId]
+  echo &"Walk from {nodeId} to {value[0]} in {value[1]} steps."
+  inc(partOneValue, value[1])
+  nodeId = value[0]
 
+echo "Answer ", partOneValue
 
 echo "\n--- Part Two ---\n"
 
