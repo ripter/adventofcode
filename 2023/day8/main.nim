@@ -7,7 +7,7 @@ import tables
 import ../day2/fileutils
 import ../day5/formatutils
 
-const USE_TEST_DATA = true
+const USE_TEST_DATA = false
 const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
 echo "Advent Of Code 2023 - Day 8"
 
