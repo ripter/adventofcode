@@ -71,21 +71,21 @@ for line in rawTextLines[2..(len(rawTextLines)-1)]:
   discard match(line, re"(\w\w\w) = \((\w\w\w), (\w\w\w)\)", matches)
   nodeMap[matches[0]] = (left: matches[1], right: matches[2])
 
-echo &"Node Map: {nodeMap}"
+# echo &"Node Map: {nodeMap}"
 
 echo "\n--- Part One ---\n"
-echo &"Nav Map: {navMap}"
+# echo &"Nav Map: {navMap}"
 
 var optimizedNodeMap = newTable[NodeID, (NodeID, int64)]()
 for key, val in nodeMap.pairs:
   optimizedNodeMap[key] = walkMap(nodeMap, key, navMap, 1)
-echo "optimizedNodeMap ", optimizedNodeMap
+# echo "optimizedNodeMap ", optimizedNodeMap
 
 var partOneValue: int64 = 0
 var nodeId: NodeID = "AAA"
 while nodeId != "ZZZ":
   let value = optimizedNodeMap[nodeId]
-  echo &"Walk from {nodeId} to {value[0]} in {value[1]} steps."
+  # echo &"Walk from {nodeId} to {value[0]} in {value[1]} steps."
   inc(partOneValue, value[1])
   nodeId = value[0]
 
