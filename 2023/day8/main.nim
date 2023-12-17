@@ -7,8 +7,10 @@ import tables
 import ../day2/fileutils
 import ../day5/formatutils
 
-const USE_TEST_DATA = false
-const filePath = if USE_TEST_DATA: "./test.txt" else: "./input.txt"
+const USE_TEST_DATA = true
+const RUN_PART_ONE = false
+const filePath = if not USE_TEST_DATA: "./input.txt" else:
+  if RUN_PART_ONE: "test_day1.txt" else: "test_day2.txt"
 echo "Advent Of Code 2023 - Day 8"
 
 if not fileExists(filePath):
@@ -62,6 +64,7 @@ proc walkMap(map: var NodeMap, startId: NodeID, nav: NavigationMap, stepCount: i
 # 
 let appStartTime = cpuTime()
 echo "\n--- Loading Data File ---\n"
+echo &"Load from file: \"{filePath}\""
 let rawTextLines: seq[string] = readFileLines(filePath)
 let navMap = rawTextLines[0]
 var nodeMap = newTable[NodeID, NodePair]()
@@ -73,25 +76,25 @@ for line in rawTextLines[2..(len(rawTextLines)-1)]:
 
 # echo &"Node Map: {nodeMap}"
 
-echo "\n--- Part One ---\n"
-# echo &"Nav Map: {navMap}"
+if RUN_PART_ONE:
+  echo "\n--- Part One ---\n"
 
-var optimizedNodeMap = newTable[NodeID, (NodeID, int64)]()
-for key, val in nodeMap.pairs:
-  optimizedNodeMap[key] = walkMap(nodeMap, key, navMap, 1)
-# echo "optimizedNodeMap ", optimizedNodeMap
+  var optimizedNodeMap = newTable[NodeID, (NodeID, int64)]()
+  for key, val in nodeMap.pairs:
+    optimizedNodeMap[key] = walkMap(nodeMap, key, navMap, 1)
 
-var partOneValue: int64 = 0
-var nodeId: NodeID = "AAA"
-while nodeId != "ZZZ":
-  let value = optimizedNodeMap[nodeId]
-  # echo &"Walk from {nodeId} to {value[0]} in {value[1]} steps."
-  inc(partOneValue, value[1])
-  nodeId = value[0]
+  var partOneValue: int64 = 0
+  var nodeId: NodeID = "AAA"
+  while nodeId != "ZZZ":
+    let value = optimizedNodeMap[nodeId]
+    inc(partOneValue, value[1])
+    nodeId = value[0]
 
-echo "Answer ", partOneValue
+  echo "Answer ", partOneValue
 
-echo "\n--- Part Two ---\n"
+else:
+  echo "\n--- Part Two ---\n"
+
 
 
 echo "\n----------------"
