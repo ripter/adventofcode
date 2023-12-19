@@ -4,7 +4,6 @@ import std/strformat
 import std/strutils
 import std/sequtils
 import std/sugar
-import std/tasks
 import times
 import tables
 
@@ -72,13 +71,32 @@ proc walkMap(map: var NodeMap, startId: NodeId, nav: NavigationMap, stepCount: i
 proc atEnd(ghosts: seq[Ghost]): bool =
   ## All NodeIds end with Z and have the same step count
   let stepCount = ghosts[0].count
-  if stepCount >= 7:
-    return true
 
   return ghosts.allIt(
     it.id.endsWith('Z') and 
     it.count == stepCount
   )
+
+proc walkFullNav(map: var NodeMap, startId: NodeId, nav: NavigationMap): seq[Ghost] =
+  ## Walks the NodeMap, following the NavigationMap until the end.
+  ## When it reaches a NodeID that ends in 'Z', it logs it as a ghost.
+  var pathWalked = walkMap(map, startId, nav, 1)
+  # echo "pathWalked ", pathWalked
+
+  while pathWalked[2] != "":
+    result.add((id: pathWalked[0], count: pathWalked[1]+1))
+    pathWalked = walkMap(map, pathWalked[0], pathWalked[2], pathWalked[1])
+    # echo "pathWalked sub ", pathWalked
+
+  
+  # pathWalked = walkMap(map, pathWalked[0], pathWalked[2], pathWalked[1])
+  result.add((id: pathWalked[0], count: pathWalked[1]))
+
+  # echo "pathWalked ", pathWalked
+  # var count: int64 = 0
+  # for step in nav:
+  #   echo step
+  return result
 
 
 proc ghostWalk(map: NodeMap, nav: NavigationMap): int64 =
@@ -97,6 +115,8 @@ proc ghostWalk(map: NodeMap, nav: NavigationMap): int64 =
         id: map.get(ghost.id, step), 
         count: ghost.count + 1)
       )
+      if ghosts.atEnd:
+        break;
 
   return ghosts[0].count
 
@@ -136,8 +156,21 @@ if RUN_PART_ONE:
 else:
   echo "\n--- Part Two ---\n"
 
-  let partTwoValue = ghostWalk(nodeMap, navMap)
-  echo &"Answer: {partTwoValue}"
+  var nodeStopMap = newTable[NodeId, seq[Ghost]]()
+  for nodeId, nodePair in nodeMap.pairs:
+    nodeStopMap[nodeId] = walkFullNav(nodeMap, nodeId, navMap)
+
+  # echo &"nodeStopMap {nodeStopMap}"
+  for nodeId in nodeStopMap.keys:
+    echo &"{nodeId}: {nodeStopMap[nodeId]}"
+  let partTwoValue = -1
+  # let partTwoValue = ghostWalk(nodeMap, navMap)
+  # echo &"Answer: {partTwoValue}"
+
+  if partTwoValue == 269:
+    echo "Too Low!"
+  else:
+    echo "Unknown value, try it out!"
 
 
 
