@@ -10,7 +10,7 @@ import tables
 import ../day2/fileutils
 import ../day5/formatutils
 
-const USE_TEST_DATA = true
+const USE_TEST_DATA = false
 const RUN_PART_ONE = false
 const filePath = if not USE_TEST_DATA: "./input.txt" else:
   if RUN_PART_ONE: "test_part1.txt" else: "test_part2.txt"
@@ -53,6 +53,8 @@ proc walkMap(map: var NodeMap, startId: NodeId, nav: NavigationMap, stepCount: i
   let navHead = nav[0]
   let nextId = map.get(startId, navHead)
 
+  echo &"{startId} turned {navHead} resulted in {nextId} giving a total step count of {stepCount}"
+
 
   # If this was the last item in the nav map
   if len(nav) == 1:
@@ -84,8 +86,8 @@ proc walkFullNav(map: var NodeMap, startId: NodeId, nav: NavigationMap): seq[Gho
   # echo "pathWalked ", pathWalked
 
   while pathWalked[2] != "":
-    result.add((id: pathWalked[0], count: pathWalked[1]+1))
-    pathWalked = walkMap(map, pathWalked[0], pathWalked[2], pathWalked[1])
+    result.add((id: pathWalked[0], count: pathWalked[1]))
+    pathWalked = walkMap(map, pathWalked[0], pathWalked[2], pathWalked[1]+1)
     # echo "pathWalked sub ", pathWalked
 
   
@@ -157,12 +159,14 @@ else:
   echo "\n--- Part Two ---\n"
 
   var nodeStopMap = newTable[NodeId, seq[Ghost]]()
-  for nodeId, nodePair in nodeMap.pairs:
-    nodeStopMap[nodeId] = walkFullNav(nodeMap, nodeId, navMap)
+  let  nodeId = "DVS"
+  echo &"{nodeId} - {walkFullNav(nodeMap, nodeId, navMap)}"
+  # for nodeId, nodePair in nodeMap.pairs:
+  #   nodeStopMap[nodeId] = walkFullNav(nodeMap, nodeId, navMap)
 
   # echo &"nodeStopMap {nodeStopMap}"
-  for nodeId in nodeStopMap.keys:
-    echo &"{nodeId}: {nodeStopMap[nodeId]}"
+  # for nodeId in nodeStopMap.keys:
+  #   echo &"{nodeId}: {nodeStopMap[nodeId]}"
   let partTwoValue = -1
   # let partTwoValue = ghostWalk(nodeMap, navMap)
   # echo &"Answer: {partTwoValue}"

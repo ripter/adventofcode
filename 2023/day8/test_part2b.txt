@@ -1,0 +1,6 @@
+KJA = (XSN, LKF)
+XSN = (QXS, GPT)
+LKF = (QXS, GPT)
+QXS = (HKK, XCT)
+GPT = (XCT, HKK)
+HKK = (MCV, GFK)
