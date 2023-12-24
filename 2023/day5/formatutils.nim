@@ -11,7 +11,7 @@ proc formatNumberHuman*(n: int64): string =
   let
     numStr = $n
     len = numStr.len
-  var result = ""
+  # var result = ""
   for i in 0..<len:
     if i > 0 and (len - i) mod 3 == 0:
       result.add(',')

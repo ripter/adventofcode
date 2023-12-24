@@ -117,7 +117,6 @@ for line in rawTextLines[2..(len(rawTextLines)-1)]:
 
 if RUN_PART_ONE:
   echo "\n--- Part One ---\n"
-
   var optimizedNodeMap = newTable[NodeId, (NodeId, int64, string)]()
   for key, val in nodeMap.pairs:
     optimizedNodeMap[key] = walkMap(nodeMap, key, navMap, 1)
@@ -134,18 +133,25 @@ if RUN_PART_ONE:
 else:
   echo "\n--- Part Two ---\n"
 
-  var nodeStopMap = newTable[NodeId, seq[Ghost]]()
-  let  nodeId = "TTA"
-  echo &"{nodeId} - {walkFullNav(nodeMap, nodeId, navMap, 1)}"
-  # for nodeId, nodePair in nodeMap.pairs:
-  #   nodeStopMap[nodeId] = walkFullNav(nodeMap, nodeId, navMap)
+  # echo &"Node Map: {{keys[NodeId, NodePair](nodeMap)}}"
+  echo &"Node Map: {{keys(nodeMap)}}"
+  # Find all the nodes that end in A
+  let startIds = toSeq(keys(nodeMap)).filterIt(it.endsWith('A'))
+  echo &"Start Ids: {startIds}"
 
-  # echo &"nodeStopMap {nodeStopMap}"
-  # for nodeId in nodeStopMap.keys:
-  #   echo &"{nodeId}: {nodeStopMap[nodeId]}"
+  var nodeStopMap = newTable[NodeId, seq[Ghost]]()
+  for startId in startIds:
+    let walkedPath = walkFullNav(nodeMap, startId, navMap, 1)
+    nodeStopMap[startId] = walkedPath
+
+
+  # Log for debugging
+  for key, val in nodeStopMap.pairs:
+    echo &"{key} - "
+    for id, count in val:
+      echo &"  {id} - {count}"
+
   let partTwoValue = -1
-  # let partTwoValue = ghostWalk(nodeMap, navMap)
-  # echo &"Answer: {partTwoValue}"
 
   if partTwoValue == 269:
     echo "Too Low!"
