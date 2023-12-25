@@ -79,20 +79,20 @@ proc walkFullNav(map: var NodeMap, startId: NodeId, nav: NavigationMap, stepCoun
   ## When it reaches a NodeID that ends in 'Z', it logs it as a ghost.
   var pathWalked = walkMap(map, startId, nav, stepCount)
 
-  while pathWalked[2] != "":
+  # walk the entire nav, adding a node each time walkMap stops at a Z.
+  while pathWalked.remainingNav != "":
     result.add((id: pathWalked[0], count: pathWalked[1]))
     pathWalked = walkMap(map, pathWalked[0], pathWalked[2], pathWalked[1]+1)
-    # echo "pathWalked sub ", pathWalked
 
-  # pathWalked = walkMap(map, pathWalked[0], pathWalked[2], pathWalked[1])
+  # Add the last node found by walking the nav  
   result.add((id: pathWalked[0], count: pathWalked[1]))
 
-  let lastNode = result[len(result)-1]
   # If the last node is a Z, then we are done.
+  let lastNode = result[len(result)-1]
   if lastNode.id.endsWith('Z'):
     return result
 
-  # Otherwise, we need to walk the map again starting from the last stop.
+  # last node is not a Z, so walk the map again
   result.add(walkFullNav(map, lastNode.id, nav, lastNode.count+1))
   return result
 
@@ -132,6 +132,7 @@ if RUN_PART_ONE:
 
 else:
   echo "\n--- Part Two ---\n"
+  let partTwoValue = -1
 
   # echo &"Node Map: {{keys[NodeId, NodePair](nodeMap)}}"
   echo &"Node Map: {{keys(nodeMap)}}"
@@ -145,15 +146,29 @@ else:
     nodeStopMap[startId] = walkedPath
 
 
-  # Log for debugging
-  for key, val in nodeStopMap.pairs:
-    echo &"{key} - "
-    for id, count in val:
-      echo &"  {id} - {count}"
+  for stopIdx in 0..nodeStopMap[startIds[0]].len-1:
+    var row = ""
+    for key in startIds:
+      let stop = nodeStopMap[key][stopIdx]
+      row.add(&"{stop.count} {stop.id}  ")
+    echo row
 
-  let partTwoValue = -1
+  # let nodeLength = nodeStopMap.len
+  # var stepCount: int64 = nodeStopMap[startIds[0]][0].count
+  # Log for debugging
+  # for idx, stop in nodeStopMap[startIds[0]]:
+    # echo &"  {idx} - {stop}"
+  # for key, val in nodeStopMap.pairs:
+  #   echo &"{key} - "
+  #   for idx, stop in val:
+  #     # let allMatch = nodeStopMap[key][idx].allIt(it == stepCount)
+  #     echo &"  {idx} - {stop}"
+
+
 
   if partTwoValue == 269:
+    echo "Too Low!"
+  elif partTwoValue == 12643:
     echo "Too Low!"
   else:
     echo "Unknown value, try it out!"
