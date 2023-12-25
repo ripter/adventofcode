@@ -1,0 +1,14 @@
+Advent Of Code 2023 - Day 25 - MERRY CHRISTMAS
+
+--- Loading Data File ---
+
+Load from file: "input.txt"
+
+--- Part One ---
+
+
+--- Part One ---
+
+
+----------------
+Total Time taken: 0h 0m 0s (0.001815 seconds)
