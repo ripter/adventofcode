@@ -65,6 +65,35 @@ proc fillMissingMapValues(table: WireIdToSet, wireIds: HashSet[WireId], wirePair
         table[wireA] = wireSet
 
 
+proc createGroups(table: WireIdToSet): seq[HashSet[WireId]] =
+  # var groups: seq[seq[WireId]] = @[]
+  for key, vals in table:
+    echo &"key: {key}"
+    let existingGroups = result.filterIt(it.contains(key))
+    if len(existingGroups) == 0:
+      echo "New Group Needed"
+      var newGroup: HashSet[string] = toHashSet([key])
+      for valId in vals:
+        newGroup.incl(valId)
+      result.add(newGroup)
+    elif len(existingGroups) == 1:
+      echo "Add to existing group"
+      # let group: seq[string] = existingGroups[0]
+      # group.add(key)
+    else:
+      echo &"ERROR: Multiple groups found for key: {key}"
+
+    # var foundGroup = false
+    # for group in groups:
+    #   if key in group:
+    #     foundGroup = true
+    #     for val in vals:
+    #       if val notin group:
+    #         group.add(val)
+    
+    # if not foundGroup:
+    #   groups.add(@[key] & vals)
+
 
 let appStartTime = cpuTime()
 echo "\n--- Loading Data File ---\n"
@@ -93,9 +122,13 @@ echo &"\nNumber of unique wireIds: {wireIds.len}"
 echo "\nFilling in missing wireIds"
 fillMissingMapValues(wireMap, wireIds, pairSet)
 for wire in wireMap.keys:
-  echo &"wireMap[{wire}]: {wireMap[wire]}"
+  echo &"[{wire}]: {wireMap[wire]}"
 
 
+let groups = createGroups(wireMap)
+echo &"\nNumber of groups: {groups.len}"
+for group in groups:
+  echo &"group: {group}"
 
 
 

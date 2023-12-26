@@ -12,24 +12,61 @@ Number of unique wire pairs: 33
 Number of unique wireIds: 15
 
 Filling in missing wireIds
-wireMap[qnr]: {"frs", "nvd", "rzs", "cmg"}
-wireMap[ntq]: {"xhk", "jqt", "hfx", "bvb"}
-wireMap[nvd]: {"jqt", "pzl", "qnr", "lhk", "cmg"}
-wireMap[lhk]: {"lsr", "cmg", "nvd", "frs"}
-wireMap[rhn]: {"xhk", "jqt", "hfx", "bvb"}
-wireMap[hfx]: {"rhn", "xhk", "pzl", "ntq", "bvb"}
-wireMap[frs]: {"qnr", "rsh", "lhk", "lsr"}
-wireMap[rzs]: {"qnr", "cmg", "rsh", "lsr"}
-wireMap[lsr]: {"pzl", "frs", "rsh", "lhk", "rzs"}
-wireMap[xhk]: {"jqt", "ntq", "rhn", "hfx", "bvb"}
-wireMap[cmg]: {"qnr", "rzs", "nvd", "lhk", "bvb"}
-wireMap[jqt]: {"xhk", "nvd", "ntq", "rhn"}
-wireMap[pzl]: {"nvd", "rsh", "hfx", "lsr"}
-wireMap[rsh]: {"frs", "pzl", "rzs", "lsr"}
-wireMap[bvb]: {"xhk", "ntq", "rhn", "hfx", "cmg"}
+[qnr]: {"frs", "nvd", "rzs", "cmg"}
+[ntq]: {"xhk", "jqt", "hfx", "bvb"}
+[nvd]: {"jqt", "pzl", "qnr", "lhk", "cmg"}
+[lhk]: {"lsr", "cmg", "nvd", "frs"}
+[rhn]: {"xhk", "jqt", "hfx", "bvb"}
+[hfx]: {"rhn", "xhk", "pzl", "ntq", "bvb"}
+[frs]: {"qnr", "rsh", "lhk", "lsr"}
+[rzs]: {"qnr", "cmg", "rsh", "lsr"}
+[lsr]: {"pzl", "frs", "rsh", "lhk", "rzs"}
+[xhk]: {"jqt", "ntq", "rhn", "hfx", "bvb"}
+[cmg]: {"qnr", "rzs", "nvd", "lhk", "bvb"}
+[jqt]: {"xhk", "nvd", "ntq", "rhn"}
+[pzl]: {"nvd", "rsh", "hfx", "lsr"}
+[rsh]: {"frs", "pzl", "rzs", "lsr"}
+[bvb]: {"xhk", "ntq", "rhn", "hfx", "cmg"}
+key: qnr
+New Group Needed
+key: ntq
+New Group Needed
+key: nvd
+Add to existing group
+key: lhk
+New Group Needed
+key: rhn
+New Group Needed
+key: hfx
+ERROR: Multiple groups found for key: hfx
+key: frs
+ERROR: Multiple groups found for key: frs
+key: rzs
+Add to existing group
+key: lsr
+Add to existing group
+key: xhk
+ERROR: Multiple groups found for key: xhk
+key: cmg
+ERROR: Multiple groups found for key: cmg
+key: jqt
+ERROR: Multiple groups found for key: jqt
+key: pzl
+New Group Needed
+key: rsh
+Add to existing group
+key: bvb
+ERROR: Multiple groups found for key: bvb
+
+Number of groups: 5
+group: {"frs", "qnr", "nvd", "rzs", "cmg"}
+group: {"xhk", "jqt", "ntq", "hfx", "bvb"}
+group: {"frs", "nvd", "lhk", "cmg", "lsr"}
+group: {"xhk", "jqt", "rhn", "hfx", "bvb"}
+group: {"pzl", "nvd", "rsh", "hfx", "lsr"}
 
 --- Part Two ---
 
 
 ----------------
-Total Time taken: 0h 0m 0s (0.0021 seconds)
+Total Time taken: 0h 0m 0s (0.002468 seconds)
