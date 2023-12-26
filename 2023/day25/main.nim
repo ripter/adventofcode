@@ -20,11 +20,12 @@ if not fileExists(filePath):
 
 type
   WireId = string
+  WireIdsUnique = HashSet[WireId]
   WirePairHash = string
   WirePair = tuple[a: WireId, b: WireId] 
   WirePairSet = HashSet[WirePairHash]
-  WireIdToSet = TableRef[WireId, HashSet[WireId]]
-  WireGroupsConnected = seq[HashSet[WireId]]
+  WireIdToSet = TableRef[WireId, WireIdsUnique]
+  WireGroupsConnected = seq[WireIdsUnique]
 
 
 proc hash(pair: WirePair): WirePairHash =
@@ -70,57 +71,31 @@ proc fillMissingMapValues(table: WireIdToSet, wireIds: HashSet[WireId], wirePair
         table[wireA] = wireSet
 
 
-# proc findEither()
+proc findEither(groups: WireGroupsConnected, wireA: WireId, wireB: WireId): WireIdsUnique =
+  ## Find the group that contains either wireA or wireB
+  for group in groups:
+    if wireA in group or wireB in group:
+      return group
+
 
 proc createGroups(table: WireIdToSet, pairSet: WirePairSet): WireGroupsConnected =
-  # Each wireId in the pair goes into the same group.
   for pair in pairSet:
     let (a, b) = unhash(pair)
     echo &"\npair: {pair} -> {a}, {b}"
 
+    var group = result.findEither(a, b)
+    if len(group) == 0:
+      group = initHashSet[WireId]()
+      result.add(group)
+    echo &"group ({group.len}): {group}"
+
+    # Each wireId in the pair goes into the same group.
+    group.incl(a)
+    group.incl(b)
+    echo &"result: {result}"
 
 
-    # let existingGroups = result.filterIt(it.contains(a) or it.contains(b))
-    # if len(existingGroups) == 0:
-    #   echo "New Group Needed "
-    #   var newGroup: HashSet[WireId] = toHashSet([a, b])
-    #   result.add(newGroup)
-    # elif len(existingGroups) == 1:
-    #   let group: HashSet[WireId] = existingGroups[0]
-    #   echo &"Add to existing group, {group}"
-    #   # group.incl(a)
-    #   # group.incl(b)
-    # else:
-    #   echo &"ERROR: Multiple groups found for pair: {pair}"
 
-  # echo "\n"
-  # var groups: seq[seq[WireId]] = @[]
-  # for key, vals in table:
-  #   echo &"key: {key}"
-  #   let existingGroups = result.filterIt(it.contains(key))
-  #   if len(existingGroups) == 0:
-  #     echo "New Group Needed"
-  #     var newGroup: HashSet[string] = toHashSet([key])
-  #     for valId in vals:
-  #       newGroup.incl(valId)
-  #     result.add(newGroup)
-  #   elif len(existingGroups) == 1:
-  #     echo "Add to existing group"
-  #     # let group: seq[string] = existingGroups[0]
-  #     # group.add(key)
-  #   else:
-  #     echo &"ERROR: Multiple groups found for key: {key}"
-
-    # var foundGroup = false
-    # for group in groups:
-    #   if key in group:
-    #     foundGroup = true
-    #     for val in vals:
-    #       if val notin group:
-    #         group.add(val)
-    
-    # if not foundGroup:
-    #   groups.add(@[key] & vals)
 
 
 let appStartTime = cpuTime()
