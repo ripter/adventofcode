@@ -24,12 +24,17 @@ type
   WirePair = tuple[a: WireId, b: WireId] 
   WirePairSet = HashSet[WirePairHash]
   WireIdToSet = TableRef[WireId, HashSet[WireId]]
+  WireGroupsConnected = seq[HashSet[WireId]]
 
 
 proc hash(pair: WirePair): WirePairHash =
   let (a, b) = pair
   if a < b: return &"{a}-{b}"
   return &"{b}-{a}"
+
+proc unhash(hash: WirePairHash): WirePair =
+  let parts = hash.split("-")
+  return (parts[0], parts[1])
 
 
 
@@ -65,23 +70,46 @@ proc fillMissingMapValues(table: WireIdToSet, wireIds: HashSet[WireId], wirePair
         table[wireA] = wireSet
 
 
-proc createGroups(table: WireIdToSet): seq[HashSet[WireId]] =
+# proc findEither()
+
+proc createGroups(table: WireIdToSet, pairSet: WirePairSet): WireGroupsConnected =
+  # Each wireId in the pair goes into the same group.
+  for pair in pairSet:
+    let (a, b) = unhash(pair)
+    echo &"\npair: {pair} -> {a}, {b}"
+
+
+
+    # let existingGroups = result.filterIt(it.contains(a) or it.contains(b))
+    # if len(existingGroups) == 0:
+    #   echo "New Group Needed "
+    #   var newGroup: HashSet[WireId] = toHashSet([a, b])
+    #   result.add(newGroup)
+    # elif len(existingGroups) == 1:
+    #   let group: HashSet[WireId] = existingGroups[0]
+    #   echo &"Add to existing group, {group}"
+    #   # group.incl(a)
+    #   # group.incl(b)
+    # else:
+    #   echo &"ERROR: Multiple groups found for pair: {pair}"
+
+  # echo "\n"
   # var groups: seq[seq[WireId]] = @[]
-  for key, vals in table:
-    echo &"key: {key}"
-    let existingGroups = result.filterIt(it.contains(key))
-    if len(existingGroups) == 0:
-      echo "New Group Needed"
-      var newGroup: HashSet[string] = toHashSet([key])
-      for valId in vals:
-        newGroup.incl(valId)
-      result.add(newGroup)
-    elif len(existingGroups) == 1:
-      echo "Add to existing group"
-      # let group: seq[string] = existingGroups[0]
-      # group.add(key)
-    else:
-      echo &"ERROR: Multiple groups found for key: {key}"
+  # for key, vals in table:
+  #   echo &"key: {key}"
+  #   let existingGroups = result.filterIt(it.contains(key))
+  #   if len(existingGroups) == 0:
+  #     echo "New Group Needed"
+  #     var newGroup: HashSet[string] = toHashSet([key])
+  #     for valId in vals:
+  #       newGroup.incl(valId)
+  #     result.add(newGroup)
+  #   elif len(existingGroups) == 1:
+  #     echo "Add to existing group"
+  #     # let group: seq[string] = existingGroups[0]
+  #     # group.add(key)
+  #   else:
+  #     echo &"ERROR: Multiple groups found for key: {key}"
 
     # var foundGroup = false
     # for group in groups:
@@ -125,7 +153,7 @@ for wire in wireMap.keys:
   echo &"[{wire}]: {wireMap[wire]}"
 
 
-let groups = createGroups(wireMap)
+let groups = createGroups(wireMap, pairSet)
 echo &"\nNumber of groups: {groups.len}"
 for group in groups:
   echo &"group: {group}"

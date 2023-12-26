@@ -27,46 +27,77 @@ Filling in missing wireIds
 [pzl]: {"nvd", "rsh", "hfx", "lsr"}
 [rsh]: {"frs", "pzl", "rzs", "lsr"}
 [bvb]: {"xhk", "ntq", "rhn", "hfx", "cmg"}
-key: qnr
-New Group Needed
-key: ntq
-New Group Needed
-key: nvd
-Add to existing group
-key: lhk
-New Group Needed
-key: rhn
-New Group Needed
-key: hfx
-ERROR: Multiple groups found for key: hfx
-key: frs
-ERROR: Multiple groups found for key: frs
-key: rzs
-Add to existing group
-key: lsr
-Add to existing group
-key: xhk
-ERROR: Multiple groups found for key: xhk
-key: cmg
-ERROR: Multiple groups found for key: cmg
-key: jqt
-ERROR: Multiple groups found for key: jqt
-key: pzl
-New Group Needed
-key: rsh
-Add to existing group
-key: bvb
-ERROR: Multiple groups found for key: bvb
 
-Number of groups: 5
-group: {"frs", "qnr", "nvd", "rzs", "cmg"}
-group: {"xhk", "jqt", "ntq", "hfx", "bvb"}
-group: {"frs", "nvd", "lhk", "cmg", "lsr"}
-group: {"xhk", "jqt", "rhn", "hfx", "bvb"}
-group: {"pzl", "nvd", "rsh", "hfx", "lsr"}
+pair: rsh-rzs -> rsh, rzs
+
+pair: cmg-qnr -> cmg, qnr
+
+pair: frs-qnr -> frs, qnr
+
+pair: jqt-rhn -> jqt, rhn
+
+pair: pzl-rsh -> pzl, rsh
+
+pair: qnr-rzs -> qnr, rzs
+
+pair: nvd-pzl -> nvd, pzl
+
+pair: nvd-qnr -> nvd, qnr
+
+pair: bvb-ntq -> bvb, ntq
+
+pair: jqt-xhk -> jqt, xhk
+
+pair: lsr-pzl -> lsr, pzl
+
+pair: hfx-pzl -> hfx, pzl
+
+pair: cmg-lhk -> cmg, lhk
+
+pair: bvb-rhn -> bvb, rhn
+
+pair: lsr-rzs -> lsr, rzs
+
+pair: cmg-rzs -> cmg, rzs
+
+pair: jqt-ntq -> jqt, ntq
+
+pair: cmg-nvd -> cmg, nvd
+
+pair: jqt-nvd -> jqt, nvd
+
+pair: hfx-ntq -> hfx, ntq
+
+pair: bvb-xhk -> bvb, xhk
+
+pair: frs-rsh -> frs, rsh
+
+pair: frs-lsr -> frs, lsr
+
+pair: lsr-rsh -> lsr, rsh
+
+pair: ntq-xhk -> ntq, xhk
+
+pair: lhk-lsr -> lhk, lsr
+
+pair: frs-lhk -> frs, lhk
+
+pair: hfx-xhk -> hfx, xhk
+
+pair: bvb-cmg -> bvb, cmg
+
+pair: hfx-rhn -> hfx, rhn
+
+pair: bvb-hfx -> bvb, hfx
+
+pair: lhk-nvd -> lhk, nvd
+
+pair: rhn-xhk -> rhn, xhk
+
+Number of groups: 0
 
 --- Part Two ---
 
 
 ----------------
-Total Time taken: 0h 0m 0s (0.002468 seconds)
+Total Time taken: 0h 0m 0s (0.002425999999999999 seconds)
