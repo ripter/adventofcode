@@ -78,22 +78,20 @@ proc findEither(groups: WireGroupsConnected, wireA: WireId, wireB: WireId): Wire
       return group
 
 
-proc createGroups(table: WireIdToSet, pairSet: WirePairSet): WireGroupsConnected =
-  for pair in pairSet:
-    let (a, b) = unhash(pair)
-    echo &"\npair: {pair} -> {a}, {b}"
+proc createGroups(table: WireIdToSet): WireGroupsConnected =
+  ## Each key, value pair in the table is connected with wires.
+  ## This will reduce the table to the smallest number of groups
+  ## where each wireId is connected to every to another wireId in the group.
+  for key, vals in table:
+    # the key is wired to all the values.
+    var group: WireIdsUnique = vals
+    group.incl(key)
+    echo &"group: {group}"
+    result.add(group)
 
-    var group = result.findEither(a, b)
-    if len(group) == 0:
-      group = initHashSet[WireId]()
-      result.add(group)
-    echo &"group ({group.len}): {group}"
-
-    # Each wireId in the pair goes into the same group.
-    group.incl(a)
-    group.incl(b)
-    echo &"result: {result}"
-
+  
+  echo &"result: {result}"
+  
 
 
 
@@ -124,14 +122,14 @@ echo &"\nNumber of unique wireIds: {wireIds.len}"
 
 echo "\nFilling in missing wireIds"
 fillMissingMapValues(wireMap, wireIds, pairSet)
-for wire in wireMap.keys:
-  echo &"[{wire}]: {wireMap[wire]}"
+# for wire in wireMap.keys:
+#   echo &"[{wire}]: {wireMap[wire]}"
 
 
-let groups = createGroups(wireMap, pairSet)
+let groups = createGroups(wireMap)
 echo &"\nNumber of groups: {groups.len}"
-for group in groups:
-  echo &"group: {group}"
+# for group in groups:
+#   echo &"group: {group}"
 
 
 

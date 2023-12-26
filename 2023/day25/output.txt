@@ -12,191 +12,42 @@ Number of unique wire pairs: 33
 Number of unique wireIds: 15
 
 Filling in missing wireIds
-[qnr]: {"frs", "nvd", "rzs", "cmg"}
-[ntq]: {"xhk", "jqt", "hfx", "bvb"}
-[nvd]: {"jqt", "pzl", "qnr", "lhk", "cmg"}
-[lhk]: {"lsr", "cmg", "nvd", "frs"}
-[rhn]: {"xhk", "jqt", "hfx", "bvb"}
-[hfx]: {"rhn", "xhk", "pzl", "ntq", "bvb"}
-[frs]: {"qnr", "rsh", "lhk", "lsr"}
-[rzs]: {"qnr", "cmg", "rsh", "lsr"}
-[lsr]: {"pzl", "frs", "rsh", "lhk", "rzs"}
-[xhk]: {"jqt", "ntq", "rhn", "hfx", "bvb"}
-[cmg]: {"qnr", "rzs", "nvd", "lhk", "bvb"}
-[jqt]: {"xhk", "nvd", "ntq", "rhn"}
-[pzl]: {"nvd", "rsh", "hfx", "lsr"}
-[rsh]: {"frs", "pzl", "rzs", "lsr"}
-[bvb]: {"xhk", "ntq", "rhn", "hfx", "cmg"}
+group: {"frs", "qnr", "nvd", "rzs", "cmg"}
+group: {"xhk", "ntq", "jqt", "hfx", "bvb"}
+group: {"qnr", "cmg", "jqt", "pzl", "nvd", "lhk"}
+group: {"lsr", "cmg", "nvd", "lhk", "frs"}
+group: {"xhk", "jqt", "rhn", "hfx", "bvb"}
+group: {"rhn", "hfx", "xhk", "pzl", "ntq", "bvb"}
+group: {"frs", "qnr", "rsh", "lhk", "lsr"}
+group: {"qnr", "rzs", "cmg", "rsh", "lsr"}
+group: {"frs", "rzs", "pzl", "rsh", "lhk", "lsr"}
+group: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+group: {"qnr", "rzs", "cmg", "nvd", "lhk", "bvb"}
+group: {"xhk", "jqt", "nvd", "ntq", "rhn"}
+group: {"pzl", "nvd", "rsh", "hfx", "lsr"}
+group: {"frs", "pzl", "rsh", "rzs", "lsr"}
+group: {"xhk", "ntq", "cmg", "rhn", "hfx", "bvb"}
+result: @[{"frs", "qnr", "nvd", "rzs", "cmg"}, {"xhk", "ntq", "jqt", "hfx", "bvb"}, {"qnr", "cmg", "jqt", "pzl", "nvd", "lhk"}, {"lsr", "cmg", "nvd", "lhk", "frs"}, {"xhk", "jqt", "rhn", "hfx", "bvb"}, {"rhn", "hfx", "xhk", "pzl", "ntq", "bvb"}, {"frs", "qnr", "rsh", "lhk", "lsr"}, {"qnr", "rzs", "cmg", "rsh", "lsr"}, {"frs", "rzs", "pzl", "rsh", "lhk", "lsr"}, {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}, {"qnr", "rzs", "cmg", "nvd", "lhk", "bvb"}, {"xhk", "jqt", "nvd", "ntq", "rhn"}, {"pzl", "nvd", "rsh", "hfx", "lsr"}, {"frs", "pzl", "rsh", "rzs", "lsr"}, {"xhk", "ntq", "cmg", "rhn", "hfx", "bvb"}]
 
-pair: rsh-rzs -> rsh, rzs
-group (0): {}
-result: @[{}]
-
-pair: cmg-qnr -> cmg, qnr
-group (0): {}
-result: @[{}, {}]
-
-pair: frs-qnr -> frs, qnr
-group (0): {}
-result: @[{}, {}, {}]
-
-pair: jqt-rhn -> jqt, rhn
-group (0): {}
-result: @[{}, {}, {}, {}]
-
-pair: pzl-rsh -> pzl, rsh
-group (0): {}
-result: @[{}, {}, {}, {}, {}]
-
-pair: qnr-rzs -> qnr, rzs
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}]
-
-pair: nvd-pzl -> nvd, pzl
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}]
-
-pair: nvd-qnr -> nvd, qnr
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: bvb-ntq -> bvb, ntq
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: jqt-xhk -> jqt, xhk
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: lsr-pzl -> lsr, pzl
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: hfx-pzl -> hfx, pzl
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: cmg-lhk -> cmg, lhk
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: bvb-rhn -> bvb, rhn
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: lsr-rzs -> lsr, rzs
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: cmg-rzs -> cmg, rzs
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: jqt-ntq -> jqt, ntq
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: cmg-nvd -> cmg, nvd
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: jqt-nvd -> jqt, nvd
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: hfx-ntq -> hfx, ntq
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: bvb-xhk -> bvb, xhk
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: frs-rsh -> frs, rsh
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: frs-lsr -> frs, lsr
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: lsr-rsh -> lsr, rsh
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: ntq-xhk -> ntq, xhk
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: lhk-lsr -> lhk, lsr
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: frs-lhk -> frs, lhk
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: hfx-xhk -> hfx, xhk
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: bvb-cmg -> bvb, cmg
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: hfx-rhn -> hfx, rhn
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: bvb-hfx -> bvb, hfx
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: lhk-nvd -> lhk, nvd
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-pair: rhn-xhk -> rhn, xhk
-group (0): {}
-result: @[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-
-Number of groups: 33
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
-group: {}
+Number of groups: 15
+group: {"frs", "qnr", "nvd", "rzs", "cmg"}
+group: {"xhk", "ntq", "jqt", "hfx", "bvb"}
+group: {"qnr", "cmg", "jqt", "pzl", "nvd", "lhk"}
+group: {"lsr", "cmg", "nvd", "lhk", "frs"}
+group: {"xhk", "jqt", "rhn", "hfx", "bvb"}
+group: {"rhn", "hfx", "xhk", "pzl", "ntq", "bvb"}
+group: {"frs", "qnr", "rsh", "lhk", "lsr"}
+group: {"qnr", "rzs", "cmg", "rsh", "lsr"}
+group: {"frs", "rzs", "pzl", "rsh", "lhk", "lsr"}
+group: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+group: {"qnr", "rzs", "cmg", "nvd", "lhk", "bvb"}
+group: {"xhk", "jqt", "nvd", "ntq", "rhn"}
+group: {"pzl", "nvd", "rsh", "hfx", "lsr"}
+group: {"frs", "pzl", "rsh", "rzs", "lsr"}
+group: {"xhk", "ntq", "cmg", "rhn", "hfx", "bvb"}
 
 --- Part Two ---
 
 
 ----------------
-Total Time taken: 0h 0m 0s (0.006395 seconds)
+Total Time taken: 0h 0m 0s (0.002487 seconds)
