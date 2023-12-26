@@ -8,124 +8,174 @@ Load from file: "test.txt"
 
 
 Number of unique wire pairs: 33
+pair: rsh-rzs
+pair: cmg-qnr
+pair: frs-qnr
+pair: jqt-rhn
+pair: pzl-rsh
+pair: qnr-rzs
+pair: nvd-pzl
+pair: nvd-qnr
+pair: bvb-ntq
+pair: jqt-xhk
+pair: lsr-pzl
+pair: hfx-pzl
+pair: cmg-lhk
+pair: bvb-rhn
+pair: lsr-rzs
+pair: cmg-rzs
+pair: jqt-ntq
+pair: cmg-nvd
+pair: jqt-nvd
+pair: hfx-ntq
+pair: bvb-xhk
+pair: frs-rsh
+pair: frs-lsr
+pair: lsr-rsh
+pair: ntq-xhk
+pair: lhk-lsr
+pair: frs-lhk
+pair: hfx-xhk
+pair: bvb-cmg
+pair: hfx-rhn
+pair: bvb-hfx
+pair: lhk-nvd
+pair: rhn-xhk
 
 Number of unique wireIds: 15
 
 Filling in missing wireIds
-group: {"frs", "qnr", "nvd", "rzs", "cmg"}
-group: {"xhk", "ntq", "jqt", "hfx", "bvb"}
-group: {"qnr", "cmg", "jqt", "pzl", "nvd", "lhk"}
-group: {"lsr", "cmg", "nvd", "lhk", "frs"}
-group: {"xhk", "jqt", "rhn", "hfx", "bvb"}
-group: {"rhn", "hfx", "xhk", "pzl", "ntq", "bvb"}
-group: {"frs", "qnr", "rsh", "lhk", "lsr"}
-group: {"qnr", "rzs", "cmg", "rsh", "lsr"}
-group: {"frs", "rzs", "pzl", "rsh", "lhk", "lsr"}
-group: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
-group: {"qnr", "rzs", "cmg", "nvd", "lhk", "bvb"}
-group: {"xhk", "jqt", "nvd", "ntq", "rhn"}
-group: {"pzl", "nvd", "rsh", "hfx", "lsr"}
-group: {"frs", "pzl", "rsh", "rzs", "lsr"}
-group: {"xhk", "ntq", "cmg", "rhn", "hfx", "bvb"}
-result: @[{"frs", "qnr", "nvd", "rzs", "cmg"}, {"xhk", "ntq", "jqt", "hfx", "bvb"}, {"qnr", "cmg", "jqt", "pzl", "nvd", "lhk"}, {"lsr", "cmg", "nvd", "lhk", "frs"}, {"xhk", "jqt", "rhn", "hfx", "bvb"}, {"rhn", "hfx", "xhk", "pzl", "ntq", "bvb"}, {"frs", "qnr", "rsh", "lhk", "lsr"}, {"qnr", "rzs", "cmg", "rsh", "lsr"}, {"frs", "rzs", "pzl", "rsh", "lhk", "lsr"}, {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}, {"qnr", "rzs", "cmg", "nvd", "lhk", "bvb"}, {"xhk", "jqt", "nvd", "ntq", "rhn"}, {"pzl", "nvd", "rsh", "hfx", "lsr"}, {"frs", "pzl", "rsh", "rzs", "lsr"}, {"xhk", "ntq", "cmg", "rhn", "hfx", "bvb"}]
+[qnr]: {"frs", "nvd", "rzs", "cmg"}
+[ntq]: {"xhk", "jqt", "hfx", "bvb"}
+[nvd]: {"jqt", "pzl", "qnr", "lhk", "cmg"}
+[lhk]: {"lsr", "cmg", "nvd", "frs"}
+[rhn]: {"xhk", "jqt", "hfx", "bvb"}
+[hfx]: {"rhn", "xhk", "pzl", "ntq", "bvb"}
+[frs]: {"qnr", "rsh", "lhk", "lsr"}
+[rzs]: {"qnr", "cmg", "rsh", "lsr"}
+[lsr]: {"pzl", "frs", "rsh", "lhk", "rzs"}
+[xhk]: {"jqt", "ntq", "rhn", "hfx", "bvb"}
+[cmg]: {"qnr", "rzs", "nvd", "lhk", "bvb"}
+[jqt]: {"xhk", "nvd", "ntq", "rhn"}
+[pzl]: {"nvd", "rsh", "hfx", "lsr"}
+[rsh]: {"frs", "pzl", "rzs", "lsr"}
+[bvb]: {"xhk", "ntq", "rhn", "hfx", "cmg"}
+
+Snipping Connections
+wireMap[qnr]: {"frs", "nvd", "rzs", "cmg"}
+wireMap[ntq]: {"xhk", "jqt", "hfx", "bvb"}
+wireMap[nvd]: {"pzl", "qnr", "lhk", "cmg"}
+wireMap[lhk]: {"lsr", "cmg", "nvd", "frs"}
+wireMap[rhn]: {"xhk", "jqt", "hfx", "bvb"}
+wireMap[hfx]: {"rhn", "xhk", "ntq", "bvb"}
+wireMap[frs]: {"qnr", "rsh", "lhk", "lsr"}
+wireMap[rzs]: {"qnr", "cmg", "rsh", "lsr"}
+wireMap[lsr]: {"pzl", "frs", "rsh", "lhk", "rzs"}
+wireMap[xhk]: {"jqt", "ntq", "rhn", "hfx", "bvb"}
+wireMap[cmg]: {"qnr", "rzs", "nvd", "lhk"}
+wireMap[jqt]: {"xhk", "ntq", "rhn"}
+wireMap[pzl]: {"nvd", "rsh", "lsr"}
+wireMap[rsh]: {"frs", "pzl", "rzs", "lsr"}
+wireMap[bvb]: {"xhk", "ntq", "rhn", "hfx"}
+result: @[{"frs", "qnr", "nvd", "rzs", "cmg"}, {"xhk", "ntq", "jqt", "hfx", "bvb"}, {"pzl", "qnr", "nvd", "lhk", "cmg"}, {"lsr", "cmg", "nvd", "lhk", "frs"}, {"xhk", "jqt", "rhn", "hfx", "bvb"}, {"rhn", "hfx", "xhk", "ntq", "bvb"}, {"frs", "qnr", "rsh", "lhk", "lsr"}, {"qnr", "rzs", "cmg", "rsh", "lsr"}, {"frs", "rzs", "pzl", "rsh", "lhk", "lsr"}, {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}, {"qnr", "rzs", "cmg", "nvd", "lhk"}, {"xhk", "jqt", "ntq", "rhn"}, {"pzl", "nvd", "rsh", "lsr"}, {"frs", "pzl", "rsh", "rzs", "lsr"}, {"xhk", "ntq", "rhn", "hfx", "bvb"}]
 
 merging groups:
-a: {"xhk", "ntq", "cmg", "rhn", "hfx", "bvb"}
+a: {"xhk", "ntq", "rhn", "hfx", "bvb"}
 b: {"frs", "pzl", "rsh", "rzs", "lsr"}
-c: {"pzl", "nvd", "rsh", "hfx", "lsr"}
-can merge a, c into: {"xhk", "lsr", "ntq", "cmg", "pzl", "nvd", "rsh", "rhn", "hfx", "bvb"}
+c: {"pzl", "nvd", "rsh", "lsr"}
+can merge b, c into: {"frs", "rzs", "pzl", "rsh", "nvd", "lsr"}
 LIMIT: 19
 
 merging groups:
-a: {"frs", "pzl", "rsh", "rzs", "lsr"}
-b: {"xhk", "lsr", "ntq", "cmg", "pzl", "nvd", "rsh", "rhn", "hfx", "bvb"}
-c: {"xhk", "jqt", "nvd", "ntq", "rhn"}
-can merge b, c into: {"xhk", "lsr", "ntq", "cmg", "pzl", "jqt", "nvd", "rsh", "rhn", "hfx", "bvb"}
+a: {"xhk", "ntq", "rhn", "hfx", "bvb"}
+b: {"frs", "rzs", "pzl", "rsh", "nvd", "lsr"}
+c: {"xhk", "jqt", "ntq", "rhn"}
+can merge a, c into: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 LIMIT: 18
 
 merging groups:
-a: {"frs", "pzl", "rsh", "rzs", "lsr"}
-b: {"xhk", "lsr", "ntq", "cmg", "pzl", "jqt", "nvd", "rsh", "rhn", "hfx", "bvb"}
-c: {"qnr", "rzs", "cmg", "nvd", "lhk", "bvb"}
-can merge a, c into: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+a: {"frs", "rzs", "pzl", "rsh", "nvd", "lsr"}
+b: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+c: {"qnr", "rzs", "cmg", "nvd", "lhk"}
+can merge a, c into: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 LIMIT: 17
 
 merging groups:
-a: {"xhk", "lsr", "ntq", "cmg", "pzl", "jqt", "nvd", "rsh", "rhn", "hfx", "bvb"}
-b: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+a: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+b: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 c: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
-can merge a, c into: {"xhk", "lsr", "ntq", "cmg", "pzl", "jqt", "nvd", "rsh", "rhn", "hfx", "bvb"}
+can merge a, c into: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 LIMIT: 16
 
 merging groups:
-a: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
-b: {"xhk", "lsr", "ntq", "cmg", "pzl", "jqt", "nvd", "rsh", "rhn", "hfx", "bvb"}
+a: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+b: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 c: {"frs", "rzs", "pzl", "rsh", "lhk", "lsr"}
-can merge a, c into: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+can merge a, c into: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 LIMIT: 15
 
 merging groups:
-a: {"xhk", "lsr", "ntq", "cmg", "pzl", "jqt", "nvd", "rsh", "rhn", "hfx", "bvb"}
-b: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+a: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+b: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 c: {"qnr", "rzs", "cmg", "rsh", "lsr"}
-can merge a, c into: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "rhn", "hfx", "rzs", "rsh", "lsr"}
+can merge b, c into: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 LIMIT: 14
 
 merging groups:
-a: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
-b: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "rhn", "hfx", "rzs", "rsh", "lsr"}
+a: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+b: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 c: {"frs", "qnr", "rsh", "lhk", "lsr"}
-can merge a, c into: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+can merge b, c into: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 LIMIT: 13
 
 merging groups:
-a: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "rhn", "hfx", "rzs", "rsh", "lsr"}
-b: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
-c: {"rhn", "hfx", "xhk", "pzl", "ntq", "bvb"}
-can merge a, c into: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "rhn", "hfx", "rzs", "rsh", "lsr"}
+a: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+b: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+c: {"rhn", "hfx", "xhk", "ntq", "bvb"}
+can merge a, c into: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 LIMIT: 12
 
 merging groups:
-a: {"frs", "qnr", "bvb", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
-b: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "rhn", "hfx", "rzs", "rsh", "lsr"}
+a: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+b: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 c: {"xhk", "jqt", "rhn", "hfx", "bvb"}
-can merge a, c into: {"xhk", "qnr", "lsr", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "bvb"}
+can merge b, c into: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 LIMIT: 11
 
 merging groups:
-a: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "rhn", "hfx", "rzs", "rsh", "lsr"}
-b: {"xhk", "qnr", "lsr", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "bvb"}
+a: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+b: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 c: {"lsr", "cmg", "nvd", "lhk", "frs"}
-can merge a, c into: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "lsr"}
+can merge a, c into: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 LIMIT: 10
 
 merging groups:
-a: {"xhk", "qnr", "lsr", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "bvb"}
-b: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "lsr"}
-c: {"qnr", "cmg", "jqt", "pzl", "nvd", "lhk"}
-can merge a, c into: {"xhk", "qnr", "lsr", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "bvb"}
+a: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+b: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+c: {"pzl", "qnr", "nvd", "lhk", "cmg"}
+can merge b, c into: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 LIMIT: 9
 
 merging groups:
-a: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "lsr"}
-b: {"xhk", "qnr", "lsr", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "bvb"}
+a: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
+b: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 c: {"xhk", "ntq", "jqt", "hfx", "bvb"}
-can merge a, c into: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "lsr"}
+can merge a, c into: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 LIMIT: 8
 
 merging groups:
-a: {"xhk", "qnr", "lsr", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "bvb"}
-b: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "lsr"}
+a: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+b: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 c: {"frs", "qnr", "nvd", "rzs", "cmg"}
-can merge a, c into: {"xhk", "qnr", "lsr", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "bvb"}
+can merge a, c into: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
 LIMIT: 7
 
 Number of groups: 2
-group 0: 14 wires: {"xhk", "qnr", "lsr", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "bvb"}
-group 1: 15 wires: {"xhk", "bvb", "qnr", "ntq", "cmg", "pzl", "jqt", "nvd", "lhk", "rhn", "hfx", "frs", "rzs", "rsh", "lsr"}
+group 0: 9 wires: {"frs", "qnr", "rzs", "cmg", "pzl", "rsh", "nvd", "lhk", "lsr"}
+group 1: 6 wires: {"xhk", "ntq", "jqt", "rhn", "hfx", "bvb"}
 
 --- Part Two ---
 
 
 ----------------
-Total Time taken: 0h 0m 0s (0.002665 seconds)
+Total Time taken: 0h 0m 0s (0.00218 seconds)

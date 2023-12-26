@@ -71,6 +71,13 @@ proc fillMissingMapValues(table: WireIdToSet, wireIds: HashSet[WireId], wirePair
         table[wireA] = wireSet
 
 
+proc disconnect(table: WireIdToSet, a, b: WireId) =
+  var aSet = table[a]
+  var bSet = table[b]
+  aSet.excl(b)
+  bSet.excl(a)
+  table[a] = aSet
+  table[b] = bSet
 
 proc canMerge(a, b: WireIdsUnique): bool =
   ## Can the two groups be merged?
@@ -92,7 +99,7 @@ proc createGroups(table: WireIdToSet): WireGroupsConnected =
     group.incl(key)
     for val in vals:
       group.incl(val)
-    echo &"group: {group}"
+    # echo &"group: {group}"
     result.add(group)
 
   echo &"result: {result}"
@@ -141,8 +148,8 @@ loadWirePairsFromFile(wireMap, rawTextLines)
 var pairSet: WirePairSet = initHashSet[WirePairHash]()
 loadUniqueWirePairs(pairSet, wireMap)
 echo &"\nNumber of unique wire pairs: {pairSet.len}"
-# for pair in pairSet:
-#   echo &"pair: {pair}"
+for pair in pairSet:
+  echo &"pair: {pair}"
 
 var wireIds: HashSet[WireId] = initHashSet[WireId]()
 loadWireIds(wireIds, wireMap)
@@ -152,8 +159,17 @@ echo &"\nNumber of unique wireIds: {wireIds.len}"
 
 echo "\nFilling in missing wireIds"
 fillMissingMapValues(wireMap, wireIds, pairSet)
-# for wire in wireMap.keys:
-#   echo &"[{wire}]: {wireMap[wire]}"
+for wire in wireMap.keys:
+  echo &"[{wire}]: {wireMap[wire]}"
+
+
+echo "\nSnipping Connections"
+wireMap.disconnect("hfx", "pzl")
+wireMap.disconnect("bvb", "cmg")
+wireMap.disconnect("nvd", "jqt")
+for wire in wireMap.keys:
+  echo &"wireMap[{wire}]: {wireMap[wire]}"
+
 
 
 let groups = createGroups(wireMap)
