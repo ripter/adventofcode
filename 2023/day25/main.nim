@@ -71,11 +71,6 @@ proc fillMissingMapValues(table: WireIdToSet, wireIds: HashSet[WireId], wirePair
         table[wireA] = wireSet
 
 
-proc findEither(groups: WireGroupsConnected, wireA: WireId, wireB: WireId): WireIdsUnique =
-  ## Find the group that contains either wireA or wireB
-  for group in groups:
-    if wireA in group or wireB in group:
-      return group
 
 proc canMerge(a, b: WireIdsUnique): bool =
   ## Can the two groups be merged?
@@ -95,6 +90,8 @@ proc createGroups(table: WireIdToSet): WireGroupsConnected =
     # the key is wired to all the values.
     var group: WireIdsUnique = vals
     group.incl(key)
+    for val in vals:
+      group.incl(val)
     echo &"group: {group}"
     result.add(group)
 
