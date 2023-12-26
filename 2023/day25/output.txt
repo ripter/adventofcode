@@ -2,13 +2,60 @@ Advent Of Code 2023 - Day 25 - MERRY CHRISTMAS
 
 --- Loading Data File ---
 
-Load from file: "input.txt"
+Load from file: "test.txt"
 
 --- Part One ---
 
+wireMap[qnr]: @["nvd"]
+wireMap[ntq]: @["jqt", "hfx", "bvb", "xhk"]
+wireMap[nvd]: @["lhk"]
+wireMap[rhn]: @["xhk", "bvb", "hfx"]
+wireMap[frs]: @["qnr", "lhk", "lsr"]
+wireMap[rzs]: @["qnr", "cmg", "lsr", "rsh"]
+wireMap[lsr]: @["lhk"]
+wireMap[xhk]: @["hfx"]
+wireMap[cmg]: @["qnr", "nvd", "lhk", "bvb"]
+wireMap[jqt]: @["rhn", "xhk", "nvd"]
+wireMap[pzl]: @["lsr", "hfx", "nvd"]
+wireMap[rsh]: @["frs", "pzl", "lsr"]
+wireMap[bvb]: @["xhk", "hfx"]
+Number of unique wire pairs: 33
+pair: rsh-rzs
+pair: cmg-qnr
+pair: frs-qnr
+pair: jqt-rhn
+pair: pzl-rsh
+pair: qnr-rzs
+pair: nvd-pzl
+pair: nvd-qnr
+pair: bvb-ntq
+pair: jqt-xhk
+pair: lsr-pzl
+pair: hfx-pzl
+pair: cmg-lhk
+pair: bvb-rhn
+pair: lsr-rzs
+pair: cmg-rzs
+pair: jqt-ntq
+pair: cmg-nvd
+pair: jqt-nvd
+pair: hfx-ntq
+pair: bvb-xhk
+pair: frs-rsh
+pair: frs-lsr
+pair: lsr-rsh
+pair: ntq-xhk
+pair: lhk-lsr
+pair: frs-lhk
+pair: hfx-xhk
+pair: bvb-cmg
+pair: hfx-rhn
+pair: bvb-hfx
+pair: lhk-nvd
+pair: rhn-xhk
 
 --- Part One ---
 
 
 ----------------
-Total Time taken: 0h 0m 0s (0.001815 seconds)
+Total Time taken: 0h 0m 0s (0.0008890000000000009 seconds)
