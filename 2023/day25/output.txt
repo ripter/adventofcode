@@ -19,6 +19,7 @@ wireMap[jqt]: @["rhn", "xhk", "nvd"]
 wireMap[pzl]: @["lsr", "hfx", "nvd"]
 wireMap[rsh]: @["frs", "pzl", "lsr"]
 wireMap[bvb]: @["xhk", "hfx"]
+
 Number of unique wire pairs: 33
 pair: rsh-rzs
 pair: cmg-qnr
@@ -54,8 +55,25 @@ pair: bvb-hfx
 pair: lhk-nvd
 pair: rhn-xhk
 
+Number of unique wireIds: 15
+wireId: rhn
+wireId: hfx
+wireId: lsr
+wireId: xhk
+wireId: cmg
+wireId: jqt
+wireId: pzl
+wireId: qnr
+wireId: ntq
+wireId: nvd
+wireId: lhk
+wireId: frs
+wireId: rzs
+wireId: rsh
+wireId: bvb
+
 --- Part One ---
 
 
 ----------------
-Total Time taken: 0h 0m 0s (0.0008890000000000009 seconds)
+Total Time taken: 0h 0m 0s (0.001045000000000001 seconds)

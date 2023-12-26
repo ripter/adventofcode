@@ -44,17 +44,13 @@ proc loadUniqueWirePairs(wirePairSet: var WirePairSet, table: WireMap) =
   for key, vals in table:
     for val in vals:
       wirePairSet.incl(getKey((key, val)))
-  # var wirePairIds: seq[string] = @[]
-  # var wireSet = initHashSet[string]()
-  # for line in lines:
-  #   let linePair = line.split(":")
-  #   let lineValues = linePair[1].split(" ")
-  #   for val in lineValues:
-  #     wireSet.incl(getKey(linePair[0], val))
-      # wirePairIds.add(linePair[0] & val)
 
-  # return wireSet
 
+proc loadWireIds(wireIds: var HashSet[WireID], table: WireMap) =
+  for key, vals in table:
+    wireIds.incl(key)
+    for val in vals:
+      wireIds.incl(val)
 
 
 let appStartTime = cpuTime()
@@ -66,18 +62,20 @@ let rawTextLines: seq[string] = readFileLines(filePath)
 echo "\n--- Part One ---\n"
 var wireMap: WireMap = newTable[WireID, seq[WireID]]()
 loadWirePairsFromFile(wireMap, rawTextLines)
-# echo &"wireMap: {wireMap}"
 for wire in wireMap.keys:
   echo &"wireMap[{wire}]: {wireMap[wire]}"
 
 var pairSet: WirePairSet = initHashSet[WirePairHash]()
 loadUniqueWirePairs(pairSet, wireMap)
-echo &"Number of unique wire pairs: {pairSet.len}"
-# echo &"pairSet: {pairSet}"
+echo &"\nNumber of unique wire pairs: {pairSet.len}"
 for pair in pairSet:
   echo &"pair: {pair}"
 
-
+var wireIds: HashSet[WireID] = initHashSet[WireID]()
+loadWireIds(wireIds, wireMap)
+echo &"\nNumber of unique wireIds: {wireIds.len}"
+for wireId in wireIds:
+  echo &"wireId: {wireId}"
 
 echo "\n--- Part One ---\n"
 
