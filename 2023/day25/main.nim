@@ -77,6 +77,15 @@ proc findEither(groups: WireGroupsConnected, wireA: WireId, wireB: WireId): Wire
     if wireA in group or wireB in group:
       return group
 
+proc canMerge(a, b: WireIdsUnique): bool =
+  ## Can the two groups be merged?
+  ## If any wireId in a is in b, then they can be merged.
+  for wireId in a:
+    if wireId in b:
+      return true
+
+  return false
+
 
 proc createGroups(table: WireIdToSet): WireGroupsConnected =
   ## Each key, value pair in the table is connected with wires.
@@ -89,8 +98,32 @@ proc createGroups(table: WireIdToSet): WireGroupsConnected =
     echo &"group: {group}"
     result.add(group)
 
-  
   echo &"result: {result}"
+  var LIMIT = 20
+  while len(result) > 2 and LIMIT > 0:
+    let a: WireIdsUnique = result.pop()
+    let b: WireIdsUnique = result.pop()
+    let c: WireIdsUnique = result.pop()
+
+    echo "\nmerging groups:"
+    echo &"a: {a}"
+    echo &"b: {b}"
+    echo &"c: {c}"
+
+    if canMerge(c, a):
+      let group = a + c
+      echo &"can merge a, c into: {group}"
+      result.add(group)
+      result.add(b)
+    elif canMerge(c, b):
+      let group = b + c
+      echo &"can merge b, c into: {group}"
+      result.add(group)
+      result.add(a)
+
+
+    dec(LIMIT)
+    echo &"LIMIT: {LIMIT}"
   
 
 
@@ -128,8 +161,8 @@ fillMissingMapValues(wireMap, wireIds, pairSet)
 
 let groups = createGroups(wireMap)
 echo &"\nNumber of groups: {groups.len}"
-# for group in groups:
-#   echo &"group: {group}"
+for idx, group in groups.pairs:
+  echo &"group {idx}: {group.len} wires: {group}"
 
 
 
