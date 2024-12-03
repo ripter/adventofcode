@@ -3,6 +3,12 @@ Load the code with `gForth main.4th`
 Run the example:  `run-example`
 Run the input: `run-input`
 
+or if you want a single command:
+
+```sh
+gforth main.4th -e "run-input cr .\" Result: \" . bye"
+```
+
 
 --- Day 1: Historian Hysteria ---
 
