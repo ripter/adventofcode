@@ -151,7 +151,6 @@ variable list2
   dup list1 bubble-sort-list
   dup list2 bubble-sort-list
 
-
   0 \ sum
   swap 0 do \ get the diff of from each number
     i list1> i list2> - abs + \ add the diff to the sum
