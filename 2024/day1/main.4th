@@ -72,9 +72,6 @@ variable list2
 : allocate-lists ( u -- )
   dup cells allocate throw list1 !
   cells allocate throw list2 !
-  cr ." Allocating memory for the lists" cr
-  list1 @ . ." list1 address after allocation" cr
-  list2 @ . ." list2 address after allocation" cr
 ;
 
 : free-lists ( -- )
@@ -123,8 +120,27 @@ variable list2
 ;
 
 
+: count-in-list ( target count var -- count )
+  { target count var }
+  0 \ sum
+  count 0 do
+    i var get-list target = if
+      1+ \ increment the sum
+    then
+  loop
+;
+
+: print-list ( count var -- )
+  { count var }
+  count 0 do
+    i var get-list .
+  loop
+;
+
+
 \ Entry point for the program
 \ Use one of the run-* words to run the example or input data
+( -- )
 : main
   \ Print a friendly message letting us know which data we're running
   cr cr ." Loading data from ./" file-name 2@ type cr
@@ -135,9 +151,26 @@ variable list2
   dup list1 bubble-sort-list
   dup list2 bubble-sort-list
 
+
   0 \ sum
   swap 0 do \ get the diff of from each number
     i list1> i list2> - abs + \ add the diff to the sum
+  loop
+;
+
+\ Entry point for the bonus problem
+\ assumes main has already run and setup the lists
+( -- )
+: bonus
+  \ get the number of lines in the file
+  file-name 2@ #lines-in-file ( len )
+  { len }
+  0 \ total
+  len 0 do
+    i list1> \ get the target number
+    len list2 count-in-list \ get the count of the target number in the list
+    i list1> * \ multiply the target number by the count
+    + \ add the product to the total
   loop
 ;
 
