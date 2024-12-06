@@ -3,7 +3,7 @@ create buf MAX-LEN 2 + allot
 
 variable #reports
 variable report-direction
-
+variable #valid-reports
 
 : trim-start ( c-addr1 u1 -- c-addr2 u2 )
   begin
@@ -79,26 +79,32 @@ variable report-direction
 : main
   \ Print a friendly message letting us know which data we're running
   2dup cr cr ." Loading data from ./" type cr
+  \ Reset the valid reports counter
+  0 #valid-reports !
   \ Open the file for reading and get the file-id
   r/o open-file throw
   { file-id }
-
+  \ Loop over each line in the file.
   begin
     \ Read the next line from the file setup the stack to use the line
     buf MAX-LEN file-id read-line throw   \ u2 flag
     buf rot                              \ flag c-addr u2
-
-    \ Convert the string into a series of numbers
-    s>reports
-    is-valid-report? if
-      ." Valid Report" cr
+    \ Check if the string is not empty
+    dup 0<> if 
+      \ Convert the string into a series of reports
+      s>reports
+      is-valid-report? if
+        1 #valid-reports +!
+      then
     else
-      ." Invalid Report" cr
+      2drop
     then
-    .s cr
-
-    \ drop 0 \ debugging end early
   0= until
+
+  \ Close the file
+  file-id close-file throw
+  \ Return the number of valid reports
+  #valid-reports @
 ;
 
 \ Runs the Exmaple Data
