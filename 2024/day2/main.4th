@@ -21,7 +21,7 @@ variable tolerated-range
 
 \ Convert the string of reports into a series of numbers 
 \ Resets the #reports variable
-: s>reports ( c-ddr u -- n1 n2 n3 ... u2 )
+: s>reports ( c-ddr u -- n1 n2 n3 ... )
   2dup ." s>reports " type 
   0 #reports !
   \ the number conversion word requires double 0 0 before the address.
@@ -51,8 +51,8 @@ variable tolerated-range
   then
 ;
 
-: is-safe-change? ( n1 n2 -- flag )
-  - 
+: is-safe-change? ( n1 n2 -- n1 n2 flag )
+  2dup - 
   \ safe if between 1 and 3 inclusive
   dup abs 0 > swap  \ safe if greater than 0 
   abs 4 < swap      \ safe if less than 4
@@ -67,18 +67,14 @@ variable tolerated-range
   0  \ badScore
   begin   \ ( n1 n2 badScore )
     -rot  \ move the flag back ( badScore n1 n2 )
-    \ 2dup ." #reports #: " #reports @ . ." val1: " . ." val2: " .  cr
-
     \ Check that the reports are moving in the same direction  
     2dup get-direction report-direction @ invert = if
-      \ ." diff direction " .s cr
       \ ding 100 points for bad direction
       rot 100 + -rot 
     then
 
     \ Check if the level change is safe
-    2dup is-safe-change? invert if
-      \ ." not-safe range " .s cr
+    is-safe-change? invert if
       \ ding 1 point for bad level change
       rot 1 + -rot 
     then
@@ -88,19 +84,55 @@ variable tolerated-range
     \ We processed the report, decrement the number of reports left to process
     -1 #reports +! 
   #reports @ 1 = until
-
   \ drop the last report and leave the badScore
   swap drop
 ;
 
-( n1 n2 n3 ... -- flag )
-: is-valid-bonus-report?
-  2dup - report-direction !
-  #reports @ 1- 0 do
-
-  loop
+: drop-next-report ( n1 b1 n2 n3 -- true n1 n3 )
+  swap drop swap drop
+  true -rot
+;
+: drop-or-fail ( ... n1 didDropReport n2 n3 -- ... true n1 n3 | true 0 0 )
+  did-drop-report if
+    report-failed
+  else
+    drop-next-report ( ... true n1 n3 )
+  then
+;
+: save-report-direction ( n1 n2 -- )
+  get-direction report-direction ! 
+;
+: is-bad-direction? ( n1 n2 -- n1 n2 flag )
+  2dup get-direction report-direction @ invert =
 ;
 
+\ Bonus Problem allows removing one value if it makes the rest valid.
+( n1 n2 n3 ... -- isValid )
+: is-valid-bonus-report?
+  2dup save-report-direction
+  false   \ ( ... n1 n2 n3 false )
+  begin  
+    -rot  \ ( ... n1 didDropReport n2 n3  ) 
+
+    is-bad-direction? if
+      drop-or-fail ( ... true n1 n3 | true 0 0 )
+    then
+
+    is-safe-change? invert if
+      drop-or-fail ( ... true n1 n3 | true 0 0 )
+    then
+
+    drop swap \ ( ... n4 n5 didDropReport )
+    \ we processed the value, decrement the number of reports left to process
+    -1 #reports +! 
+  #reports @ 1 = until
+;
+
+: test
+  5 #reports !
+  8 6 4 4 1
+  is-valid-bonus-report?
+;
 
 \ Print a friendly message letting us know which data we're running
 : .title ( c-addr u -- )
@@ -149,31 +181,42 @@ variable tolerated-range
 ;
 
 
+
 \ Day 2 Bonus Problem
 \ Returns the number of safe reports in the file.
 ( c-addr u -- n )
 : bonus 
-  \ 2dup .title
-  \ 0 #valid-reports !
-  \ r/o open-file throw
-  \ { file-id }
-  \ begin
-  \   \ Read the next line from the file setup the stack to use the line
-  \   file-id line>buf \ flag c-addr u2
-  \   \ make sure the string is not empty
-  \   dup 0<> if 
-  \     \ Convert the string into a series of reports
-  \     s>reports
-  \     is-valid-bonus-report? if
-  \       1 #valid-reports +!
-  \     then
-  \   then
+  \ Reset the valid reports counter
+  0 #valid-reports !
+  \ Open the file for reading and get the file-id
+  r/o open-file throw
+  { file-id }
+  \ Loop over each line in the file.
+  begin
+    \ Read the next line from the file setup the stack to use the line
+    file-id line>buf \ flag c-addr u2
+    \ Check if the string is not empty
+    dup 0<> if 
+      \ Convert the string into a series of reports
+      s>reports 
+      is-valid-bonus-report?  \ 
+      \ bad-score-report ( flag c-addr u2 -- flag badScore )
+      \ dup ."  badScore: " . 
+      \ tolerated-range @ <= if
+      \   ."  safe" cr
+      \   1 #valid-reports +!
+      \ else
+      \   ."  unsafe" cr
+      \ then
+    else
+      2drop \ string was empty, so drop it leaving the flag.
+    then
+  0= until
 
-  \   drop 0 \ DEBUG: drop the flag;
-  \ 0= until
-  \ \ Close the file and return the number of valid reports
-  \ file-id close-file throw
-  \ #valid-reports @
+  \ Close the file
+  file-id close-file throw
+  \ Return the number of valid reports
+  #valid-reports @
 ;
 
 
@@ -184,7 +227,7 @@ variable tolerated-range
 ;
 : run-example-bonus
   1 tolerated-range !
-  s" example.txt" main
+  s" example.txt" bonus
 ;
 
 \ Runs the Input Data
@@ -194,5 +237,5 @@ variable tolerated-range
 ;
 : run-input-bonus
   1 tolerated-range !
-  s" input.txt" main
+  s" input.txt" bonus
 ;
