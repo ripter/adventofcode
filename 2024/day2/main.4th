@@ -35,6 +35,11 @@ variable tolerated-range
 ;
 
 
+: mark-as-processed
+  -1 #reports +! 
+  #reports @ 1 = 
+;
+
 : get-direction ( n1 n2 -- flag )
   - 0 > if
     true
@@ -88,9 +93,22 @@ variable tolerated-range
   swap drop
 ;
 
+: report-failed ( -- )
+  ."  failed " .s cr
+;
+
 : drop-next-report ( n1 b1 n2 n3 -- true n1 n3 )
-  swap drop swap drop
-  true -rot
+  dup ."  dropping " . .s cr
+  rot drop true -rot
+  \ swap drop swap drop \ ( n1 n3 )
+  \ true -rot \ ( true n1 n3 )
+  \ mark-as-processed drop \ drop the returned flag
+  \ 99
+  dup ."  post dropping " . .s cr
+
+;
+: did-drop-report ( flag1 n1 n1 -- flag n1 n3 flag1 )
+  2 pick
 ;
 : drop-or-fail ( ... n1 didDropReport n2 n3 -- ... true n1 n3 | true 0 0 )
   did-drop-report if
@@ -106,31 +124,41 @@ variable tolerated-range
   2dup get-direction report-direction @ invert =
 ;
 
+: report-finished ( n1 didDropReport n2 n3 -- didDropReport n1 n2 )
+  drop swap -rot 
+;
+
 \ Bonus Problem allows removing one value if it makes the rest valid.
 ( n1 n2 n3 ... -- isValid )
 : is-valid-bonus-report?
   2dup save-report-direction
   false   \ ( ... n1 n2 n3 false )
+  -rot  \ ( ... n1 didDropReport n2 n3  ) 
   begin  
-    -rot  \ ( ... n1 didDropReport n2 n3  ) 
-
+    2dup ." Checking " . ."  " . cr
     is-bad-direction? if
+      ."  bad direction " .s cr
       drop-or-fail ( ... true n1 n3 | true 0 0 )
+    else
+      is-safe-change? invert if
+        ."  bad level change " .s cr
+        drop-or-fail ( ... true n1 n3 | true 0 0 )
+      then
     then
 
-    is-safe-change? invert if
-      drop-or-fail ( ... true n1 n3 | true 0 0 )
-    then
-
-    drop swap \ ( ... n4 n5 didDropReport )
-    \ we processed the value, decrement the number of reports left to process
-    -1 #reports +! 
-  #reports @ 1 = until
+    report-finished
+    ." post finish " .s cr
+  mark-as-processed until
+  ." end of is-valid-bonus-report " .s cr
 ;
+
+
+
 
 : test
   5 #reports !
   8 6 4 4 1
+  cr ." Checking Reports: " .s cr
   is-valid-bonus-report?
 ;
 
