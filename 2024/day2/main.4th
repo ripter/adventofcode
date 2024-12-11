@@ -5,6 +5,7 @@ variable #reports
 variable report-direction
 variable #valid-reports
 variable tolerated-range
+variable drop-count
 
 : trim-start ( c-addr1 u1 -- c-addr2 u2 )
   begin
@@ -131,35 +132,84 @@ variable tolerated-range
 \ Bonus Problem allows removing one value if it makes the rest valid.
 ( n1 n2 n3 ... -- isValid )
 : is-valid-bonus-report?
-  2dup save-report-direction
-  false   \ ( ... n1 n2 n3 false )
-  -rot  \ ( ... n1 didDropReport n2 n3  ) 
+  0 drop-count ! \  defauled to false
+  2dup save-report-direction \ save the direction of the report
   begin  
-    2dup ." Checking " . ."  " . cr
+    \ 2dup swap cr ." Checking " . ."  " . cr
     is-bad-direction? if
-      ."  bad direction " .s cr
-      drop-or-fail ( ... true n1 n3 | true 0 0 )
+      \ ."  bad direction " .s cr
+      1 drop-count +! \ increment the drop count
+      drop-count @ 1 = if
+        \ ." dropping so we can try again " cr
+        \ swap dup swap \ keep dummy value so we can drop it
+        swap
+        \ ." Post reorder for drop " .s cr
+      then
     else
       is-safe-change? invert if
-        ."  bad level change " .s cr
-        drop-or-fail ( ... true n1 n3 | true 0 0 )
+        \ ."  bad level change " .s cr
+        1 drop-count +! \ increment the drop count
+        drop-count @ 1 = if
+          \ ." dropping so we can try again " cr
+          \ ." PRE " .s cr
+          \ swap dup swap \ keep dummy value so we can drop it
+          swap
+          \ ." POST " .s cr
+        then
       then
     then
 
-    report-finished
-    ." post finish " .s cr
+    drop \ finished with the report
+    \ ." post finish " .s cr
   mark-as-processed until
-  ." end of is-valid-bonus-report " .s cr
+
+  drop \ drop the last report
+  drop-count @ 1 > if
+    \ ."  FAILED " .s cr
+    false
+  else
+    \ ."  PASSED " .s cr
+    true
+  then
+  \ ." end of is-valid-bonus-report " .s cr
 ;
 
 
 
 
+
+: verify-it
+  depth #reports !
+  ." Testing " .s cr
+  is-valid-bonus-report? if
+    ."  PASSED " .s cr
+  else
+    ."  FAILED " .s cr
+  then
+;
+
 : test
+  56 59 60 61 62 65 69 
+  verify-it
+;
+
+: test-safe
   5 #reports !
-  8 6 4 4 1
-  cr ." Checking Reports: " .s cr
-  is-valid-bonus-report?
+  7 6 4 2 1 is-valid-bonus-report?
+  5 #reports !
+  1 3 2 4 5 is-valid-bonus-report?
+  5 #reports !
+  8 6 4 4 1 is-valid-bonus-report?
+  5 #reports !
+  1 3 6 7 9 is-valid-bonus-report?
+  cr ." Done " .s cr
+;
+
+: test-unsafe
+  5 #reports !
+  1 2 7 8 9 is-valid-bonus-report?
+  5 #reports !
+  9 7 6 2 1 is-valid-bonus-report?
 ;
 
 \ Print a friendly message letting us know which data we're running
@@ -227,15 +277,12 @@ variable tolerated-range
     dup 0<> if 
       \ Convert the string into a series of reports
       s>reports 
-      is-valid-bonus-report?  \ 
-      \ bad-score-report ( flag c-addr u2 -- flag badScore )
-      \ dup ."  badScore: " . 
-      \ tolerated-range @ <= if
-      \   ."  safe" cr
-      \   1 #valid-reports +!
-      \ else
-      \   ."  unsafe" cr
-      \ then
+      is-valid-bonus-report? if
+        1 #valid-reports +!
+        ."  safe" cr
+      else
+        ."  unsafe" cr
+      then  
     else
       2drop \ string was empty, so drop it leaving the flag.
     then
