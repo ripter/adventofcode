@@ -35,7 +35,6 @@ variable drop-count
   2drop 2drop \ drop the address and the placeholder
 ;
 
-
 : mark-as-processed
   -1 #reports +! 
   #reports @ 1 = 
@@ -43,14 +42,6 @@ variable drop-count
 
 : get-direction ( n1 n2 -- flag )
   - 0 > if
-    true
-  else
-    false
-  then
-;
-
-: is-same-direction ( n1 n2 -- flag )
-  xor 0 >= if
     true
   else
     false
@@ -94,39 +85,11 @@ variable drop-count
   swap drop
 ;
 
-: report-failed ( -- )
-  ."  failed " .s cr
-;
-
-: drop-next-report ( n1 b1 n2 n3 -- true n1 n3 )
-  dup ."  dropping " . .s cr
-  rot drop true -rot
-  \ swap drop swap drop \ ( n1 n3 )
-  \ true -rot \ ( true n1 n3 )
-  \ mark-as-processed drop \ drop the returned flag
-  \ 99
-  dup ."  post dropping " . .s cr
-
-;
-: did-drop-report ( flag1 n1 n1 -- flag n1 n3 flag1 )
-  2 pick
-;
-: drop-or-fail ( ... n1 didDropReport n2 n3 -- ... true n1 n3 | true 0 0 )
-  did-drop-report if
-    report-failed
-  else
-    drop-next-report ( ... true n1 n3 )
-  then
-;
 : save-report-direction ( n1 n2 -- )
   get-direction report-direction ! 
 ;
 : is-bad-direction? ( n1 n2 -- n1 n2 flag )
   2dup get-direction report-direction @ invert =
-;
-
-: report-finished ( n1 didDropReport n2 n3 -- didDropReport n1 n2 )
-  drop swap -rot 
 ;
 
 \ Bonus Problem allows removing one value if it makes the rest valid.
@@ -193,30 +156,15 @@ variable drop-count
   verify-it
 ;
 
-: test-safe
-  5 #reports !
-  7 6 4 2 1 is-valid-bonus-report?
-  5 #reports !
-  1 3 2 4 5 is-valid-bonus-report?
-  5 #reports !
-  8 6 4 4 1 is-valid-bonus-report?
-  5 #reports !
-  1 3 6 7 9 is-valid-bonus-report?
-  cr ." Done " .s cr
-;
 
-: test-unsafe
-  5 #reports !
-  1 2 7 8 9 is-valid-bonus-report?
-  5 #reports !
-  9 7 6 2 1 is-valid-bonus-report?
-;
+
+
 
 \ Print a friendly message letting us know which data we're running
 : .title ( c-addr u -- )
   cr cr ." Loading data from ./" type cr
 ;
-
+\ Read the line from the file into the buffer
 : line>buf ( file-id -- flag c-addr u )
   buf MAX-LEN rot read-line throw
   buf rot
@@ -258,8 +206,6 @@ variable drop-count
   #valid-reports @
 ;
 
-
-
 \ Day 2 Bonus Problem
 \ Returns the number of safe reports in the file.
 ( c-addr u -- n )
@@ -295,14 +241,60 @@ variable drop-count
 ;
 
 
+
+
+\
+\ My 3rd attempt at the bonus problem
+\
+2variable array1
+2variable array2
+
+\ errIdx is the index of the first invalid report
+: a-is-valid-report ( array-addr -- errIdx flag )
+  \ is-safe-change?
+;
+
+\ Returns the number of safe reports in the file.
+( c-addr u -- n )
+: bonus-attempt-3
+  \ Open the file for reading and get the file-id
+  r/o open-file throw
+  { file-id }
+  
+  begin
+    file-id line>buf  ( flag c-addr u2 )
+    dup 0<> if  \ Check if the string is not empty
+      \ Convert the string into a series of reports
+      \ Sets the #reports variable
+      s>reports 
+
+    else
+      2drop \ string was empty, so drop it leaving the flag.
+    then
+  0= until
+
+  \ Close the file
+  file-id close-file throw
+;
+
+
+
+
+\
+\
 \ Runs the Exmaple Data
 : run-example
   0 tolerated-range !
   s" example.txt" main
 ;
 : run-example-bonus
-  1 tolerated-range !
-  s" example.txt" bonus
+  s" example.txt" bonus-attempt-3
+  dup ." Safe Reports: " . cr
+  4 = if
+    ."  PASSED " cr
+  else
+    ."  FAILED " cr
+  then
 ;
 
 \ Runs the Input Data
@@ -311,6 +303,6 @@ variable drop-count
   s" input.txt" main
 ;
 : run-input-bonus
-  1 tolerated-range !
-  s" input.txt" bonus
+  s" input.txt" bonus-attempt-3
+  ." Safe Reports: " . cr
 ;

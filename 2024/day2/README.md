@@ -9,6 +9,20 @@ Or run as single command:
 gforth main.4th -e "run-input cr .\" Result: \" . bye"
 ```
 
+### Issues during development.
+The main problem wasn't too difficult to solve. However, the bonus proved to be significantly more challenging. The reason wasn't that the problem itself was overly complex, but rather that I was overly apprehensive about allocating memory and using arrays. Despite having already utilized two arrays on day 1, I wasted considerable time attempting to solve the bonus using only the stack and some variables. Ultimately, this approach failed, and I had to revert to properly allocating memory and arrays - the correct approach I should have started with from the beginning.
+
+My 3rd (and final) approach works as follows:
+
+* `2Variables` that hold the length and address `(n array[0])` for an array, along with the coresponding words `a-create` `a-free` `a-get` `a-set` `a-copy-except` 
+* `s>reports` converts the string of reports into numbers on the stack. 
+* `a-load-from-stack` loads the report from the stack into a new array.
+* `a-is-valid-bonus-report` returns true if the report in the array is valid (bonus rules) or false if it is not.
+* `a-is-valid-report` returns `( flag errIdx )`, if flag is true, errIdx is -1 and report is valid. if flag is false, errIdx in N and N+1 where the report failed validation.
+
+
+
+
 --- Day 2: Red-Nosed Reports ---
 
 Fortunately, the first location The Historians want to search isn't a long walk from the Chief Historian's office.
