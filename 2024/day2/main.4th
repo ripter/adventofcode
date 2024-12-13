@@ -151,10 +151,6 @@ variable drop-count
   then
 ;
 
-: test
-  56 59 60 61 62 65 69 
-  verify-it
-;
 
 
 
@@ -249,14 +245,78 @@ variable drop-count
 2variable array1
 2variable array2
 
-\ errIdx is the index of the first invalid report
-: a-is-valid-report ( array-addr -- errIdx flag )
-  \ is-safe-change?
+\ Sets a value at the index in the array
+: a-set ( val idx 2var -- )
+  { val idx var }
+  val var @ idx cells + !
+  \ TODO: add bounds checking
+;
+\ Gets a value from the index in the array
+: a-get ( idx 2var -- val )
+  { idx var }
+  var @ idx cells + @
+  \ TODO: add bounds checking
+;
+: a-len ( 2var -- len )
+  2@ drop \ get both, drop the pointer leaving the length
+;
+
+\ loads len number of values from the stack into the array
+: a-load-from-stack ( ... n1 len 2var -- )
+  { len 2var1 }
+  \ allocate len cells of memory for the array
+  len cells allocate throw ( ... n1 addr )
+  \ store the address and the length into the 2var
+  \ then loop and fill the array from the stack.
+  len swap 2var1 2!
+  len 0 do
+    i 2var1 a-set
+  loop
+;
+
+: a-get-pair ( idx 2var -- n1 n2 )
+  { idx 2var }
+  idx 2var a-get
+  idx 1+ 2var a-get
+;
+
+: a-is-valid-report ( 2var -- errorIndex | -1 )
+  { 2var }
+  2var a-len { len }
+  -1 \ errorIndex default to -1
+  \ save the direction of the report
+  0 2var a-get-pair save-report-direction 
+  len 1- 0 do \ ( -- )
+    i 2var a-get-pair \ ( -- n1 n2 )
+    2dup i cr ." Checking " . . . 
+    is-safe-change? invert if
+      cr ."  bad level change " cr
+      2drop i leave \ drop the numbers and leave the index of the error
+    then
+    is-bad-direction? if
+      cr ."  bad direction " cr
+      2drop i leave \ drop the numbers and leave the index of the error
+    then
+    2drop \ drop the numbers, they are good
+  loop
+  \ clean-up return
+  dup -1 <> if
+    swap drop \ drop the -1 and leave the error index
+  then
+;
+
+\ Bonus Problem allows removing one value if it makes the rest valid.
+: a-is-valid-bonus-report ( 2var -- flag )
+  { 2var }
+  ." a-is-valid-bonus-report " cr
+  
 ;
 
 \ Returns the number of safe reports in the file.
 ( c-addr u -- n )
 : bonus-attempt-3
+  \ Reset the valid reports counter
+  0 #valid-reports !
   \ Open the file for reading and get the file-id
   r/o open-file throw
   { file-id }
@@ -265,9 +325,16 @@ variable drop-count
     file-id line>buf  ( flag c-addr u2 )
     dup 0<> if  \ Check if the string is not empty
       \ Convert the string into a series of reports
-      \ Sets the #reports variable
-      s>reports 
-
+      \ Setting the #reports variable
+      \ The reports are then pulled off the stack and stored in the array
+      s>reports #reports @ array1 a-load-from-stack
+      \ If the array holds a valid report, increment the #valid-reports
+      array1 a-is-valid-bonus-report if
+        1 #valid-reports +!
+        ."  safe" cr
+      else
+        ."  unsafe" cr
+      then
     else
       2drop \ string was empty, so drop it leaving the flag.
     then
@@ -275,6 +342,8 @@ variable drop-count
 
   \ Close the file
   file-id close-file throw
+  \ Return the number of valid reports
+  #valid-reports @
 ;
 
 
@@ -305,4 +374,12 @@ variable drop-count
 : run-input-bonus
   s" input.txt" bonus-attempt-3
   ." Safe Reports: " . cr
+;
+
+
+: test
+  56 59 60 61 62 65 69 7 array1 a-load-from-stack
+;
+: test2
+  7 6 4 2 1 5 array1 a-load-from-stack
 ;
