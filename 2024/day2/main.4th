@@ -23,7 +23,7 @@ variable drop-count
 \ Convert the string of reports into a series of numbers 
 \ Resets the #reports variable
 : s>reports ( c-ddr u -- n1 n2 n3 ... )
-  2dup ." s>reports " type 
+  2dup cr ." s>reports " type 
   0 #reports !
   \ the number conversion word requires double 0 0 before the address.
   0 0 2swap \ 0 0 c-addr u
@@ -140,22 +140,6 @@ variable drop-count
 
 
 
-
-: verify-it
-  depth #reports !
-  ." Testing " .s cr
-  is-valid-bonus-report? if
-    ."  PASSED " .s cr
-  else
-    ."  FAILED " .s cr
-  then
-;
-
-
-
-
-
-
 \ Print a friendly message letting us know which data we're running
 : .title ( c-addr u -- )
   cr cr ." Loading data from ./" type cr
@@ -260,7 +244,37 @@ variable drop-count
 : a-len ( 2var -- len )
   2@ drop \ get both, drop the pointer leaving the length
 ;
+\ Prints the array
+: a-print ( 2var -- )
+  { 2var }
+  2var a-len { len }
+  len 0 do
+    len i - 1- 
+    2var a-get .
+  loop
+;
+\ Copy all the values from 2var1 to 2var2 except the value at idx
+\ array2 will be one cell smaller than array1
+: a-copy-except ( idx 2var1 2var2 -- )
+  { idx 2var1 2var2 }
+  2var1 a-len { len }
+  \ we need one fewer cell in the new array
+  len 1- cells allocate throw ( ... addr )
+  len 1- swap 2var2 2!
 
+  \ Copy all the values except the one at idx
+  len 0 do
+    \ cr ." copying " i . i 2var1 a-get .
+    i idx < if
+      \ ." to " i . 
+      i 2var1 a-get i 2var2 a-set
+    then
+    i idx > if
+      \ ." to " i 1- .
+      i 2var1 a-get i 1- 2var2 a-set
+    then
+  loop
+;
 \ loads len number of values from the stack into the array
 : a-load-from-stack ( ... n1 len 2var -- )
   { len 2var1 }
@@ -273,7 +287,7 @@ variable drop-count
     i 2var1 a-set
   loop
 ;
-
+\ Returns the pair of values at the index and index+1
 : a-get-pair ( idx 2var -- n1 n2 )
   { idx 2var }
   idx 2var a-get
@@ -288,19 +302,21 @@ variable drop-count
   0 2var a-get-pair save-report-direction 
   len 1- 0 do \ ( -- )
     i 2var a-get-pair \ ( -- n1 n2 )
-    2dup i cr ." Checking " . . . 
+    \ cr ." loop idx: " i . .s 
+    \ 2dup i cr ." Checking idx: " . ."  " . ." , " . 
     is-safe-change? invert if
-      cr ."  bad level change " cr
+      \ cr ."  bad level change " .s
       2drop i leave \ drop the numbers and leave the index of the error
     then
     is-bad-direction? if
-      cr ."  bad direction " cr
+      \ cr ."  bad direction " .s 
       2drop i leave \ drop the numbers and leave the index of the error
     then
     2drop \ drop the numbers, they are good
   loop
   \ clean-up return
   dup -1 <> if
+    \ cr ." cleaning up returns " .s
     swap drop \ drop the -1 and leave the error index
   then
 ;
@@ -308,8 +324,46 @@ variable drop-count
 \ Bonus Problem allows removing one value if it makes the rest valid.
 : a-is-valid-bonus-report ( 2var -- flag )
   { 2var }
-  ." a-is-valid-bonus-report " cr
-  
+  \ ." a-is-valid-bonus-report " cr
+
+  \ cr cr ." 1st Test: " 2var a-print ." stack:" .s
+  2var a-is-valid-report \ ( -- errorIndex | -1 )
+  \ cr ." 1st Result: " .s cr cr
+  dup -1 <> if
+    ."  x" 
+    \ dup cr ." first check failed skipping idx: " . ." value: " 2var a-get .
+    \ cr ." first check failed  ( errorIndex | -1 ) -> " .s
+    \ Try removing the value at errorIndex and see if that works.
+    2var array2 a-copy-except
+    \ cr ." 2nd Test: " array2 a-print
+    array2 a-is-valid-report \ ( -- errorIndex | -1 )
+    \ cr ." 2nd Result: " .s cr cr
+    dup -1 <> if ( -- errorIndex | -1 )
+      ." x" 
+      \ cr ." second check failed  ( errorIndex | -1 ) -> " .s
+      \ dup 1+ cr ." second check failed skipping idx: " dup . ." value: " array2 a-get .
+      \ One last try, remove the other value
+      1+ 2var array2 a-copy-except
+      \ cr ." 3rd Test: " array2 a-print
+      array2 a-is-valid-report \ ( -- errorIndex | -1 )
+      \ cr ." 3rd Result: " .s cr cr
+      dup -1 <> if
+        \ cr ." third check failed " .s cr
+        ." x " 
+        drop false
+      else
+        \ cr ." third check passed " .s cr
+        drop true
+      then
+    else
+      \ cr ." second check passed " .s cr
+      drop true
+    then
+  else
+    \ cr ."  PASSED " . cr
+    drop true
+  then
+  \ cr ." end of a-is-valid-bonus-report " .s cr
 ;
 
 \ Returns the number of safe reports in the file.
@@ -331,9 +385,9 @@ variable drop-count
       \ If the array holds a valid report, increment the #valid-reports
       array1 a-is-valid-bonus-report if
         1 #valid-reports +!
-        ."  safe" cr
+        9 emit 9 emit ."  safe"
       else
-        ."  unsafe" cr
+        9 emit 9 emit ."  unsafe" 
       then
     else
       2drop \ string was empty, so drop it leaving the flag.
@@ -373,13 +427,26 @@ variable drop-count
 ;
 : run-input-bonus
   s" input.txt" bonus-attempt-3
-  ." Safe Reports: " . cr
+  cr ." Safe Reports: " . cr
 ;
 
+
+: test2
+  9 6 7 4 5 7 10 9 8 array1 a-load-from-stack
+  array1 a-is-valid-bonus-report
+;
+: test3
+  60 62 64 65 64 64 7 array1 a-load-from-stack
+  array1 a-is-valid-bonus-report
+;
 
 : test
-  56 59 60 61 62 65 69 7 array1 a-load-from-stack
-;
-: test2
-  7 6 4 2 1 5 array1 a-load-from-stack
+  \ should pass if 15 is removed.
+  10 10 12 14 15  5 array1 a-load-from-stack
+  array1 a-is-valid-bonus-report
+  true = if
+    ."  PASSED " cr
+  else
+    ."  FAILED " cr
+  then
 ;

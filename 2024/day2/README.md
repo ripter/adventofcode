@@ -14,11 +14,11 @@ The main problem wasn't too difficult to solve. However, the bonus proved to be 
 
 My 3rd (and final) approach works as follows:
 
-* `2Variables` that hold the length and address `(n array[0])` for an array, along with the coresponding words `a-create` `a-free` `a-get` `a-set` `a-copy-except` 
+* `2Variables` that hold the length and address `(n array[0])` for an array, along with the coresponding words `a-load-from-stack` `a-get` `a-set` `a-get-pair` `a-copy-except` 
 * `s>reports` converts the string of reports into numbers on the stack. 
-* `a-load-from-stack` loads the report from the stack into a new array.
+* `a-load-from-stack` loads numbers from the stack into a new array.
 * `a-is-valid-bonus-report` returns true if the report in the array is valid (bonus rules) or false if it is not.
-* `a-is-valid-report` returns `( flag errIdx )`, if flag is true, errIdx is -1 and report is valid. if flag is false, errIdx in N and N+1 where the report failed validation.
+* `a-is-valid-report` returns `( errIdx | -1 )`, if errIdx is -1 the report is valid. Else errIdx in N and N+1 where the report failed validation.
 
 
 
