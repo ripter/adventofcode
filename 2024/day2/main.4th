@@ -23,7 +23,7 @@ variable drop-count
 \ Convert the string of reports into a series of numbers 
 \ Resets the #reports variable
 : s>reports ( c-ddr u -- n1 n2 n3 ... )
-  2dup cr ." s>reports " type 
+  \ 2dup cr ." s>reports " type 
   0 #reports !
   \ the number conversion word requires double 0 0 before the address.
   0 0 2swap \ 0 0 c-addr u
@@ -321,49 +321,58 @@ variable drop-count
   then
 ;
 
+variable returnValue
+: return! ( val -- )
+  returnValue !
+;
+: return@ ( -- val )
+  returnValue @
+;
+: is-return-false ( -- flag )
+  false returnValue @ =
+;
 \ Bonus Problem allows removing one value if it makes the rest valid.
 : a-is-valid-bonus-report ( 2var -- flag )
   { 2var }
-  \ ." a-is-valid-bonus-report " cr
-
-  \ cr cr ." 1st Test: " 2var a-print ." stack:" .s
+  false return!
+  \ Test the array as is
   2var a-is-valid-report \ ( -- errorIndex | -1 )
-  \ cr ." 1st Result: " .s cr cr
-  dup -1 <> if
-    ."  x" 
-    \ dup cr ." first check failed skipping idx: " . ." value: " 2var a-get .
-    \ cr ." first check failed  ( errorIndex | -1 ) -> " .s
-    \ Try removing the value at errorIndex and see if that works.
-    2var array2 a-copy-except
-    \ cr ." 2nd Test: " array2 a-print
+  dup -1 = return!
+
+  \ cr ." Result of first check: " .s cr
+  \ Try removing the value at errorIndex and see if that works.
+  is-return-false if
+    \ dup ."  Trying to remove " . cr
+    dup 2var array2 a-copy-except
     array2 a-is-valid-report \ ( -- errorIndex | -1 )
-    \ cr ." 2nd Result: " .s cr cr
-    dup -1 <> if ( -- errorIndex | -1 )
-      ." x" 
-      \ cr ." second check failed  ( errorIndex | -1 ) -> " .s
-      \ dup 1+ cr ." second check failed skipping idx: " dup . ." value: " array2 a-get .
-      \ One last try, remove the other value
-      1+ 2var array2 a-copy-except
-      \ cr ." 3rd Test: " array2 a-print
-      array2 a-is-valid-report \ ( -- errorIndex | -1 )
-      \ cr ." 3rd Result: " .s cr cr
-      dup -1 <> if
-        \ cr ." third check failed " .s cr
-        ." x " 
-        drop false
-      else
-        \ cr ." third check passed " .s cr
-        drop true
-      then
-    else
-      \ cr ." second check passed " .s cr
-      drop true
+    -1 = if \ drop new errorIndex
+      true return!
     then
-  else
-    \ cr ."  PASSED " . cr
-    drop true
   then
-  \ cr ." end of a-is-valid-bonus-report " .s cr
+
+  \ Try errorIndex + 1
+  is-return-false if
+    \ dup 1+ ."  Trying to remove " . cr
+    dup 1+ 2var array2 a-copy-except
+    array2 a-is-valid-report \ ( -- errorIndex | -1 )
+    -1 = if \ drop new errorIndex
+      true return!
+    then
+  then
+
+  \ Try errorIndex - 1 
+  is-return-false if
+    \ dup 1- ."  Trying to remove " . cr
+    dup 1- 2var array2 a-copy-except
+    array2 a-is-valid-report \ ( -- errorIndex | -1 )
+    -1 = if \ drop new errorIndex
+      true return!
+    then
+  then
+
+  drop  \ drop the errorIndex
+  return@
+  \ ." returning " .s cr
 ;
 
 \ Returns the number of safe reports in the file.
@@ -385,9 +394,9 @@ variable drop-count
       \ If the array holds a valid report, increment the #valid-reports
       array1 a-is-valid-bonus-report if
         1 #valid-reports +!
-        9 emit 9 emit ."  safe"
+        \ 9 emit 9 emit ."  safe"
       else
-        9 emit 9 emit ."  unsafe" 
+        \ 9 emit 9 emit ."  unsafe" 
       then
     else
       2drop \ string was empty, so drop it leaving the flag.
@@ -431,9 +440,49 @@ variable drop-count
 ;
 
 
+\ Debugging Tools
+
+: log-bad-reports 
+  \ Reset the valid reports counter
+  0 #valid-reports !
+  \ Open the file for reading and get the file-id
+  r/o open-file throw
+  { file-id }
+  
+  begin
+    file-id line>buf  ( flag c-addr u2 )
+    dup 0<> if  \ Check if the string is not empty
+      \ Convert the string into a series of reports
+      \ Setting the #reports variable
+      \ The reports are then pulled off the stack and stored in the array
+      s>reports #reports @ array1 a-load-from-stack
+      \ If the array holds a valid report, increment the #valid-reports
+      array1 a-is-valid-bonus-report invert if
+        \ 9 emit 9 emit ."  unsafe" 
+        array1 a-print
+        .s
+        cr
+      then
+    else
+      2drop \ string was empty, so drop it leaving the flag.
+    then
+  0= until
+
+  \ Close the file
+  file-id close-file throw
+  \ Return the number of valid reports
+  #valid-reports @
+;
+
+
 : test2
-  9 6 7 4 5 7 10 9 8 array1 a-load-from-stack
+  1 2 7 8 9  5 array1 a-load-from-stack
   array1 a-is-valid-bonus-report
+  true = if
+    ."  PASSED " cr
+  else
+    ."  FAILED " cr
+  then
 ;
 : test3
   60 62 64 65 64 64 7 array1 a-load-from-stack
@@ -441,8 +490,8 @@ variable drop-count
 ;
 
 : test
-  \ should pass if 15 is removed.
-  10 10 12 14 15  5 array1 a-load-from-stack
+  \ should pass if 97 is removed.
+  12 10 11 13 15 18 20  7 array1 a-load-from-stack
   array1 a-is-valid-bonus-report
   true = if
     ."  PASSED " cr

@@ -5,22 +5,28 @@
 
 Or run as single command:
 
+## Run 
+
 ```sh
 gforth main.4th -e "run-input cr .\" Result: \" . bye"
 ```
 
+### Run the Bonus
+```sh
+gforth main.4th -e "run-input-bonus cr bye"
+```
+
 ### Issues during development.
-The main problem wasn't too difficult to solve. However, the bonus proved to be significantly more challenging. The reason wasn't that the problem itself was overly complex, but rather that I was overly apprehensive about allocating memory and using arrays. Despite having already utilized two arrays on day 1, I wasted considerable time attempting to solve the bonus using only the stack and some variables. Ultimately, this approach failed, and I had to revert to properly allocating memory and arrays - the correct approach I should have started with from the beginning.
+
+The primary problem was relatively straightforward, but the bonus challenge proved much more difficult. The real issue wasn’t the complexity of the bonus itself; rather, I was overly cautious about allocating memory and using arrays. Even though I had used two arrays on Day 1, I spent a lot of time trying to solve the bonus with only the stack and a few variables. Ultimately, that approach failed, and I went back to properly allocating memory and using arrays
 
 My 3rd (and final) approach works as follows:
 
 * `2Variables` that hold the length and address `(n array[0])` for an array, along with the coresponding words `a-load-from-stack` `a-get` `a-set` `a-get-pair` `a-copy-except` 
 * `s>reports` converts the string of reports into numbers on the stack. 
 * `a-load-from-stack` loads numbers from the stack into a new array.
-* `a-is-valid-bonus-report` returns true if the report in the array is valid (bonus rules) or false if it is not.
 * `a-is-valid-report` returns `( errIdx | -1 )`, if errIdx is -1 the report is valid. Else errIdx in N and N+1 where the report failed validation.
-
-
+* `a-is-valid-bonus-report` returns true if the report in the array is valid (bonus rules) or false if it is not. Uses the variable `returnValue` to keep track of the failed errorIndex.
 
 
 --- Day 2: Red-Nosed Reports ---
