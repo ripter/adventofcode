@@ -1,11 +1,21 @@
 12 constant MAX_BUFFER_SIZE
 variable parseBuffer \ Holds the mult(nnn,nnn) string as it is being built
 variable parsePos    \ Holds the current position in the buffer
+variable shouldUseBonusRules    \ Flag to use the bonus rules
+variable includeMult? \ Flag to include the mult(nnn,nnn) strings in the total
+
+\ Default values on the globals
+false shouldUseBonusRules !
 
 \ Setup the globals for running the program.
 : initialize ( -- )
   MAX_BUFFER_SIZE allocate throw parseBuffer !
   0 parsePos !
+  true includeMult? !
+;
+
+: cleanup ( -- )
+  parseBuffer @ free throw
 ;
 
 \ Returns true if it's an ASCII printable character
@@ -39,6 +49,10 @@ variable parsePos    \ Holds the current position in the buffer
   parsePos +!
 ;
 
+: should-use-bonus? ( -- flag )
+  shouldUseBonusRules @
+;
+
 : buffer@ ( idx -- char )
   parseBuffer @ + c@ 
 ;
@@ -46,7 +60,7 @@ variable parsePos    \ Holds the current position in the buffer
   parseBuffer @ + c!
 ;
 
-: print-buffer ( -- )
+: .buffer ( -- )
   position 0 = if
     ." Buffer is empty" cr
     exit
@@ -58,15 +72,28 @@ variable parsePos    \ Holds the current position in the buffer
 
 \ Add a character to the parse buffer
 : >buffer ( char -- )
+  position MAX_BUFFER_SIZE >= if
+    ." Error: Buffer overflow" cr
+    exit
+  then
+
   dup is-printable? invert if
     cr cr ." >buffer: Invalid character " . cr
-    print-buffer cr
-    \ charCount @ . cr
+    .buffer cr
     exit
   then
   \ Set the char in the buffer[parsePos], then increment parsePos
   position buffer!
   1 position+!
+;
+
+\ Put a string into the buffer
+: str->buffer ( c-addr len -- )
+  { caddr len }
+  0 position!
+  len 0 do 
+    caddr i + c@ >buffer
+  loop
 ;
 
 : reset 
@@ -133,8 +160,8 @@ variable parsePos    \ Holds the current position in the buffer
   position [did-use-end-parenthesis]?
 ;
 
-
-: is-char-valid-for-position? ( char idx -- flag )
+\ mult(nnn,nnn) string
+: char-valid-for-mult-string? ( char idx -- flag )
   \ Each position in the buffer has a different set of valid characters
   \ Would be easy in regex, but this is Forth
   case
@@ -174,18 +201,51 @@ variable parsePos    \ Holds the current position in the buffer
       10 [did-use-end-parenthesis]? invert
       and and endof
     11 of [char] ) = did-use-comma? and endof
+   \ default is false
+    drop false swap
+  endcase
+;
+\ do() string 
+: char-valid-for-do-string? ( char ids -- flag )
+  case
+    0 of [char] d = endof
+    1 of [char] o = endof
+    2 of [char] ( = endof
+    3 of [char] ) = endof
+    \ default is false
+    drop false swap
+  endcase
+;
+\ don't() string
+: char-valid-for-dont-string? ( char ids -- flag )
+  case
+    0 of [char] d = endof
+    1 of [char] o = endof
+    2 of [char] n = endof
+    3 of [char] ' = endof
+    4 of [char] t = endof
+    5 of [char] ( = endof
+    6 of [char] ) = endof
     \ default is false
     drop false swap
   endcase
 ;
 
+\ Returns True if the character should be appended to the buffer
 : should-append-char? ( char -- flag )
-  dup is-printable? swap
-  position is-char-valid-for-position?
-  and
+  { c }
+  c is-printable? if
+    c position char-valid-for-mult-string? 
+    should-use-bonus? if
+      c position char-valid-for-do-string? or
+      c position char-valid-for-dont-string? or
+    then
+  else
+    false
+  then
 ;
 
-: is-valid-buffer? ( -- flag )
+: does-buffer-contain-mult? ( -- flag )
   \ Check if there are enough characters in the buffer to be valid
   position 8 < if
     false exit
@@ -201,29 +261,61 @@ variable parsePos    \ Holds the current position in the buffer
   \ Loop and check each character in the buffer
   position 0 do
     i dup buffer@ swap 
-    is-char-valid-for-position? invert if
+    char-valid-for-mult-string? invert if
+      unloop false exit
+    then
+  loop
+  true
+;
+\ do()
+: does-buffer-contain-do? ( -- flag )
+  \ Check if there are enough characters in the buffer to be valid
+  position 3 < if
+    false exit
+  then
+  \ Loop and check each character in the buffer
+  4 0 do
+    i dup buffer@ swap 
+    char-valid-for-do-string? invert if
+      unloop false exit
+    then
+  loop
+  true
+;
+\ don't()
+: does-buffer-contain-dont? ( -- flag )
+  \ Check if there are enough characters in the buffer to be valid
+  position 6 < if
+    false exit
+  then
+  \ Loop and check each character in the buffer
+  7 0 do
+    i dup buffer@ swap 
+    char-valid-for-dont-string? invert if
       unloop false exit
     then
   loop
   true
 ;
 
+
 : buffer-values ( -- n1 n2 )
-  0
-  \ digits can start on idx 4
+  0 \ start the first number
+  \ digits start on idx 4
   position 4 do
     i buffer@ char->digit? if ( n1 -- n1 n2 )
       swap 10 * +
     else
-      drop
-      0
+      drop \ drop the failed to convert character
+      0 \ start a new number
     then
   loop
-  drop
+  drop \ last character was a ), drop it
 ;
 
 : main ( c-addr u -- )
   2dup cr ." Reading file " type cr
+  ." Bonus is " should-use-bonus? if ." enabled" else ." disabled" then cr
   R/O open-file throw { fileID }
   initialize
   0 s>d \ total in 64 bits
@@ -234,24 +326,56 @@ variable parsePos    \ Holds the current position in the buffer
     pad @ should-append-char? if
       pad @ >buffer 
     else
-      reset 
+      reset
+    then
+
+    should-use-bonus?
+    does-buffer-contain-do? 
+    and if
+      true includeMult? !
+      reset
+    then
+
+    should-use-bonus?
+    does-buffer-contain-dont?
+    and if
+      false includeMult? !
+      reset
     then
 
     \ Test if the buffer is a valid mult(nnn,nnn) string yet
-    is-valid-buffer? if
+    includeMult? @
+    does-buffer-contain-mult? 
+    and if
       \ Get the values, multiply them, and add them to the total.
       buffer-values * 
       s>d d+ \ convert to 64 bit then do a 64 bit add with the total.
       reset
     then
+
+    includeMult? @ invert
+    does-buffer-contain-mult? and
+    position 0 > and if
+      reset
+    then
+
   repeat
 
   fileID close-file throw
   ." Total: " swap . . cr
+  cleanup
+;
+
+: enable-bonus ( -- )
+  true shouldUseBonusRules !
 ;
 
 : run-example ( -- )
-  s" example.txt" main 
+  should-use-bonus? if
+    s" example2.txt" main 
+  else
+    s" example.txt" main 
+  then
 ;
 : run-input ( -- )
   s" input.txt" main
