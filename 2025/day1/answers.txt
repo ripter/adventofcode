@@ -1,1 +1,6 @@
-1021
+Answer: 1021
+
+Bonus:
+Too Low: 4907
+Too High: 6239
+Answer: 5933

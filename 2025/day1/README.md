@@ -10,6 +10,10 @@ Or run as single command:
 gforth main.4th -e "run-input bye"
 ```
 
+```sh
+gforth main.4th -e "with-bonus run-input bye"
+```
+
 --- Day 1: Secret Entrance ---
 
 The Elves have good news and bad news.
