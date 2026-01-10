@@ -2,11 +2,30 @@
 \ Spec says we need to allocate 2 more bytes than the max line length
 1024 constant MAX-LEN
 create buf MAX-LEN 2 + allot
+variable buf-length
+0 buf-length !
+\ Variables to hold the start and ending ranges
+variable start-range
+variable end-range
+
+\ Append the next character from the file to the buffer
+: append-next-from-file ( fileid -- fileid char-read )
+  dup                 \ dup the fileid so we can return it
+  buf buf-length @ +  \ calculate the address to append the character
+  1 rot               \ read one character and rotate everything into position.
+  read-file throw      \ Read a single character from the file
+  dup buf-length @ + buf-length !  \ Update buf-length with the number of characters read
+;
 
 \ Process the file.
 : process-file ( fileid -- value fileid )
-   0 swap
-  s" Do The thing" type cr
+  0 swap  ( fileid -- value fileid )  
+  BEGIN 
+    append-next-from-file
+  WHILE
+    s" Processing line: " type buf buf-length @ type cr
+    \ .s cr
+  REPEAT
 ;
 
 
