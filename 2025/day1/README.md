@@ -2,7 +2,7 @@
 * Load the code with `gForth main.4th`
 * Run the example:  `run-example`
 * Run the input: `run-input`
-* Run the bonus after running the input or example with `bonus`
+* Run the bonus with input or example by prepending: `with-bonus`
 
 Or run as single command:
 
