@@ -9,6 +9,7 @@ Or run as single command:
 gforth main.4th -e "run-input bye"
 ```
 
+**Developer Note:** I appended the data with a trailing `,` to make the code easier. This makes the entire file the constant pattern of `###-###,`
 
 --- Day 2: Gift Shop ---
 
