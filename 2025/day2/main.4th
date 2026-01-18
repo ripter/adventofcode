@@ -5,9 +5,47 @@ create buf MAX-LEN 2 + allot
 variable buf-length
 0 buf-length !
 
+create pattern MAX-LEN 2 + allot
+variable pattern-length
+0 pattern-length !
+
 : reset-buf ( -- )
   buf MAX-LEN erase
   0 buf-length !
+;
+\ Get the buf and buf-length
+: buf> ( -- addr u )
+  buf buf-length @
+;
+\ Sets buf and buf-length
+: >buf ( addr u -- )
+  dup buf-length !
+  buf swap move
+;
+\ Load buf with a number
+: num>buf ( n -- )
+  reset-buf
+  s>d <# #s #>
+  >buf
+;
+\ Convert the buffer back to a number
+: buf>num
+  buf> s>number throw
+;
+
+
+: reset-pattern ( -- )
+  pattern MAX-LEN erase
+  0 pattern-length !
+;
+\ Get Pattern & Length
+: pattern> ( -- addr u )
+  pattern pattern-length @
+;
+\ Set Pattern & Length
+: >pattern ( addr u -- )
+  dup pattern-length !
+  pattern swap move
 ;
 
 \ Variables to hold the start and ending ranges
@@ -21,6 +59,12 @@ variable end-range
 
 : has-range? ( -- flag )
   start-range @ 0<> end-range @ 0<> and
+;
+
+\ Debug helper
+: print-ranges ( -- )
+  s" Start: " type start-range @ .
+  s" End: " type end-range @ .
 ;
 
 
@@ -50,8 +94,21 @@ variable end-range
 
 \ Gets the number from the buffer, last char is a dash or comma
 : get-range-number ( -- n )
-  buf-length @ 1 - chars
-  buf swap s>number throw 
+  buf-length @ 1 - buf-length !
+  buf>num
+;
+
+
+
+\ Returns true if the value in buf is made from a repeating pattern.
+\ E.g. 11, 1010, 38593859, 1188511885
+: is-repeating-pattern? ( -- flag )
+  \ Cut the string in buf in half and repeat it.
+  buf> 2 / dup -rot >pattern    \ Load the first half of the string into pattern.
+  dup pattern swap chars +      \ Get address after the first half
+  pattern swap rot move         \ Copy the same half after the first
+  buf-length @ pattern-length ! \ Update pattern length
+  buf> pattern> compare 0=
 ;
 
 
@@ -61,23 +118,28 @@ variable end-range
   BEGIN 
     append-next-from-file
   WHILE
-    \ s" Start of loop: " type .s cr
-    \ s" Processing line: " type buf buf-length @ type cr
     ends-with-dash? if
       get-range-number start-range !
       reset-buf
-      \ s" Start range: " type start-range @ . cr
-    else 
-      ends-with-comma if
-        get-range-number end-range !
-        reset-buf
-        \ s" End range: " type end-range @ . cr
-      then
     then
 
-    has-range? if
-      s" Range loaded: " type start-range @ . s" - " type end-range @ . cr
+    ends-with-comma if
+      get-range-number end-range !
+      reset-buf
+    then
+
+   has-range? if
+      end-range @ 1 + start-range @ do
+        i num>buf
+
+        \ If we find a repeating number, add it to the result
+        is-repeating-pattern? if
+          swap buf>num + swap 
+        then
+      loop
+      \ Reset the ranges and buffers for the next set
       reset-ranges
+      reset-buf
     then
     \ s" End of loop:" type .s cr
   REPEAT
