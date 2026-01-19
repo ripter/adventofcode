@@ -1,13 +1,19 @@
-\ Create a buffer to hold each line we read from the file
-\ I read that we should allocate 2 more bytes than the max line length
+variable include-bonus
+false include-bonus !
+
+: with-bonus ( -- )
+  true include-bonus !
+;
+
+: bonus? ( -- flag )
+  include-bonus @ true =
+;
+
+
 1024 constant MAX-LEN
 create buf MAX-LEN 2 + allot
 variable buf-length
 0 buf-length !
-
-create pattern MAX-LEN 2 + allot
-variable pattern-length
-0 pattern-length !
 
 : reset-buf ( -- )
   buf MAX-LEN erase
@@ -34,6 +40,10 @@ variable pattern-length
 ;
 
 
+create pattern MAX-LEN 2 + allot
+variable pattern-length
+0 pattern-length !
+
 : reset-pattern ( -- )
   pattern MAX-LEN erase
   0 pattern-length !
@@ -47,6 +57,7 @@ variable pattern-length
   dup pattern-length !
   pattern swap move
 ;
+
 
 \ Variables to hold the start and ending ranges
 variable start-range
@@ -129,13 +140,17 @@ variable end-range
     then
 
    has-range? if
+      \ print-ranges cr
       end-range @ 1 + start-range @ do
         i num>buf
 
         \ If we find a repeating number, add it to the result
         is-repeating-pattern? if
+          \ s"     Pattern: " type buf> type cr
           swap buf>num + swap 
         then
+        \ Need to reset the pattern so old values don't cause accidental matches. 
+        reset-pattern
       loop
       \ Reset the ranges and buffers for the next set
       reset-ranges
@@ -144,6 +159,8 @@ variable end-range
     \ s" End of loop:" type .s cr
   REPEAT
 ;
+
+
 
 
 \ Runs the program with the example input
